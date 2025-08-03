@@ -4,6 +4,9 @@ from playwright.async_api import async_playwright, TimeoutError as PlaywrightTim
 import logging
 import time
 import bs4
+import random
+from playwright.sync_api import sync_playwright
+from utils.headers import get_random_user_agent
 
 logging.basicConfig(level=logging.INFO)
 
@@ -121,6 +124,34 @@ class WebScraperTool:
         """
         # Stub: Add mapping as needed
         return name.strip()
+
+def run_web_scraper_tool():
+    with sync_playwright() as p:
+        browser = p.chromium.launch(headless=True)
+        context = browser.new_context(user_agent=get_random_user_agent())
+        page = context.new_page()
+
+        try:
+            page.goto("https://www.espn.com/nba/injuries")
+
+            # Wait until the injuries table loads
+            page.wait_for_selector("section[class*='Injuries']")
+
+            # Add a small human-like delay
+            page.wait_for_timeout(random.uniform(1200, 2400))  # milliseconds
+
+            # Scrape data here...
+            content = page.content()
+            return content
+
+        except Exception as e:
+            print(f"Error during scraping: {str(e)}")
+            return None
+        finally:
+            browser.close()
+
+        # Add delay between requests if making multiple
+        time.sleep(random.uniform(1.2, 2.4))
 
 # Example usage (async):
 # scraper = WebScraperTool()
