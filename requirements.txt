@@ -8,4 +8,4 @@ langchain==0.3.27
 pypdf==5.9.0
 snscrape==0.7.0.20230622
 certifi==2025.7.14
-firecrawl-py==2.16.3
+firecrawl-py==2.16.3html2text
