@@ -1,18 +1,13 @@
 import asyncio
-from typing import List, Dict, Optional
-from playwright.async_api import async_playwright, TimeoutError as PlaywrightTimeoutError
+from typing import List, Dict
+from tools.scraping_service import ScrapingService
 import logging
-import time
-import bs4
-import random
-from playwright.sync_api import sync_playwright
-from utils.headers import get_random_user_agent
 
 logging.basicConfig(level=logging.INFO)
 
 class WebScraperTool:
     """
-    Scrapes NBA injury data from ESPN using Playwright.
+    Scrapes NBA injury data from ESPN.
     Provides robust loading, parsing, and fallback logic.
     """
     ESPN_INJURIES_URL = "https://www.espn.com/nba/injuries"
@@ -23,6 +18,7 @@ class WebScraperTool:
         """
         self.cache_get = cache_get
         self.cache_set = cache_set
+        self.scraper = ScrapingService()
 
     async def scrape_injuries(self, max_retries: int = 3, backoff_base: float = 1.5, filter_out_season: bool = False) -> List[Dict]:
         """
@@ -40,7 +36,11 @@ class WebScraperTool:
         last_exc = None
         for attempt in range(max_retries):
             try:
-                data = await self._scrape_injuries_once(filter_out_season=filter_out_season)
+                html = await self.scraper.scrape_page(self.ESPN_INJURIES_URL)
+                if not html:
+                    raise Exception("Failed to fetch page content")
+                soup = self.scraper.parse_html(html)
+                data = self._parse_injuries(soup, filter_out_season=filter_out_season)
                 if self.cache_set:
                     self.cache_set("espn_nba_injuries", data)
                 return data
@@ -56,30 +56,17 @@ class WebScraperTool:
                 return cached
         raise Exception(f"Failed to scrape ESPN NBA injuries after {max_retries} attempts.") from last_exc
 
-    async def _scrape_injuries_once(self, filter_out_season=False) -> List[Dict]:
+    def _parse_injuries(self, soup, filter_out_season=False) -> List[Dict]:
         """
-        Scrape NBA injury data from ESPN's main injuries page.
+        Parse NBA injury data from ESPN's main injuries page.
 
         Args:
+            soup (BeautifulSoup): Parsed HTML of the page.
             filter_out_season (bool): If True, filter out players 'Out for Season'.
 
         Returns:
             List[Dict]: List of injury dicts with keys: team, player, position, injury, status, updated.
         """
-        from playwright.async_api import async_playwright
-        from bs4 import BeautifulSoup
-
-        async with async_playwright() as p:
-            browser = await p.chromium.launch(headless=False)
-            context = await browser.new_context()
-            page = await context.new_page()
-            await page.goto("https://www.espn.com/nba/injuries", timeout=60000)
-            await page.wait_for_selector("h2", timeout=20000)  # Wait for team headers
-
-            html = await page.content()
-            await browser.close()
-
-        soup = BeautifulSoup(html, "html.parser")
         injuries = []
 
         team_headers = soup.find_all("h2")
@@ -125,35 +112,7 @@ class WebScraperTool:
         # Stub: Add mapping as needed
         return name.strip()
 
-def run_web_scraper_tool():
-    with sync_playwright() as p:
-        browser = p.chromium.launch(headless=True)
-        context = browser.new_context(user_agent=get_random_user_agent())
-        page = context.new_page()
-
-        try:
-            page.goto("https://www.espn.com/nba/injuries")
-
-            # Wait until the injuries table loads
-            page.wait_for_selector("section[class*='Injuries']")
-
-            # Add a small human-like delay
-            page.wait_for_timeout(random.uniform(1200, 2400))  # milliseconds
-
-            # Scrape data here...
-            content = page.content()
-            return content
-
-        except Exception as e:
-            print(f"Error during scraping: {str(e)}")
-            return None
-        finally:
-            browser.close()
-
-        # Add delay between requests if making multiple
-        time.sleep(random.uniform(1.2, 2.4))
-
 # Example usage (async):
 # scraper = WebScraperTool()
 # data = asyncio.run(scraper.scrape_injuries())
-# print(data) 
+# print(data)

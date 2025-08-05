@@ -5,6 +5,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Scraper configuration
+
 USE_SCRAPER = os.getenv("USE_SCRAPER", "true").lower() == "true"
 
 BALLDONTLIE_API_KEY = os.getenv("BALLDONTLIE_API_KEY")
