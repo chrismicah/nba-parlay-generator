@@ -1991,18 +1991,15 @@ continues-with-sean-fennessey)
 Show More
 
 [![](/_next/image?url=https%3A%2F%2Fwp.theringer.com%2Fwp-
-content%2Fuploads%2F2024%2F11%2FParker_Tyler.jpg&w=96&q=75&dpl=6876aef68413439b20f7c753240674f337eccf38)Tyler
-Parker](/creator/tyler-
-parker)[![](/_next/image?url=https%3A%2F%2Fwp.theringer.com%2Fwp-
-content%2Fuploads%2F2024%2F11%2FParker_Tyler.jpg&w=64&q=75&dpl=6876aef68413439b20f7c753240674f337eccf38)Tyler
-Parker](/creator/tyler-parker)
+content%2Fuploads%2F2024%2F11%2FFader_Mirin.jpg&w=96&q=75&dpl=6876aef68413439b20f7c753240674f337eccf38)Mirin
+Fader](/creator/mirin-
+fader)[![](/_next/image?url=https%3A%2F%2Fwp.theringer.com%2Fwp-
+content%2Fuploads%2F2024%2F11%2FFader_Mirin.jpg&w=64&q=75&dpl=6876aef68413439b20f7c753240674f337eccf38)Mirin
+Fader](/creator/mirin-fader)
 
-[![](/_next/image?url=https%3A%2F%2Fwp.theringer.com%2Fwp-
-content%2Fuploads%2F2024%2F12%2FMurdock_Logan.jpg&w=96&q=75&dpl=6876aef68413439b20f7c753240674f337eccf38)Logan
-Murdock](/creator/logan-
-murdock)[![](/_next/image?url=https%3A%2F%2Fwp.theringer.com%2Fwp-
-content%2Fuploads%2F2024%2F12%2FMurdock_Logan.jpg&w=64&q=75&dpl=6876aef68413439b20f7c753240674f337eccf38)Logan
-Murdock](/creator/logan-murdock)
+[Ryen Russillo](/creator/ryen-russillo)[Ryen Russillo](/creator/ryen-russillo)
+
+[David Jacoby](/creator/david-jacoby)[David Jacoby](/creator/david-jacoby)
 
 [![](/_next/image?url=https%3A%2F%2Fwp.theringer.com%2Fwp-
 content%2Fuploads%2F2024%2F12%2FGoldsberry_Kirk.jpg&w=96&q=75&dpl=6876aef68413439b20f7c753240674f337eccf38)Kirk
@@ -2012,11 +2009,11 @@ content%2Fuploads%2F2024%2F12%2FGoldsberry_Kirk.jpg&w=64&q=75&dpl=6876aef6841343
 Goldsberry](/creator/kirk-goldsberry)
 
 [![](/_next/image?url=https%3A%2F%2Fwp.theringer.com%2Fwp-
-content%2Fuploads%2F2024%2F11%2FPina_Michael.jpg&w=96&q=75&dpl=6876aef68413439b20f7c753240674f337eccf38)Michael
-Pina](/creator/michael-
-pina)[![](/_next/image?url=https%3A%2F%2Fwp.theringer.com%2Fwp-
-content%2Fuploads%2F2024%2F11%2FPina_Michael.jpg&w=64&q=75&dpl=6876aef68413439b20f7c753240674f337eccf38)Michael
-Pina](/creator/michael-pina)
+content%2Fuploads%2F2024%2F11%2FBeck_Howard.jpg&w=96&q=75&dpl=6876aef68413439b20f7c753240674f337eccf38)Howard
+Beck](/creator/howard-
+beck)[![](/_next/image?url=https%3A%2F%2Fwp.theringer.com%2Fwp-
+content%2Fuploads%2F2024%2F11%2FBeck_Howard.jpg&w=64&q=75&dpl=6876aef68413439b20f7c753240674f337eccf38)Howard
+Beck](/creator/howard-beck)
 
 [![](/_next/image?url=https%3A%2F%2Fwp.theringer.com%2Fwp-
 content%2Fuploads%2F2024%2F11%2FFader_Mirin.jpg&w=96&q=75&dpl=6876aef68413439b20f7c753240674f337eccf38)Mirin
@@ -2025,19 +2022,9 @@ fader)[![](/_next/image?url=https%3A%2F%2Fwp.theringer.com%2Fwp-
 content%2Fuploads%2F2024%2F11%2FFader_Mirin.jpg&w=64&q=75&dpl=6876aef68413439b20f7c753240674f337eccf38)Mirin
 Fader](/creator/mirin-fader)
 
-[![](/_next/image?url=https%3A%2F%2Fwp.theringer.com%2Fwp-
-content%2Fuploads%2F2024%2F11%2FParker_Tyler.jpg&w=96&q=75&dpl=6876aef68413439b20f7c753240674f337eccf38)Tyler
-Parker](/creator/tyler-
-parker)[![](/_next/image?url=https%3A%2F%2Fwp.theringer.com%2Fwp-
-content%2Fuploads%2F2024%2F11%2FParker_Tyler.jpg&w=64&q=75&dpl=6876aef68413439b20f7c753240674f337eccf38)Tyler
-Parker](/creator/tyler-parker)
+[Ryen Russillo](/creator/ryen-russillo)[Ryen Russillo](/creator/ryen-russillo)
 
-[![](/_next/image?url=https%3A%2F%2Fwp.theringer.com%2Fwp-
-content%2Fuploads%2F2024%2F12%2FMurdock_Logan.jpg&w=96&q=75&dpl=6876aef68413439b20f7c753240674f337eccf38)Logan
-Murdock](/creator/logan-
-murdock)[![](/_next/image?url=https%3A%2F%2Fwp.theringer.com%2Fwp-
-content%2Fuploads%2F2024%2F12%2FMurdock_Logan.jpg&w=64&q=75&dpl=6876aef68413439b20f7c753240674f337eccf38)Logan
-Murdock](/creator/logan-murdock)
+[David Jacoby](/creator/david-jacoby)[David Jacoby](/creator/david-jacoby)
 
 [![](/_next/image?url=https%3A%2F%2Fwp.theringer.com%2Fwp-
 content%2Fuploads%2F2024%2F12%2FGoldsberry_Kirk.jpg&w=96&q=75&dpl=6876aef68413439b20f7c753240674f337eccf38)Kirk
@@ -2047,6 +2034,13 @@ content%2Fuploads%2F2024%2F12%2FGoldsberry_Kirk.jpg&w=64&q=75&dpl=6876aef6841343
 Goldsberry](/creator/kirk-goldsberry)
 
 [![](/_next/image?url=https%3A%2F%2Fwp.theringer.com%2Fwp-
+content%2Fuploads%2F2024%2F11%2FBeck_Howard.jpg&w=96&q=75&dpl=6876aef68413439b20f7c753240674f337eccf38)Howard
+Beck](/creator/howard-
+beck)[![](/_next/image?url=https%3A%2F%2Fwp.theringer.com%2Fwp-
+content%2Fuploads%2F2024%2F11%2FBeck_Howard.jpg&w=64&q=75&dpl=6876aef68413439b20f7c753240674f337eccf38)Howard
+Beck](/creator/howard-beck)
+
+[![](/_next/image?url=https%3A%2F%2Fwp.theringer.com%2Fwp-
 content%2Fuploads%2F2024%2F11%2FPina_Michael.jpg&w=96&q=75&dpl=6876aef68413439b20f7c753240674f337eccf38)Michael
 Pina](/creator/michael-
 pina)[![](/_next/image?url=https%3A%2F%2Fwp.theringer.com%2Fwp-
@@ -2054,70 +2048,11 @@ content%2Fuploads%2F2024%2F11%2FPina_Michael.jpg&w=64&q=75&dpl=6876aef68413439b2
 Pina](/creator/michael-pina)
 
 [![](/_next/image?url=https%3A%2F%2Fwp.theringer.com%2Fwp-
-content%2Fuploads%2F2024%2F11%2FFader_Mirin.jpg&w=96&q=75&dpl=6876aef68413439b20f7c753240674f337eccf38)Mirin
-Fader](/creator/mirin-
-fader)[![](/_next/image?url=https%3A%2F%2Fwp.theringer.com%2Fwp-
-content%2Fuploads%2F2024%2F11%2FFader_Mirin.jpg&w=64&q=75&dpl=6876aef68413439b20f7c753240674f337eccf38)Mirin
-Fader](/creator/mirin-fader)
-
-[![](/_next/image?url=https%3A%2F%2Fwp.theringer.com%2Fwp-
-content%2Fuploads%2F2024%2F11%2FLambre_Wosny.jpg&w=96&q=75&dpl=6876aef68413439b20f7c753240674f337eccf38)Wosny
-Lambre](/creator/wosny-
-lambre)[![](/_next/image?url=https%3A%2F%2Fwp.theringer.com%2Fwp-
-content%2Fuploads%2F2024%2F11%2FLambre_Wosny.jpg&w=64&q=75&dpl=6876aef68413439b20f7c753240674f337eccf38)Wosny
-Lambre](/creator/wosny-lambre)
-
-[![](/_next/image?url=https%3A%2F%2Fwp.theringer.com%2Fwp-
-content%2Fuploads%2F2024%2F11%2FBeck_Howard.jpg&w=96&q=75&dpl=6876aef68413439b20f7c753240674f337eccf38)Howard
-Beck](/creator/howard-
-beck)[![](/_next/image?url=https%3A%2F%2Fwp.theringer.com%2Fwp-
-content%2Fuploads%2F2024%2F11%2FBeck_Howard.jpg&w=64&q=75&dpl=6876aef68413439b20f7c753240674f337eccf38)Howard
-Beck](/creator/howard-beck)
-
-[Ryen Russillo](/creator/ryen-russillo)[Ryen Russillo](/creator/ryen-russillo)
-
-[![](/_next/image?url=https%3A%2F%2Fwp.theringer.com%2Fwp-
-content%2Fuploads%2F2024%2F11%2FBell_Raja.jpg&w=96&q=75&dpl=6876aef68413439b20f7c753240674f337eccf38)Raja
-Bell](/creator/raja-
-bell)[![](/_next/image?url=https%3A%2F%2Fwp.theringer.com%2Fwp-
-content%2Fuploads%2F2024%2F11%2FBell_Raja.jpg&w=64&q=75&dpl=6876aef68413439b20f7c753240674f337eccf38)Raja
-Bell](/creator/raja-bell)
-
-[David Jacoby](/creator/david-jacoby)[David Jacoby](/creator/david-jacoby)
-
-[![](/_next/image?url=https%3A%2F%2Fwp.theringer.com%2Fwp-
-content%2Fuploads%2F2024%2F11%2FLambre_Wosny.jpg&w=96&q=75&dpl=6876aef68413439b20f7c753240674f337eccf38)Wosny
-Lambre](/creator/wosny-
-lambre)[![](/_next/image?url=https%3A%2F%2Fwp.theringer.com%2Fwp-
-content%2Fuploads%2F2024%2F11%2FLambre_Wosny.jpg&w=64&q=75&dpl=6876aef68413439b20f7c753240674f337eccf38)Wosny
-Lambre](/creator/wosny-lambre)
-
-[![](/_next/image?url=https%3A%2F%2Fwp.theringer.com%2Fwp-
-content%2Fuploads%2F2024%2F11%2FBeck_Howard.jpg&w=96&q=75&dpl=6876aef68413439b20f7c753240674f337eccf38)Howard
-Beck](/creator/howard-
-beck)[![](/_next/image?url=https%3A%2F%2Fwp.theringer.com%2Fwp-
-content%2Fuploads%2F2024%2F11%2FBeck_Howard.jpg&w=64&q=75&dpl=6876aef68413439b20f7c753240674f337eccf38)Howard
-Beck](/creator/howard-beck)
-
-[Ryen Russillo](/creator/ryen-russillo)[Ryen Russillo](/creator/ryen-russillo)
-
-[![](/_next/image?url=https%3A%2F%2Fwp.theringer.com%2Fwp-
-content%2Fuploads%2F2024%2F11%2FBell_Raja.jpg&w=96&q=75&dpl=6876aef68413439b20f7c753240674f337eccf38)Raja
-Bell](/creator/raja-
-bell)[![](/_next/image?url=https%3A%2F%2Fwp.theringer.com%2Fwp-
-content%2Fuploads%2F2024%2F11%2FBell_Raja.jpg&w=64&q=75&dpl=6876aef68413439b20f7c753240674f337eccf38)Raja
-Bell](/creator/raja-bell)
-
-[David Jacoby](/creator/david-jacoby)[David Jacoby](/creator/david-jacoby)
-
-[![](/_next/image?url=https%3A%2F%2Fwp.theringer.com%2Fwp-
-content%2Fuploads%2F2024%2F11%2FSimmons_Bill.jpg&w=96&q=75&dpl=6876aef68413439b20f7c753240674f337eccf38)Bill
-Simmons](/creator/bill-
-simmons)[![](/_next/image?url=https%3A%2F%2Fwp.theringer.com%2Fwp-
-content%2Fuploads%2F2024%2F11%2FSimmons_Bill.jpg&w=64&q=75&dpl=6876aef68413439b20f7c753240674f337eccf38)Bill
-Simmons](/creator/bill-simmons)
-
-[J. Kyle Mann](/creator/j-kyle-mann)[J. Kyle Mann](/creator/j-kyle-mann)
+content%2Fuploads%2F2024%2F11%2FSohi_Seerat.jpg&w=96&q=75&dpl=6876aef68413439b20f7c753240674f337eccf38)Seerat
+Sohi](/creator/seerat-
+sohi)[![](/_next/image?url=https%3A%2F%2Fwp.theringer.com%2Fwp-
+content%2Fuploads%2F2024%2F11%2FSohi_Seerat.jpg&w=64&q=75&dpl=6876aef68413439b20f7c753240674f337eccf38)Seerat
+Sohi](/creator/seerat-sohi)
 
 [![](/_next/image?url=https%3A%2F%2Fwp.theringer.com%2Fwp-
 content%2Fuploads%2F2024%2F11%2FMahoney_Rob.jpg&w=96&q=75&dpl=6876aef68413439b20f7c753240674f337eccf38)Rob
@@ -2127,22 +2062,32 @@ content%2Fuploads%2F2024%2F11%2FMahoney_Rob.jpg&w=64&q=75&dpl=6876aef68413439b20
 Mahoney](/creator/rob-mahoney)
 
 [![](/_next/image?url=https%3A%2F%2Fwp.theringer.com%2Fwp-
-content%2Fuploads%2F2024%2F11%2FKram_Zachary.jpg&w=96&q=75&dpl=6876aef68413439b20f7c753240674f337eccf38)Zach
-Kram](/creator/zach-
-kram)[![](/_next/image?url=https%3A%2F%2Fwp.theringer.com%2Fwp-
-content%2Fuploads%2F2024%2F11%2FKram_Zachary.jpg&w=64&q=75&dpl=6876aef68413439b20f7c753240674f337eccf38)Zach
-Kram](/creator/zach-kram)
-
-[Austin Rivers](/creator/austin-rivers)[Austin Rivers](/creator/austin-rivers)
-
-[![](/_next/image?url=https%3A%2F%2Fwp.theringer.com%2Fwp-
 content%2Fuploads%2F2024%2F11%2FSimmons_Bill.jpg&w=96&q=75&dpl=6876aef68413439b20f7c753240674f337eccf38)Bill
 Simmons](/creator/bill-
 simmons)[![](/_next/image?url=https%3A%2F%2Fwp.theringer.com%2Fwp-
 content%2Fuploads%2F2024%2F11%2FSimmons_Bill.jpg&w=64&q=75&dpl=6876aef68413439b20f7c753240674f337eccf38)Bill
 Simmons](/creator/bill-simmons)
 
-[J. Kyle Mann](/creator/j-kyle-mann)[J. Kyle Mann](/creator/j-kyle-mann)
+[![](/_next/image?url=https%3A%2F%2Fwp.theringer.com%2Fwp-
+content%2Fuploads%2F2024%2F11%2FParker_Tyler.jpg&w=96&q=75&dpl=6876aef68413439b20f7c753240674f337eccf38)Tyler
+Parker](/creator/tyler-
+parker)[![](/_next/image?url=https%3A%2F%2Fwp.theringer.com%2Fwp-
+content%2Fuploads%2F2024%2F11%2FParker_Tyler.jpg&w=64&q=75&dpl=6876aef68413439b20f7c753240674f337eccf38)Tyler
+Parker](/creator/tyler-parker)
+
+[![](/_next/image?url=https%3A%2F%2Fwp.theringer.com%2Fwp-
+content%2Fuploads%2F2024%2F11%2FPina_Michael.jpg&w=96&q=75&dpl=6876aef68413439b20f7c753240674f337eccf38)Michael
+Pina](/creator/michael-
+pina)[![](/_next/image?url=https%3A%2F%2Fwp.theringer.com%2Fwp-
+content%2Fuploads%2F2024%2F11%2FPina_Michael.jpg&w=64&q=75&dpl=6876aef68413439b20f7c753240674f337eccf38)Michael
+Pina](/creator/michael-pina)
+
+[![](/_next/image?url=https%3A%2F%2Fwp.theringer.com%2Fwp-
+content%2Fuploads%2F2024%2F11%2FSohi_Seerat.jpg&w=96&q=75&dpl=6876aef68413439b20f7c753240674f337eccf38)Seerat
+Sohi](/creator/seerat-
+sohi)[![](/_next/image?url=https%3A%2F%2Fwp.theringer.com%2Fwp-
+content%2Fuploads%2F2024%2F11%2FSohi_Seerat.jpg&w=64&q=75&dpl=6876aef68413439b20f7c753240674f337eccf38)Seerat
+Sohi](/creator/seerat-sohi)
 
 [![](/_next/image?url=https%3A%2F%2Fwp.theringer.com%2Fwp-
 content%2Fuploads%2F2024%2F11%2FMahoney_Rob.jpg&w=96&q=75&dpl=6876aef68413439b20f7c753240674f337eccf38)Rob
@@ -2152,15 +2097,98 @@ content%2Fuploads%2F2024%2F11%2FMahoney_Rob.jpg&w=64&q=75&dpl=6876aef68413439b20
 Mahoney](/creator/rob-mahoney)
 
 [![](/_next/image?url=https%3A%2F%2Fwp.theringer.com%2Fwp-
+content%2Fuploads%2F2024%2F11%2FSimmons_Bill.jpg&w=96&q=75&dpl=6876aef68413439b20f7c753240674f337eccf38)Bill
+Simmons](/creator/bill-
+simmons)[![](/_next/image?url=https%3A%2F%2Fwp.theringer.com%2Fwp-
+content%2Fuploads%2F2024%2F11%2FSimmons_Bill.jpg&w=64&q=75&dpl=6876aef68413439b20f7c753240674f337eccf38)Bill
+Simmons](/creator/bill-simmons)
+
+[![](/_next/image?url=https%3A%2F%2Fwp.theringer.com%2Fwp-
+content%2Fuploads%2F2024%2F11%2FParker_Tyler.jpg&w=96&q=75&dpl=6876aef68413439b20f7c753240674f337eccf38)Tyler
+Parker](/creator/tyler-
+parker)[![](/_next/image?url=https%3A%2F%2Fwp.theringer.com%2Fwp-
+content%2Fuploads%2F2024%2F11%2FParker_Tyler.jpg&w=64&q=75&dpl=6876aef68413439b20f7c753240674f337eccf38)Tyler
+Parker](/creator/tyler-parker)
+
+[![](/_next/image?url=https%3A%2F%2Fwp.theringer.com%2Fwp-
 content%2Fuploads%2F2024%2F11%2FKram_Zachary.jpg&w=96&q=75&dpl=6876aef68413439b20f7c753240674f337eccf38)Zach
 Kram](/creator/zach-
 kram)[![](/_next/image?url=https%3A%2F%2Fwp.theringer.com%2Fwp-
 content%2Fuploads%2F2024%2F11%2FKram_Zachary.jpg&w=64&q=75&dpl=6876aef68413439b20f7c753240674f337eccf38)Zach
 Kram](/creator/zach-kram)
 
+[![](/_next/image?url=https%3A%2F%2Fwp.theringer.com%2Fwp-
+content%2Fuploads%2F2024%2F12%2FMurdock_Logan.jpg&w=96&q=75&dpl=6876aef68413439b20f7c753240674f337eccf38)Logan
+Murdock](/creator/logan-
+murdock)[![](/_next/image?url=https%3A%2F%2Fwp.theringer.com%2Fwp-
+content%2Fuploads%2F2024%2F12%2FMurdock_Logan.jpg&w=64&q=75&dpl=6876aef68413439b20f7c753240674f337eccf38)Logan
+Murdock](/creator/logan-murdock)
+
+[Chris Vernon](/creator/chris-vernon)[Chris Vernon](/creator/chris-vernon)
+
+[![](/_next/image?url=https%3A%2F%2Fwp.theringer.com%2Fwp-
+content%2Fuploads%2F2024%2F11%2FBell_Raja.jpg&w=96&q=75&dpl=6876aef68413439b20f7c753240674f337eccf38)Raja
+Bell](/creator/raja-
+bell)[![](/_next/image?url=https%3A%2F%2Fwp.theringer.com%2Fwp-
+content%2Fuploads%2F2024%2F11%2FBell_Raja.jpg&w=64&q=75&dpl=6876aef68413439b20f7c753240674f337eccf38)Raja
+Bell](/creator/raja-bell)
+
+[J. Kyle Mann](/creator/j-kyle-mann)[J. Kyle Mann](/creator/j-kyle-mann)
+
+[![](/_next/image?url=https%3A%2F%2Fwp.theringer.com%2Fwp-
+content%2Fuploads%2F2024%2F11%2FKram_Zachary.jpg&w=96&q=75&dpl=6876aef68413439b20f7c753240674f337eccf38)Zach
+Kram](/creator/zach-
+kram)[![](/_next/image?url=https%3A%2F%2Fwp.theringer.com%2Fwp-
+content%2Fuploads%2F2024%2F11%2FKram_Zachary.jpg&w=64&q=75&dpl=6876aef68413439b20f7c753240674f337eccf38)Zach
+Kram](/creator/zach-kram)
+
+[![](/_next/image?url=https%3A%2F%2Fwp.theringer.com%2Fwp-
+content%2Fuploads%2F2024%2F12%2FMurdock_Logan.jpg&w=96&q=75&dpl=6876aef68413439b20f7c753240674f337eccf38)Logan
+Murdock](/creator/logan-
+murdock)[![](/_next/image?url=https%3A%2F%2Fwp.theringer.com%2Fwp-
+content%2Fuploads%2F2024%2F12%2FMurdock_Logan.jpg&w=64&q=75&dpl=6876aef68413439b20f7c753240674f337eccf38)Logan
+Murdock](/creator/logan-murdock)
+
+[Chris Vernon](/creator/chris-vernon)[Chris Vernon](/creator/chris-vernon)
+
+[![](/_next/image?url=https%3A%2F%2Fwp.theringer.com%2Fwp-
+content%2Fuploads%2F2024%2F11%2FBell_Raja.jpg&w=96&q=75&dpl=6876aef68413439b20f7c753240674f337eccf38)Raja
+Bell](/creator/raja-
+bell)[![](/_next/image?url=https%3A%2F%2Fwp.theringer.com%2Fwp-
+content%2Fuploads%2F2024%2F11%2FBell_Raja.jpg&w=64&q=75&dpl=6876aef68413439b20f7c753240674f337eccf38)Raja
+Bell](/creator/raja-bell)
+
+[J. Kyle Mann](/creator/j-kyle-mann)[J. Kyle Mann](/creator/j-kyle-mann)
+
+[![](/_next/image?url=https%3A%2F%2Fwp.theringer.com%2Fwp-
+content%2Fuploads%2F2024%2F12%2FVerrier_Justin.jpg&w=96&q=75&dpl=6876aef68413439b20f7c753240674f337eccf38)Justin
+Verrier](/creator/justin-
+verrier)[![](/_next/image?url=https%3A%2F%2Fwp.theringer.com%2Fwp-
+content%2Fuploads%2F2024%2F12%2FVerrier_Justin.jpg&w=64&q=75&dpl=6876aef68413439b20f7c753240674f337eccf38)Justin
+Verrier](/creator/justin-verrier)
+
+[![](/_next/image?url=https%3A%2F%2Fwp.theringer.com%2Fwp-
+content%2Fuploads%2F2024%2F11%2FChau_Danny.jpg&w=96&q=75&dpl=6876aef68413439b20f7c753240674f337eccf38)Danny
+Chau](/creator/danny-
+chau)[![](/_next/image?url=https%3A%2F%2Fwp.theringer.com%2Fwp-
+content%2Fuploads%2F2024%2F11%2FChau_Danny.jpg&w=64&q=75&dpl=6876aef68413439b20f7c753240674f337eccf38)Danny
+Chau](/creator/danny-chau)
+
+[![](/_next/image?url=https%3A%2F%2Fwp.theringer.com%2Fwp-
+content%2Fuploads%2F2024%2F11%2FLambre_Wosny.jpg&w=96&q=75&dpl=6876aef68413439b20f7c753240674f337eccf38)Wosny
+Lambre](/creator/wosny-
+lambre)[![](/_next/image?url=https%3A%2F%2Fwp.theringer.com%2Fwp-
+content%2Fuploads%2F2024%2F11%2FLambre_Wosny.jpg&w=64&q=75&dpl=6876aef68413439b20f7c753240674f337eccf38)Wosny
+Lambre](/creator/wosny-lambre)
+
 [Austin Rivers](/creator/austin-rivers)[Austin Rivers](/creator/austin-rivers)
 
-[Chris Vernon](/creator/chris-vernon)[Chris Vernon](/creator/chris-vernon)
+[![](/_next/image?url=https%3A%2F%2Fwp.theringer.com%2Fwp-
+content%2Fuploads%2F2024%2F12%2FVerrier_Justin.jpg&w=96&q=75&dpl=6876aef68413439b20f7c753240674f337eccf38)Justin
+Verrier](/creator/justin-
+verrier)[![](/_next/image?url=https%3A%2F%2Fwp.theringer.com%2Fwp-
+content%2Fuploads%2F2024%2F12%2FVerrier_Justin.jpg&w=64&q=75&dpl=6876aef68413439b20f7c753240674f337eccf38)Justin
+Verrier](/creator/justin-verrier)
 
 [![](/_next/image?url=https%3A%2F%2Fwp.theringer.com%2Fwp-
 content%2Fuploads%2F2024%2F11%2FChau_Danny.jpg&w=96&q=75&dpl=6876aef68413439b20f7c753240674f337eccf38)Danny
@@ -2170,41 +2198,13 @@ content%2Fuploads%2F2024%2F11%2FChau_Danny.jpg&w=64&q=75&dpl=6876aef68413439b20f
 Chau](/creator/danny-chau)
 
 [![](/_next/image?url=https%3A%2F%2Fwp.theringer.com%2Fwp-
-content%2Fuploads%2F2024%2F11%2FSohi_Seerat.jpg&w=96&q=75&dpl=6876aef68413439b20f7c753240674f337eccf38)Seerat
-Sohi](/creator/seerat-
-sohi)[![](/_next/image?url=https%3A%2F%2Fwp.theringer.com%2Fwp-
-content%2Fuploads%2F2024%2F11%2FSohi_Seerat.jpg&w=64&q=75&dpl=6876aef68413439b20f7c753240674f337eccf38)Seerat
-Sohi](/creator/seerat-sohi)
+content%2Fuploads%2F2024%2F11%2FLambre_Wosny.jpg&w=96&q=75&dpl=6876aef68413439b20f7c753240674f337eccf38)Wosny
+Lambre](/creator/wosny-
+lambre)[![](/_next/image?url=https%3A%2F%2Fwp.theringer.com%2Fwp-
+content%2Fuploads%2F2024%2F11%2FLambre_Wosny.jpg&w=64&q=75&dpl=6876aef68413439b20f7c753240674f337eccf38)Wosny
+Lambre](/creator/wosny-lambre)
 
-[![](/_next/image?url=https%3A%2F%2Fwp.theringer.com%2Fwp-
-content%2Fuploads%2F2024%2F12%2FVerrier_Justin.jpg&w=96&q=75&dpl=6876aef68413439b20f7c753240674f337eccf38)Justin
-Verrier](/creator/justin-
-verrier)[![](/_next/image?url=https%3A%2F%2Fwp.theringer.com%2Fwp-
-content%2Fuploads%2F2024%2F12%2FVerrier_Justin.jpg&w=64&q=75&dpl=6876aef68413439b20f7c753240674f337eccf38)Justin
-Verrier](/creator/justin-verrier)
-
-[Chris Vernon](/creator/chris-vernon)[Chris Vernon](/creator/chris-vernon)
-
-[![](/_next/image?url=https%3A%2F%2Fwp.theringer.com%2Fwp-
-content%2Fuploads%2F2024%2F11%2FChau_Danny.jpg&w=96&q=75&dpl=6876aef68413439b20f7c753240674f337eccf38)Danny
-Chau](/creator/danny-
-chau)[![](/_next/image?url=https%3A%2F%2Fwp.theringer.com%2Fwp-
-content%2Fuploads%2F2024%2F11%2FChau_Danny.jpg&w=64&q=75&dpl=6876aef68413439b20f7c753240674f337eccf38)Danny
-Chau](/creator/danny-chau)
-
-[![](/_next/image?url=https%3A%2F%2Fwp.theringer.com%2Fwp-
-content%2Fuploads%2F2024%2F11%2FSohi_Seerat.jpg&w=96&q=75&dpl=6876aef68413439b20f7c753240674f337eccf38)Seerat
-Sohi](/creator/seerat-
-sohi)[![](/_next/image?url=https%3A%2F%2Fwp.theringer.com%2Fwp-
-content%2Fuploads%2F2024%2F11%2FSohi_Seerat.jpg&w=64&q=75&dpl=6876aef68413439b20f7c753240674f337eccf38)Seerat
-Sohi](/creator/seerat-sohi)
-
-[![](/_next/image?url=https%3A%2F%2Fwp.theringer.com%2Fwp-
-content%2Fuploads%2F2024%2F12%2FVerrier_Justin.jpg&w=96&q=75&dpl=6876aef68413439b20f7c753240674f337eccf38)Justin
-Verrier](/creator/justin-
-verrier)[![](/_next/image?url=https%3A%2F%2Fwp.theringer.com%2Fwp-
-content%2Fuploads%2F2024%2F12%2FVerrier_Justin.jpg&w=64&q=75&dpl=6876aef68413439b20f7c753240674f337eccf38)Justin
-Verrier](/creator/justin-verrier)
+[Austin Rivers](/creator/austin-rivers)[Austin Rivers](/creator/austin-rivers)
 
 [Contact](/contact)[Masthead](/2024/11/21/announcements/masthead)[Shop](https://theringer.merchtable.com/)
 

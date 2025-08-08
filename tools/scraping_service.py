@@ -16,18 +16,79 @@ class ScrapingService:
         self.cache_get = cache_get
         self.cache_set = cache_set
 
-    async def scrape_page(self, url: str):
-        page = await self.browser.new_page()
-        try:
-            await page.goto(url, timeout=60000)
-            await page.wait_for_timeout(3000) # Allow time for dynamic content
-            content = await page.content()
-            return content
-        except Exception as e:
-            logging.error(f"Error scraping {url}: {e}")
-            return None
-        finally:
-            await page.close()
+    async def scrape_page(
+        self,
+        url: str,
+        *,
+        wait_until: str = "networkidle",
+        timeout_ms: int = 90000,
+        retries: int = 2,
+        scroll_passes: int = 3,
+    ):
+        """Navigate to a URL and return the rendered HTML.
+
+        Args:
+            url: Page URL to load.
+            wait_until: Playwright wait strategy (e.g., "domcontentloaded", "load", "networkidle").
+            timeout_ms: Navigation timeout in milliseconds.
+            retries: Number of retry attempts on failure.
+            scroll_passes: How many lazy-load scroll passes to perform.
+        """
+        user_agent = (
+            "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
+            "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"
+        )
+
+        last_exception = None
+        for attempt in range(1, retries + 1):
+            context = None
+            page = None
+            try:
+                context = await self.browser.new_context(
+                    user_agent=user_agent,
+                    viewport={"width": 1366, "height": 768},
+                    device_scale_factor=1,
+                    java_script_enabled=True,
+                    ignore_https_errors=True,
+                )
+                # Basic stealth: hide webdriver flag and set languages/platform
+                await context.add_init_script(
+                    """
+                    Object.defineProperty(navigator, 'webdriver', { get: () => undefined });
+                    Object.defineProperty(navigator, 'languages', { get: () => ['en-US', 'en'] });
+                    Object.defineProperty(navigator, 'platform', { get: () => 'MacIntel' });
+                    """
+                )
+                page = await context.new_page()
+                await page.goto(url, wait_until=wait_until, timeout=timeout_ms)
+                # Extra waits for JS-heavy sites
+                await page.wait_for_load_state("domcontentloaded")
+                await page.wait_for_timeout(min(5000, timeout_ms // 6))
+
+                # Trigger lazy loading by scrolling
+                for _ in range(max(0, scroll_passes)):
+                    await page.mouse.wheel(0, 2000)
+                    await page.wait_for_timeout(1000)
+
+                content = await page.content()
+                return content
+            except Exception as exc:
+                last_exception = exc
+                logging.error(f"Error scraping {url} (attempt {attempt}): {exc}")
+                await asyncio.sleep(1.5)
+            finally:
+                if page is not None:
+                    try:
+                        await page.close()
+                    except Exception:
+                        pass
+                if context is not None:
+                    try:
+                        await context.close()
+                    except Exception:
+                        pass
+        logging.error(f"Failed to scrape {url} after retries: {last_exception}")
+        return None
 
     def parse_html(self, html: str):
         if not html:

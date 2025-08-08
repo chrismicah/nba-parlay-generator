@@ -1,0 +1,571 @@
+true ios true ios true android false computer
+$upper($url_encode($(QUERY_STRING{'bypassCountry'}))) NONE
+$url_encode($(GEO{'country_code'})) $url_encode($(GEO{'country_code'})) $(bpc)
+true false
+
+Navigation Toggle[![NBA Logo](https://cdn.nba.com/logos/leagues/logo-
+nba.svg)](/ "NBA Logo Homepage Button")
+
+  * [Games](/games)
+
+    * [Home](/games)
+    * [Tickets](https://nbatickets.nba.com/?cid=nba:tickets:institutional:nbacom:domsites:rd)
+
+  * [Schedule](/schedule)
+
+    * [NBA 2K26 Summer League Schedule](/2025-summer-league-vegas-schedule)
+    * [2025 Playoffs Schedule](/news/2025-nba-playoffs-schedule)
+    * [Key Dates](/news/key-dates)
+
+  * [Watch](/watch/featured)
+
+    * [Featured](/watch/featured)
+    * [NBA TV](/watch/nba-tv)
+
+  * [News](/news)
+
+    * [Home](/news)
+    * [Top Stories](/news/category/top-stories)
+    * [Summer League](/summer-league/2025)
+    * [Draft](/draft/2025)
+    * [Playoffs](/playoffs/2025)
+    * [Features](/news)
+    * [Events](/news)
+    * [Key Dates](/news/key-dates)
+    * [Transactions](/players/transactions)
+    * [Future Starts Now](/future-starts-now)
+    * [History](/history)
+    * [More](/news)
+
+  * [Summer League](/summer-league/2025)
+  * [Free Agency](/freeagents/2025)
+  * [Draft](/draft/2025)
+  * [NBA Cup](/nba-cup/2025)
+  * [Stats](/stats)
+
+    * [Stats Home](/stats)
+    * [Dunk Score](/dunk-score)
+    * [Players](/stats/players)
+    * [Teams](/stats/teams)
+    * [Leaders](/stats/leaders)
+    * [Stats 101](/stats/help/glossary)
+    * [Cume Stats](/stats/cumestats)
+    * [Lineups Tool](/stats/lineups/lineups-tool)
+    * [Media Central Game Stats](/stats/tools/media-central-game-stats)
+    * [Draft](/stats/draft/combine)
+    * [Quick Links](/stats/quicklinks)
+    * [Contact Us](/stats/help)
+
+  * [Standings](/standings)
+  * [Teams](/teams)
+
+Atlantic
+
+[![Boston Celtics
+Logo](https://cdn.nba.com/logos/nba/1610612738/primary/L/logo.svg)Boston
+Celtics](/celtics/)[![Brooklyn Nets
+Logo](https://cdn.nba.com/logos/nba/1610612751/primary/L/logo.svg)Brooklyn
+Nets](/nets/)[![New York Knicks
+Logo](https://cdn.nba.com/logos/nba/1610612752/primary/L/logo.svg)New York
+Knicks](/knicks/)[![Philadelphia 76ers
+Logo](https://cdn.nba.com/logos/nba/1610612755/primary/L/logo.svg)Philadelphia
+76ers](/sixers/)[![Toronto Raptors
+Logo](https://cdn.nba.com/logos/nba/1610612761/primary/L/logo.svg)Toronto
+Raptors](/raptors/)
+
+Central
+
+[![Chicago Bulls
+Logo](https://cdn.nba.com/logos/nba/1610612741/primary/L/logo.svg)Chicago
+Bulls](/bulls/)[![Cleveland Cavaliers
+Logo](https://cdn.nba.com/logos/nba/1610612739/primary/L/logo.svg)Cleveland
+Cavaliers](/cavaliers/)[![Detroit Pistons
+Logo](https://cdn.nba.com/logos/nba/1610612765/primary/L/logo.svg)Detroit
+Pistons](/pistons/)[![Indiana Pacers
+Logo](https://cdn.nba.com/logos/nba/1610612754/primary/L/logo.svg)Indiana
+Pacers](/pacers/)[![Milwaukee Bucks
+Logo](https://cdn.nba.com/logos/nba/1610612749/primary/L/logo.svg)Milwaukee
+Bucks](/bucks/)
+
+Southeast
+
+[![Atlanta Hawks
+Logo](https://cdn.nba.com/logos/nba/1610612737/primary/L/logo.svg)Atlanta
+Hawks](/hawks/)[![Charlotte Hornets
+Logo](https://cdn.nba.com/logos/nba/1610612766/primary/L/logo.svg)Charlotte
+Hornets](/hornets/)[![Miami Heat
+Logo](https://cdn.nba.com/logos/nba/1610612748/primary/L/logo.svg)Miami
+Heat](/heat/)[![Orlando Magic
+Logo](https://cdn.nba.com/logos/nba/1610612753/primary/L/logo.svg)Orlando
+Magic](/magic/)[![Washington Wizards
+Logo](https://cdn.nba.com/logos/nba/1610612764/primary/L/logo.svg)Washington
+Wizards](/wizards/)
+
+Northwest
+
+[![Denver Nuggets
+Logo](https://cdn.nba.com/logos/nba/1610612743/primary/L/logo.svg)Denver
+Nuggets](/nuggets/)[![Minnesota Timberwolves
+Logo](https://cdn.nba.com/logos/nba/1610612750/primary/L/logo.svg)Minnesota
+Timberwolves](/timberwolves/)[![Oklahoma City Thunder
+Logo](https://cdn.nba.com/logos/nba/1610612760/primary/L/logo.svg)Oklahoma
+City Thunder](/thunder/)[![Portland Trail Blazers
+Logo](https://cdn.nba.com/logos/nba/1610612757/primary/L/logo.svg)Portland
+Trail Blazers](/blazers/)[![Utah Jazz
+Logo](https://cdn.nba.com/logos/nba/1610612762/primary/L/logo.svg)Utah
+Jazz](/jazz/)
+
+Pacific
+
+[![Golden State Warriors
+Logo](https://cdn.nba.com/logos/nba/1610612744/primary/L/logo.svg)Golden State
+Warriors](/warriors/)[![LA Clippers
+Logo](https://cdn.nba.com/logos/nba/1610612746/primary/L/logo.svg)LA
+Clippers](/clippers/)[![Los Angeles Lakers
+Logo](https://cdn.nba.com/logos/nba/1610612747/primary/L/logo.svg)Los Angeles
+Lakers](/lakers/)[![Phoenix Suns
+Logo](https://cdn.nba.com/logos/nba/1610612756/primary/L/logo.svg)Phoenix
+Suns](/suns/)[![Sacramento Kings
+Logo](https://cdn.nba.com/logos/nba/1610612758/primary/L/logo.svg)Sacramento
+Kings](/kings/)
+
+Southwest
+
+[![Dallas Mavericks
+Logo](https://cdn.nba.com/logos/nba/1610612742/primary/L/logo.svg)Dallas
+Mavericks](/mavericks/)[![Houston Rockets
+Logo](https://cdn.nba.com/logos/nba/1610612745/primary/L/logo.svg)Houston
+Rockets](/rockets/)[![Memphis Grizzlies
+Logo](https://cdn.nba.com/logos/nba/1610612763/primary/L/logo.svg)Memphis
+Grizzlies](/grizzlies/)[![New Orleans Pelicans
+Logo](https://cdn.nba.com/logos/nba/1610612740/primary/L/logo.svg)New Orleans
+Pelicans](/pelicans/)[![San Antonio Spurs
+Logo](https://cdn.nba.com/logos/nba/1610612759/primary/L/logo.svg)San Antonio
+Spurs](/spurs/)
+
+  * [Players](/players)
+
+    * [Players Home](/players)
+    * [2024-25 Audio Pronunciation Guide](/news/2024-25-nba-player-pronunciation-guide)
+    * [Player Stats](/stats/players)
+    * [Starting Lineups](/players/todays-lineups)
+    * [Free Agent Tracker](/players/free-agent-tracker/2025)
+    * [Transactions](/players/transactions)
+
+  * [NBA Play](https://play.nba.com)
+
+    * [Home](https://play.nba.com)
+    * [Full Court Guess](https://play.nba.com/nba-full-court-guess)
+    * [Rank](https://play.nba.com/nba-rank)
+    * [IQ](https://play.nba.com/nba-iq)
+    * [Player Path](https://play.nba.com/nba-player-path)
+    * [Trivia](https://play.nba.com/nba-trivia?source=daily)
+    * [Hoop Connect](https://play.nba.com/nba-hoop-connect)
+
+  * [Fantasy](/fantasy)
+
+    * [Fantasy Home](/fantasy)
+    * [Bracket Challenge](https://picks.nba.com/bracket-challenge)
+    * [NBA Pick'Em](https://picks.nba.com/pickem)
+    * [Play Yahoo Fantasy](https://basketball.fantasysports.yahoo.com/nba/signup/?ncid=100001720)
+    * [Play Sorare NBA](https://sorare.com/nba?utm_source=partnerships&utm_medium=social&utm_campaign=nba_website_link&utm_term=nba)
+    * [FantasyPros Tools](https://www.fantasypros.com/nba)
+    * [FanDuel DFS](https://servedby.flashtalking.com/click/8/246791;8578307;369307;211;0/?ft_width=1&ft_height=1&gdpr=$GDPR&gdpr_consent=$GDPR_CONSENT_78&us_privacy=$US_PRIVACY&url=39466916)
+    * [Draft Kings DFS](https://www.draftkings.com/fantasy-basketball)
+    * [NBA Bet](/nbabet)
+    * [Authorized Gaming Operators](/nbabet/official-nba-gaming-partners-and-operators-2)
+
+  *   * [League Pass](/league-pass-purchase)
+  * [Store](https://global.nba.com/store-link-handler)
+
+    * [![NBA Store Icon](https://cdn.nba.com/logos/leagues/logo-nbastore.svg)NBA Store](https://global.nba.com/store-link-handler "Logo Link to NBA Store")
+    * [Jerseys](https://store.nba.com/jerseys/d-2338402972+z-930066-3838517996?_s=bm-nbacom-hp-jerseys)
+    * [Men](https://store.nba.com/men/ga-12+z-9834227610-3678762441?_s=bm-nbacom-hp-mens)
+    * [Women](https://store.nba.com/women/ga-13+z-9992883065-944190737?_s=bm-nbacom-hp-womens)
+    * [Kids](https://store.nba.com/kids/ga-69+z-851589194-1574389178?_s=bm-nbacom-hp-kids)
+    * [Custom Shop](https://store.nba.com/custom-shop/c-2642?_s=bm-nbacom-hp-customshop)
+    * [Hardwood Classics](https://store.nba.com/hardwood-classics/c-48147129+z-9352503-894010671?_s=bm-nbacom-hp-hardwoodclassics)
+    * [Hats](https://store.nba.com/hats/d-1238400306+z-933233-2567195697?_s=bm-nbacom-hp-hats)
+    * [Footwear](https://store.nba.com/footwear/d-1294282497+z-957317-2506523281?_s=bm-nbacom-hp-footwear)
+    * [Auctions](https://auctions.nba.com/iSynApp/showHomePage.action?sid=1101461)
+    * [NBA Game Worn](https://nbagameworn.nba.com/iSynApp/showHomePage.action?sid=1101561)
+    * [NYC Store](https://store.nba.com/nyc-store/x-265968+z-785787-1605852944)
+    * [NBA Photo Store](https://photostore.nba.com)
+
+  * [Tickets](https://nbatickets.nba.com/?cid=nba:tickets:institutional:nbacom:domsites:rd)
+
+    * [NBATickets.com](https://nbatickets.nba.com/?cid=nba:tickets:institutional:nbacom:domsites:rd)
+    * [Official Tickets by Ticketmaster](https://www.ticketmaster.com/nba?brand=nba&wt.mc_id=NBA_LEAGUE_NBA_TICKET_NAV_DROPDOWN&utm_source=NBA.com&utm_medium=client&utm_campaign=NBA_LEAGUE&utm_content=NBA_TICKET_NAV_DROPDOWN)
+    * [NBA Experiences](https://nbaexperiences.com)
+    * [Creator Cup: July 9](https://smart.link/jursif33uobfu)
+
+  * Affiliates
+
+    * [![NBA G-League Icon](https://cdn.nba.com/logos/leagues/logo-gleague.svg)NBA G League](https://gleague.nba.com)
+    * [![WNBA Icon](https://cdn.nba.com/logos/leagues/logo-wnba.svg)WNBA](https://www.wnba.com)
+    * [![NBA 2K Icon](https://cdn.nba.com/logos/leagues/logo-2k.svg)NBA 2K League](https://2kleague.nba.com/)
+    * [![NBA BAL Icon](https://cdn.nba.com/logos/leagues/logo-bal.svg)Basketball Africa League](https://www.thebal.com/)
+
+  * Sign In
+
+    * [Sign in with NBA ID](/account/sign-in)
+    * [Select TV Provider](/account/tve)
+
+* * *
+
+    * Hide Scores
+
+    * [Help](https://support.watch.nba.com)
+
+  * Schedule
+  * [Summer League](/summer-league/2025)
+  * [Free Agency](/freeagents/2025)
+  * [Draft](/draft/2025)
+  * [NBA Cup](/nba-cup/2025)
+  * [League Pass](/league-pass-purchase)
+  * Games
+  * Watch
+  * News
+  * Stats
+  * [Standings](/standings)
+  * [Teams](/teams)
+  * Players
+  * NBA Play
+  * Fantasy
+  * Store
+  * Tickets
+  * Affiliates
+
+  * News
+  * [Home](/news)
+  * [Top Stories](/news/category/top-stories)
+  * [Summer League](/summer-league/2025)
+  * [Draft](/draft/2025)
+  * [Playoffs](/playoffs/2025)
+  * Features
+
+    * [2025 NBA Awards](/awards/2025)
+    * [Power Rankings](/news/category/power-rankings)
+    * [Trending Topics](/news/category/trending-topics)
+    * [Rookie Ladder](/news/category/kia-rookie-ladder)
+    * [MVP Ladder](/news/category/kia-race-to-the-mvp-ladder)
+    * [Horry Scale](/news/category/horry-scale)
+
+  * Events
+
+    * [2025 All-Star](/allstar/2025)
+    * [Emirates NBA Cup 2024](/nba-cup/2024)
+    * [2024 Paris Olympics](/olympics)
+
+  * [Key Dates](/news/key-dates)
+  * [Transactions](/players/transactions)
+  * [Future Starts Now](/future-starts-now)
+  * [History](/history)
+  * More
+
+    * [Podcasts](/podcasts)
+    * [Writer Archive](/news/writers-archive)
+    * [Learn The Game](/learn-the-game)
+    * [NBA Official](https://official.nba.com)
+
+### Top Stories
+
+# 2024-25 NBA player & coach pronunciation guide
+
+Learn how to pronounce player and coach names by listening to the audio of
+each respective player or coach pronouncing his name
+
+NBA.com Staff
+
+October 22, 2024 1:24 AM
+
+ _*This page will continue to be updated as audio content is made available.
+Click each team name below to access each individual team’s list of player and
+coach pronunciations._
+
+[**Atlanta Hawks**](https://www.nba.com/news/atlanta-
+hawks-2024-25-pronunciation-guide)
+
+[**Brooklyn Nets**](https://www.nba.com/news/brooklyn-
+nets-2024-25-pronunciation-guide)
+
+[**Boston Celtics**](https://www.nba.com/news/boston-
+celtics-2024-25-pronunciation-guide)
+
+[**Charlotte Hornets**](https://www.nba.com/news/charlotte-
+hornets-2024-25-pronunciation-guide)
+
+[**Chicago Bulls**](https://www.nba.com/news/chicago-
+bulls-2024-25-pronunciation-guide)
+
+[**Cleveland Cavaliers**](https://www.nba.com/news/cleveland-
+cavaliers-2024-25-pronunciation-guide)
+
+[**Dallas Mavericks**](https://www.nba.com/news/dallas-
+mavericks-2024-25-pronunciation-guide)
+
+[**Denver Nuggets**](https://www.nba.com/news/denver-
+nuggets-2024-25-pronunciation-guide)
+
+[**Detroit Pistons**](https://www.nba.com/news/detroit-
+pistons-2024-25-pronunciation-guide)
+
+[**Golden State Warriors**](https://www.nba.com/news/golden-state-
+warriors-2024-25-pronunciation-guide)
+
+[**Houston Rockets**](https://www.nba.com/news/houston-
+rockets-2024-25-pronunciation-guide)
+
+[**Indiana Pacers**](https://www.nba.com/news/indiana-
+pacers-2024-25-pronunciation-guide)
+
+[**LA Clippers**](https://www.nba.com/news/los-angeles-
+clippers-2024-25-pronunciation-guide)
+
+[**Los Angeles Lakers**](https://www.nba.com/news/los-angeles-
+lakers-2024-25-pronunciation-guide)
+
+[**Memphis Grizzlies**](https://www.nba.com/news/memphis-
+grizzlies-2024-25-pronunciation-guide)
+
+[**Miami Heat**](https://www.nba.com/news/miami-heat-2024-25-pronunciation-
+guide)
+
+[**Milwaukee Bucks**](https://www.nba.com/news/milwaukee-
+bucks-2024-25-pronunciation-guide)
+
+[**Minnesota Timberwolves**](https://www.nba.com/news/minnesota-
+timberwolves-2024-25-pronunciation-guide)
+
+[**New Orleans Pelicans**](https://www.nba.com/news/new-orleans-
+pelicans-2024-25-pronunciation-guide)
+
+[**New York Knicks**](https://www.nba.com/news/new-york-
+knicks-2024-25-pronunciation-guide)
+
+[**Oklahoma City Thunder**](https://www.nba.com/news/oklahoma-city-
+thunder-2024-25-pronunciation-guide)
+
+[**Orlando Magic**](https://www.nba.com/news/orlando-
+magic-2024-25-pronunciation-guide)
+
+[**Philadelphia
+76ers**](https://www.nba.com/news/philadelphia-76ers-2024-25-pronunciation-
+guide)
+
+[**Phoenix Suns**](https://www.nba.com/news/phoenix-
+suns-2024-25-pronunciation-guide)
+
+[**Portland Trail Blazers**](https://www.nba.com/news/portland-trail-
+blazers-2024-25-pronunciation-guide)
+
+[**Sacramento Kings**](https://www.nba.com/news/sacramento-
+kings-2024-25-pronunciation-guide)
+
+[**San Antonio Spurs**](https://www.nba.com/news/san-antonio-
+spurs-2024-25-pronunciation-guide)
+
+[**Toronto Raptors**](https://www.nba.com/news/toronto-
+raptors-2024-25-pronunciation-guide)
+
+[**Utah Jazz**](https://www.nba.com/news/utah-jazz-2024-25-pronunciation-
+guide)
+
+[**Washington Wizards**](https://www.nba.com/news/washington-
+wizards-2024-25-pronunciation-guide)
+
+### Related
+
+  * ### [Key dates for 2025-26 NBA seasonKey dates, important events and season information for 2025-26 season.](/news/key-dates "Article link for Key dates for 2025-26 NBA season")
+  * ### [Emirates NBA Cup: Key dates & scheduleThe Emirates NBA Cup 2025 will consist of Group Play and Knockout Rounds to crown the 2025 champion.](/news/emirates-nba-cup-key-dates-schedule "Article link for Emirates NBA Cup: Key dates & schedule")
+  * ### [League Pass Watch Guide: 24 must-see games in 2024-25Check out these 24 can’t-miss games exclusively on NBA League Pass from the start of the season until All-Star.](/news/league-pass-watch-guide-1st-half-2024-25 "Article link for League Pass Watch Guide: 1st half of 2024-25 season")
+  * ### [2024-25 NBA.com GM SurveyThe annual survey is here. NBA general managers react to key topics before the 2024-25 season tips off.](/news/2024-25-nba-gm-survey "Article link for 2024-25 NBA.com GM Survey: 50 questions ahead of new season")
+
+### Related
+
+  * [![Key dates for 2025-26 NBA season](https://cdn.nba.com/manage/2022/08/nba-ball-general-view-iso.jpg)](/news/key-dates "Article link for Key dates for 2025-26 NBA season")
+
+#### [Key dates for 2025-26 NBA seasonKey dates, important events and season
+information for 2025-26 season.](/news/key-dates "Article link for Key dates
+for 2025-26 NBA season")
+
+[August 6, 2025](/news/key-dates "Article link for Key dates for 2025-26 NBA
+season")
+
+  * [![Emirates NBA Cup: Key dates & schedule](https://cdn.nba.com/manage/2024/07/nba-cup-logo-black.jpg)](/news/emirates-nba-cup-key-dates-schedule "Article link for Emirates NBA Cup: Key dates & schedule")
+
+#### [Emirates NBA Cup: Key dates & scheduleThe Emirates NBA Cup 2025 will
+consist of Group Play and Knockout Rounds to crown the 2025
+champion.](/news/emirates-nba-cup-key-dates-schedule "Article link for
+Emirates NBA Cup: Key dates & schedule")
+
+[July 9, 2025](/news/emirates-nba-cup-key-dates-schedule "Article link for
+Emirates NBA Cup: Key dates & schedule")
+
+  * [![League Pass Watch Guide: 1st half of 2024-25 season](https://cdn.nba.com/manage/2024/08/GettyImages-1961360917-scaled.jpg)](/news/league-pass-watch-guide-1st-half-2024-25 "Article link for League Pass Watch Guide: 1st half of 2024-25 season")
+
+#### [League Pass Watch Guide: 24 must-see games in 2024-25Check out these 24
+can’t-miss games exclusively on NBA League Pass from the start of the season
+until All-Star.](/news/league-pass-watch-guide-1st-half-2024-25 "Article link
+for League Pass Watch Guide: 1st half of 2024-25 season")
+
+[September 27, 2024](/news/league-pass-watch-guide-1st-half-2024-25 "Article
+link for League Pass Watch Guide: 1st half of 2024-25 season")
+
+  * [![2024-25 NBA.com GM Survey: 50 questions ahead of new season](https://cdn.nba.com/manage/2024/10/2024-gm-survey-square-mugs.jpg)](/news/2024-25-nba-gm-survey "Article link for 2024-25 NBA.com GM Survey: 50 questions ahead of new season")
+
+#### [2024-25 NBA.com GM SurveyThe annual survey is here. NBA general managers
+react to key topics before the 2024-25 season tips off.](/news/2024-25-nba-gm-
+survey "Article link for 2024-25 NBA.com GM Survey: 50 questions ahead of new
+season")
+
+[October 8, 2024](/news/2024-25-nba-gm-survey "Article link for 2024-25
+NBA.com GM Survey: 50 questions ahead of new season")
+
+### Latest
+
+  * [![Celtics' Jayson Tatum seen without boot or brace at Patriots training camp](https://cdn.nba.com/manage/2025/08/tatum-camp-080625.jpg)](/news/celtics-jayson-tatum-rehab-progressing "Article link for Celtics' Jayson Tatum seen without boot or brace at Patriots training camp")
+
+#### [Tatum at Pats camp without walking bootBoston's star, who had Achilles
+surgery in May, continues a rehab that is expected to keep him out most of
+next season.](/news/celtics-jayson-tatum-rehab-progressing "Article link for
+Celtics' Jayson Tatum seen without boot or brace at Patriots training camp")
+
+[20 hours ago](/news/celtics-jayson-tatum-rehab-progressing "Article link for
+Celtics' Jayson Tatum seen without boot or brace at Patriots training camp")
+
+  * [![Top 10 All-Time NBA Playoff Assist Leaders](https://cdn.nba.com/manage/2024/09/GettyImages-2105840276-scaled.jpg)](/news/top-10-all-time-nba-playoff-assist-leaders "Article link for Top 10 All-Time NBA Playoff Assist Leaders")
+
+#### [Top 10 all-time NBA playoff assist leadersRotoWire shines a light on the
+top NBA players who have showcased the best court vision and ability to
+elevate their team.](/news/top-10-all-time-nba-playoff-assist-leaders "Article
+link for Top 10 All-Time NBA Playoff Assist Leaders")
+
+[August 6, 2025](/news/top-10-all-time-nba-playoff-assist-leaders "Article
+link for Top 10 All-Time NBA Playoff Assist Leaders")
+
+  * [![Ranking the 10 best players in the West heading into 2025-26](https://cdn.nba.com/manage/2025/05/GettyImages-2213352638.jpg)](/news/ranking-10-best-players-western-conference-2025-26 "Article link for Ranking the 10 best players in the West heading into 2025-26")
+
+#### [10 best players in West entering 2025-26Ranking the 10 players who lead
+the way for the Western Conference as 2025-26
+approaches.](/news/ranking-10-best-players-western-conference-2025-26 "Article
+link for Ranking the 10 best players in the West heading into 2025-26")
+
+[August 6, 2025](/news/ranking-10-best-players-western-conference-2025-26
+"Article link for Ranking the 10 best players in the West heading into
+2025-26")
+
+  * [![Celtics deal Georges Niang to Jazz, reportedly agree to deal with Chris Boucher](https://cdn.nba.com/manage/2025/08/georges-niang.jpg)](/news/celtics-trade-georges-niang-to-jazz "Article link for Celtics deal Georges Niang to Jazz, reportedly agree to deal with Chris Boucher")
+
+#### [Celtics trade Niang, reportedly set to add BoucherThe Niang trade allows
+Boston the flexibility to remain below the second penalty apron after adding
+Boucher.](/news/celtics-trade-georges-niang-to-jazz "Article link for Celtics
+deal Georges Niang to Jazz, reportedly agree to deal with Chris Boucher")
+
+[9 hours ago](/news/celtics-trade-georges-niang-to-jazz "Article link for
+Celtics deal Georges Niang to Jazz, reportedly agree to deal with Chris
+Boucher")
+
+  * [![The Athletic: Inside Luka Dončić’s U.S. tour: From Lakers extension to a surprise Backstreet Boys concert](https://cdn.nba.com/manage/2025/08/doncic-lakers-news-conference.jpg)](/news/the-athletic-inside-luka-doncics-u-s-tour-from-lakers-extension-to-a-surprise-backstreet-boys-concert "Article link for The Athletic: Inside Luka Dončić’s U.S. tour: From Lakers extension to a surprise Backstreet Boys concert")
+
+#### [The Athletic: Inside Luka's whirlwind tourDan Woike dives into Luka's
+offseason detailing his contract extension and his eagerness to get back on
+the court.](/news/the-athletic-inside-luka-doncics-u-s-tour-from-lakers-
+extension-to-a-surprise-backstreet-boys-concert "Article link for The
+Athletic: Inside Luka Dončić’s U.S. tour: From Lakers extension to a surprise
+Backstreet Boys concert")
+
+[August 5, 2025](/news/the-athletic-inside-luka-doncics-u-s-tour-from-lakers-
+extension-to-a-surprise-backstreet-boys-concert "Article link for The
+Athletic: Inside Luka Dončić’s U.S. tour: From Lakers extension to a surprise
+Backstreet Boys concert")
+
+  * [![From the court to the community: The NBA Foundation celebrates 5 years of game-changing impact](https://cdn.nba.com/manage/2025/08/IMG_8228-1-e1754507659297.jpg)](/news/nba-foundation-celebrates-5-year-anniversary "Article link for From the court to the community: The NBA Foundation celebrates 5 years of game-changing impact")
+
+#### [NBA Foundation marks 5-year anniversaryCelebrating its fifth year, The
+NBA Foundation is creating real change, on and off the court.](/news/nba-
+foundation-celebrates-5-year-anniversary "Article link for From the court to
+the community: The NBA Foundation celebrates 5 years of game-changing impact")
+
+[August 5, 2025](/news/nba-foundation-celebrates-5-year-anniversary "Article
+link for From the court to the community: The NBA Foundation celebrates 5
+years of game-changing impact")
+
+NBA Organization
+
+  * [NBA ID](/id)
+  * [NBA Official](https://official.nba.com)
+  * [NBA Careers](https://careers.NBA.com)
+  * [NBA Fan Code of Conduct](/nba-fan-code-of-conduct)
+
+NBA Initiatives
+
+  * [NBA Total Health](http://totalhealth.nba.com)
+  * [NBA Cares](https://cares.nba.com)
+  * [Jr. NBA / Jr. WNBA](https://jr.nba.com)
+  * [NBA Foundation](https://nbafoundation.nba.com)
+  * [Social Justice Coalition](https://coalition.nba.com)
+
+Across The League
+
+  * [NBA Communications](https://pr.nba.com)
+  * [Lockervision](https://lockervision.nba.com)
+  * [NBA Transactions](/players/transactions)
+
+Shop
+
+  * [Global Stores](https://global.nba.com/store-link-handler)
+  * [NYC Store](https://store.nba.com)
+  * [NBA Auctions](https://auctions.nba.com)
+  * [NBA Photostore](https://photostore.nba.com)
+
+Subscriptions
+
+  * [League Pass](/watch/league-pass-stream)
+  * [Customer Support](https://support.watch.nba.com/hc/en-us)
+
+* * *
+
+[](https://facebook.com/nba "Facebook")[](https://instagram.com/nba/?hl=en
+"Instagram")[](https://snapchat.com/add/nba
+"Snapchat")[](https://www.tiktok.com/@nba "TikTok")[](https://twitter.com/NBA
+"Twitter")[](https://youtube.com/user/NBA
+"Youtube")[](https://www.twitch.tv/nba "Twitch")
+
+© 2025 NBA Media Ventures, LLC. All rights reserved.
+
+  * [Privacy Policy](/privacy-policy)
+  * [EEA/UK Privacy Statement](/eeaukprivacy)
+  * [Brazil Privacy Statement ](/brazilprivacy)
+  * [Colorado Consumer Privacy Statement](/coprivacy)
+  * [California Consumer Privacy Statement](/caprivacy)
+  * [Terms of Use](/termsofuse)
+  * [Cookie Policy](/cookiepolicy)
+  * [Accessibility and Closed Captions](https://nba.com/accessibility)
+  * [Customer Support](https://support.watch.nba.com/hc/en-us)
+  * Your Privacy Choices
+
+If you are having difficulty accessing any content on this website, please
+visit our[ Accessibility page.](https://www.nba.com/accessibility)
+
+NBA.com is part of Warner Media, LLC’s Turner Sports & Entertainment Digital
+Network
+
+![Warner Media Logo](https://cdn.nba.com/logos/other/logo-warnermedia.svg)
+
+## Your Privacy Choices
+
+We use cookies and other tracking technologies on our Online Services. Through
+these technologies, we and certain third parties may collect information about
+your interactions with our Online Services, such as browsing behavior,
+keystrokes and typing patterns, cursor movements and page scrolls. We may
+share this information with our social media, advertising, analytics and other
+partners. If you continue browsing, we consider that you accept our[Cookie
+Policy](https://www.nba.com/cookiepolicy) and also agree to the terms of
+our[Privacy Policy](https://www.nba.com/privacy-policy) and[Terms of
+Use](https://www.nba.com/termsofuse). For more information, including how to
+opt out of certain cookies and similar technologies, visit our[Cookie
+Policy](https://www.nba.com/cookiepolicy).
+
+I Accept
+

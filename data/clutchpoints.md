@@ -236,84 +236,87 @@ logo](https://upload.wikimedia.org/wikipedia/en/0/03/National_Basketball_Associa
 
 # NBA News
 
-[![Tyrese Maxey in a 76ers jersey.](https://wp.clutchpoints.com/wp-
-content/uploads/2025/03/76ers-news-Tyrese-Maxey-trying-to-learn-how-to-shoot-
-with-3-fingers-due-to-injury.jpg)Philadelphia 76ersTyrese Maxey reveals
-meaning behind viral "talking mess" tweetTomer Azarly · 3 minutes
-ago](https://clutchpoints.com/nba/philadelphia-76ers/76ers-news-tyrese-maxey-
-reveals-meaning-behind-viral-talking-mess-tweet)
+[![© Jayne Kamin-Oncea-Imagn Images](https://wp.clutchpoints.com/wp-
+content/uploads/2025/03/Dwyane-Wade-3-and-Los-Angeles-Lakers-forward-LeBron-
+James-23-embrace.jpg)Chicago BullsDwyane Wade reveals how LeBron James
+shattered plan to join BullsJulian Ojeda · 20 minutes
+ago](https://clutchpoints.com/nba/chicago-bulls/bulls-news-dwyane-wade-
+reveals-how-lebron-james-shattered-plan-to-join-chicago)
 
-[Pacers coach Rick Carlisle's 'play hard' mic drop of how NBA has
-transformedJackson Stone · 38 minutes ago![Kyle Terada-Imagn
-Images](https://wp.clutchpoints.com/wp-content/uploads/2025/08/Carlisle-
-coaches.jpg)Indiana Pacers](https://clutchpoints.com/nba/indiana-
-pacers/pacers-news-rick-carlisles-play-hard-how-nba-transformed)[How Luka
-Doncic's Backstreet Boys moment showed he's 'in sync' with LakersAndrew Korpan
-· 42 minutes ago![Jayne Kamin-Oncea-Imagn
-Images.](https://wp.clutchpoints.com/wp-content/uploads/2025/08/Luca-
-Doncic.jpg)Los Angeles Lakers](https://clutchpoints.com/nba/los-angeles-
-lakers/lakers-news-luka-doncic-backstreet-boys)[Pau Gasol sends Luka Doncic
-message after $165 million Lakers extensionJackson Stone · 51 minutes
-ago![Jonathan Hui-Imagn Images](https://wp.clutchpoints.com/wp-
-content/uploads/2025/08/Doncic-vs-the-Bulls.jpg)Los Angeles
-Lakers](https://clutchpoints.com/nba/los-angeles-lakers/lakers-news-pau-gasol-
-luka-doncic-message-165-million-contract-extension)[Bulls use Dennis Rodman to
-welcome back iconic pinstripe jerseysScotty White · 55 minutes ago![© David
-Richard-Imagn Images](https://wp.clutchpoints.com/wp-
-content/uploads/2025/08/Dennis-Rodman.jpg)Chicago
-Bulls](https://clutchpoints.com/nba/chicago-bulls/bulls-news-chicago-uses-
-dennis-rodman-welcome-back-iconic-pinstripe-jerseys)[Exclusive: Tyrese Maxey
-on New Balance "Hero Pack," 76ers, Joel Embiid, and moreTomer Azarly · 59
-minutes ago![CP](https://wp.clutchpoints.com/wp-
-content/uploads/2025/08/Tyrese-Maxey-Philadelphia-76ers-New-Balance-Hero-
-Pack.jpg)Philadelphia
-76ers](https://clutchpoints.com/nba/philadelphia-76ers/exclusive-tyrese-maxey-
-on-new-balance-hero-pack-76ers-joel-embiid-and-more)[10 oldest NBA Finals
-MVPs, rankedSpencer See · 59 minutes ago![Darren Yamashita-USA TODAY
-Sports](https://wp.clutchpoints.com/wp-content/uploads/2025/08/LeBron-James-
-chases-after-Stephen-Curry.jpg)NBA](https://clutchpoints.com/nba/nba-
-stories/10-oldest-nba-finals-mvps-ranked)
+[Potential starting Celtics center underwent offseason knee surgeryDaniel
+Donabedian · 27 minutes ago![John Jones-Imagn
+Images](https://wp.clutchpoints.com/wp-content/uploads/2025/08/Neemias-
+Queta.jpg)Boston Celtics](https://clutchpoints.com/nba/boston-celtics/celtics-
+news-center-neemias-queta-offseason-knee-surgery)[Lakers' Luka Doncic using
+offseason to send warning to criticsErik Slater · 56 minutes ago![Apr 30,
+2025; Los Angeles, California, USA; Los Angeles Lakers guard Luka Doncic
+\(77\) reacts during the second half in game five of first round for the 2025
+NBA Playoffs at Crypto.com Arena. Mandatory Credit: Gary A. Vasquez-Imagn
+Images](https://wp.clutchpoints.com/wp-
+content/uploads/2025/08/USATSI_26058361.jpg)Los Angeles
+Lakers](https://clutchpoints.com/nba/los-angeles-lakers/lakers-news-luka-
+doncics-offseason-sends-warning-critics)[Lakers' Luka Doncic shows off body
+transformation for Slovenia ahead of EuroBasketRishav Bhat · 58 minutes
+ago![Gary A. Vasquez-USA TODAY Sports](https://wp.clutchpoints.com/wp-
+content/uploads/2025/08/Lakers-guard-Luka-Doncic-i.jpg)Los Angeles
+Lakers](https://clutchpoints.com/nba/los-angeles-lakers/lakers-luka-doncic-
+body-transformation-slovenia-eurobasket)[Lakers rumors: What Luka Doncic
+'wants' for LeBron James' retirementRexwell Villas · 1 hour ago![Jayne Kamin-
+Oncea-Imagn Images](https://wp.clutchpoints.com/wp-
+content/uploads/2025/08/Lakers-guard-Luka-Doncic-77-reacts-after-not-getting-
+a-foul-call.jpg)Los Angeles Lakers](https://clutchpoints.com/nba/los-angeles-
+lakers/lakers-rumors-luka-doncic-wants-lebron-james-retirement)[Luka Doncic's
+manager closes book on Mavericks trade with 3 wordsZachary Draves · 2 hours
+ago![Gary A. Vasquez-Imagn Images](https://wp.clutchpoints.com/wp-
+content/uploads/2025/07/Lakers-guard-Luka-Doncic-77-reacts-during-a-
+game.jpg)Los Angeles Lakers](https://clutchpoints.com/nba/los-angeles-
+lakers/luka-doncics-manager-closes-book-on-mavericks-trade-with-3-words)[1
+move Detroit Pistons should've made in 2025 NBA offseasonRohan Brahmbhatt · 2
+hours ago![Mandatory Credit: Jerome Miron-Imagn
+Images](https://wp.clutchpoints.com/wp-content/uploads/2025/08/Malik-
+Beasley.jpg)Detroit Pistons](https://clutchpoints.com/nba/detroit-
+pistons/move-detroit-pistons-shouldve-made-2025-nba-offseason)
 
 ## Trending in the NBA
 
 [How LeBron James congratulated Luka Doncic on Lakers contract
-extensionJackson Stone · 2 days ago![Los Angeles Lakers Luka Doncic \(77\) is
+extensionJackson Stone · 1 day ago![Los Angeles Lakers Luka Doncic \(77\) is
 interviewed by ESPN LA radio following a press conference announcing the
 signing of a 3-year, $165 million contract extension at UCLA Health Training
 Center.](https://wp.clutchpoints.com/wp-content/uploads/2025/08/Doncic-on-the-
 phone.jpg)NBA](https://clutchpoints.com/nba/los-angeles-lakers/lakers-news-
-how-lebron-james-congratulated-luka-doncic-contract-extension)[Warriors’
-Draymond Green reacts to fan’s ‘worst offseason’ complaint after Shams’
-‘craziest’ promisePaolo Mariano · 14 hours ago![May 14, 2025; Minneapolis,
-Minnesota, USA; Golden State Warriors forward Draymond Green \(23\) holds the
-ball up as Minnesota Timberwolves forward Julius Randle \(30\) plays defense
-in the first half during game five of the second round for the 2025 NBA
-Playoffs at Target Center.](https://wp.clutchpoints.com/wp-
-content/uploads/2025/08/NBA-Playoffs-Golden-State-Warriors-at-Minnesota-
+how-lebron-james-congratulated-luka-doncic-contract-extension)[Lakers rumors:
+Rob Pelinka’s job status gets Jeanie Buss updateYasmin Edañol · 1 day ago![Los
+Angeles Lakers GM Rob Pelinka before a game two of first round for the 2024
+NBA Playoffs against the Minnesota Timberwolves at Crypto.com Arena. Lakers
+Rob Pelinka to remain GM as long as Lakers Jeanie Buss stays. Team's power
+structure stays intact despite $10B sale.](https://wp.clutchpoints.com/wp-
+content/uploads/2025/08/Lakers-GM-Rob-Pelinka-against-
+Timberwolves.jpg)NBA](https://clutchpoints.com/nba/los-angeles-lakers/lakers-
+rumors-rob-pelinkas-job-status-gets-jeanie-buss-update)[Warriors’ Draymond
+Green reacts to fan’s ‘worst offseason’ complaint after Shams’ ‘craziest’
+promisePaolo Mariano · 12 hours ago![May 14, 2025; Minneapolis, Minnesota,
+USA; Golden State Warriors forward Draymond Green \(23\) holds the ball up as
+Minnesota Timberwolves forward Julius Randle \(30\) plays defense in the first
+half during game five of the second round for the 2025 NBA Playoffs at Target
+Center.](https://wp.clutchpoints.com/wp-content/uploads/2025/08/NBA-Playoffs-
+Golden-State-Warriors-at-Minnesota-
 Timberwolves.jpg)NBA](https://clutchpoints.com/nba/golden-state-
 warriors/warriors-news-draymond-green-reacts-shams-charania-worst-
-assessment)[Lakers rumors: Rob Pelinka’s job status gets Jeanie Buss
-updateYasmin Edañol · 1 day ago![Los Angeles Lakers GM Rob Pelinka before a
-game two of first round for the 2024 NBA Playoffs against the Minnesota
-Timberwolves at Crypto.com Arena. Lakers Rob Pelinka to remain GM as long as
-Lakers Jeanie Buss stays. Team's power structure stays intact despite $10B
-sale.](https://wp.clutchpoints.com/wp-content/uploads/2025/08/Lakers-GM-Rob-
-Pelinka-against-Timberwolves.jpg)NBA](https://clutchpoints.com/nba/los-
-angeles-lakers/lakers-rumors-rob-pelinkas-job-status-gets-jeanie-buss-
-update)[LeBron James’ new golf obsession rubbing off on BronnyAlex House · 1
-day ago![Los Angeles Lakers forward LeBron James \(23\) warms up with guard
-Bronny James \(9\) before the preseason game against the Golden State Warriors
-at T-Mobile Arena.](https://wp.clutchpoints.com/wp-
-content/uploads/2024/10/LeBron-James-23-warms-up-with-guard-Bronny-
-James-9.jpg)NBA](https://clutchpoints.com/nba/los-angeles-lakers/lakers-new-
-lebron-james-new-golf-obsession-rubbing-off-on-bronny)[Nikola Jokic’s uncle
-allegedly arrested in Serbia amid corruption investigationMiguel La Torre · 1
-day ago![Denver Nuggets center Nikola Jokic \(15\) watches Oklahoma City
-Thunder guard Shai Gilgeous-Alexander shoot free throws in the second half of
-game seven of the second round for the 2025 NBA Playoffs at Paycom
-Center.](https://wp.clutchpoints.com/wp-
-content/uploads/2025/08/Jokic.jpg)](https://clutchpoints.com/celebrity/nikola-
-jokics-uncle-allegedly-arrested-in-serbia-amid-corruption-investigation)
+assessment)[Dan Patrick calls out Bronny James for skipping Luka Doncic’s
+Lakers press conferenceJackson Stone · 22 hours ago![Los Angeles Lakers guard
+Bronny James \(9\) defends on the court in the second half against the
+Minnesota Timberwolves at Crypto.com Arena.](https://wp.clutchpoints.com/wp-
+content/uploads/2025/08/James-vs-the-
+Timberwolves.jpg)NBA](https://clutchpoints.com/nba/los-angeles-lakers/lakers-
+news-dan-patrick-bronny-james-not-attending-luka-doncic-press-conference)[Luka
+Doncic’s manager closes book on Mavericks trade with 3 wordsZachary Draves · 2
+hours ago![Los Angeles Lakers guard Luka Doncic \(77\) reacts during the
+second half in game five of first round for the 2025 NBA Playoffs at
+Crypto.com Arena.](https://wp.clutchpoints.com/wp-
+content/uploads/2025/07/Lakers-guard-Luka-Doncic-77-reacts-during-a-
+game.jpg)NBA](https://clutchpoints.com/nba/los-angeles-lakers/luka-doncics-
+manager-closes-book-on-mavericks-trade-with-3-words)
 
 ## NBA Rumors
 
@@ -343,7 +346,7 @@ Training Center.](https://wp.clutchpoints.com/wp-
 content/uploads/2025/08/Doncic-and-Jeanie-Buss.jpg)Los Angeles
 Lakers](/nba/los-angeles-lakers/lakers-rumors-hidden-bonus-luka-
 doncics-165-million-contract-extension)[Celtics rumors: Summer League star
-wants to sign NBA contractJaren Kawada · 2 days ago![San Antonio Spurs 28
+wants to sign NBA contractJaren Kawada · 1 day ago![San Antonio Spurs 28
 center Charles Bassey \(28\) dunks during the second half against the Miami
 Heat at Frost Bank Center.](https://wp.clutchpoints.com/wp-
 content/uploads/2025/07/Charles-Bassey.jpg)Boston Celtics](/nba/boston-
@@ -351,81 +354,83 @@ celtics/celtics-rumors-summer-league-star-charles-bassey-nba-contract)
 
 ## More NBA from ClutchPoints
 
-[Indiana Pacers · 1 hour agoPacers' Rick Carlisle reveals 'projected' starting
-SG with Tyrese Haliburton out](https://clutchpoints.com/nba/indiana-
-pacers/pacers-news-rick-carlisle-projected-starting-sg-tyrese-haliburton-out)
-
-[Los Angeles Lakers · 1 hour agoMatt Barnes reveals how watching Lakers' Kobe
-Bryant while 'high' helped him](https://clutchpoints.com/nba/los-angeles-
-lakers/lakers-news-matt-barnes-reveals-watching-kobe-bryant-high-helped-him)
-
-[Chicago Bulls · 2 hours agoDwyane Wade reveals how LeBron James shattered
-plan to join Bulls](https://clutchpoints.com/nba/chicago-bulls/bulls-news-
-dwyane-wade-reveals-how-lebron-james-shattered-plan-to-join-chicago)
-
-[Boston Celtics · 2 hours agoPotential starting Celtics center underwent
-offseason knee surgery](https://clutchpoints.com/nba/boston-celtics/celtics-
-news-center-neemias-queta-offseason-knee-surgery)
-
-[Los Angeles Lakers · 2 hours agoLakers' Luka Doncic using offseason to send
-warning to critics](https://clutchpoints.com/nba/los-angeles-lakers/lakers-
-news-luka-doncics-offseason-sends-warning-critics)
-
-[Los Angeles Lakers · 2 hours agoLakers' Luka Doncic shows off body
-transformation for Slovenia ahead of
-EuroBasket](https://clutchpoints.com/nba/los-angeles-lakers/lakers-luka-
-doncic-body-transformation-slovenia-eurobasket)
-
-[Los Angeles Lakers · 3 hours agoLakers rumors: What Luka Doncic 'wants' for
-LeBron James' retirement](https://clutchpoints.com/nba/los-angeles-
-lakers/lakers-rumors-luka-doncic-wants-lebron-james-retirement)
-
-[Los Angeles Lakers · 4 hours agoLuka Doncic's manager closes book on
-Mavericks trade with 3 words](https://clutchpoints.com/nba/los-angeles-
-lakers/luka-doncics-manager-closes-book-on-mavericks-trade-with-3-words)
-
-[Detroit Pistons · 4 hours ago1 move Detroit Pistons should've made in 2025
-NBA offseason](https://clutchpoints.com/nba/detroit-pistons/move-detroit-
-pistons-shouldve-made-2025-nba-offseason)
-
-[Houston Rockets · 5 hours ago1 move Houston Rockets should've made in 2025
+[Houston Rockets · 3 hours ago1 move Houston Rockets should've made in 2025
 NBA offseason](https://clutchpoints.com/nba/houston-rockets/move-houston-
 rockets-shouldve-made-2025-nba-offseason)
 
-[Toronto Raptors · 6 hours ago1 move Toronto Raptors should've made in 2025
+[Toronto Raptors · 4 hours ago1 move Toronto Raptors should've made in 2025
 NBA offseason](https://clutchpoints.com/nba/toronto-raptors/move-toronto-
 raptors-shouldve-made-2025-nba-offseason)
 
-[New Orleans Pelicans · 11 hours agoNew Orleans Pelicans makes successful move
+[New Orleans Pelicans · 9 hours agoNew Orleans Pelicans makes successful move
 on former Suns asset](https://clutchpoints.com/nba/new-orleans-
 pelicans/pelicans-news-new-orleans-makes-successful-move-on-former-suns-asset)
 
-[Minnesota Timberwolves · 12 hours agoTimberwolves star Anthony Edwards' stern
+[Minnesota Timberwolves · 10 hours agoTimberwolves star Anthony Edwards' stern
 5-word post grabs attention](https://clutchpoints.com/nba/minnesota-
 timberwolves/timberwolves-news-anthony-edwards-5-word-post-grabs-attention)
 
-[Oklahoma City Thunder · 12 hours agoFormer Thunder Serge Ibaka sounds off on
+[Oklahoma City Thunder · 10 hours agoFormer Thunder Serge Ibaka sounds off on
 OKC's dynasty potential](https://clutchpoints.com/nba/oklahoma-city-
 thunder/thunder-news-serge-ibaka-sounds-off-on-okcs-dynasty-potential)
 
-[Golden State Warriors · 14 hours agoWarriors' Draymond Green reacts to fan's
+[Golden State Warriors · 12 hours agoWarriors' Draymond Green reacts to fan's
 'worst offseason' complaint after Shams' 'craziest'
 promise](https://clutchpoints.com/nba/golden-state-warriors/warriors-news-
 draymond-green-reacts-shams-charania-worst-assessment)
 
-[Golden State Warriors · 14 hours agoWarriors star Draymond Green's true
+[Golden State Warriors · 12 hours agoWarriors star Draymond Green's true
 feelings about De'Aaron Fox's max
 contract](https://clutchpoints.com/nba/golden-state-warriors/warriors-news-
 draymond-green-deaaron-fox-contract-reaction)
 
-[New York Mets · 16 hours agoMets fan Donovan Mitchell has incredibly
+[New York Mets · 14 hours agoMets fan Donovan Mitchell has incredibly
 relatable question amid TV blackout](https://clutchpoints.com/mlb/new-york-
 mets/mets-news-donovan-mitchell-tv-blackout)
 
-[Milwaukee Bucks · 18 hours agoShams doubles down on Bucks All-Star Giannis
+[Milwaukee Bucks · 16 hours agoShams doubles down on Bucks All-Star Giannis
 Antetokounmpo's future speculation](https://clutchpoints.com/nba/milwaukee-
 bucks/bucks-rumors-shams-doubles-down-giannis-antetokounmpo-future-
 speculation)
+
+[New York Knicks · 16 hours agoJosh Hart clowns Karl-Anthony Towns with 'too
+big' baseball take](https://clutchpoints.com/nba/new-york-knicks/knicks-news-
+josh-hart-karl-anthony-towns-baseball)
+
+[Miami Heat · 18 hours agoHeat face dilemma on $150 million Tyler Herro
+contract extension](https://clutchpoints.com/nba/miami-heat/heat-face-dilemma-
+on-150-million-tyler-herro-contract-extension)
+
+[Los Angeles Lakers · 18 hours agoSources: Inside LeBron James' 'constant'
+Lakers contact amid offseason rumors](https://clutchpoints.com/nba/los-
+angeles-lakers/sources-inside-lebron-james-constant-lakers-contact-offseason-
+rumors)
+
+[San Antonio Spurs · 19 hours agoWhy Spurs had no choice besides De'Aaron Fox
+$229 million max contract extension](https://clutchpoints.com/nba/san-antonio-
+spurs/why-spurs-had-no-choice-besides-deaaron-fox-229-million-max-contract-
+extension)
+
+[San Antonio Spurs · 19 hours agoGrading De'Aaron Fox's $229 million Spurs max
+contract extension](https://clutchpoints.com/nba/san-antonio-spurs/grading-
+deaaron-fox-229-million-spurs-max-contract-extension)
+
+[Sneakers · 19 hours agoLuka Doncic releases Jordan Luka .77 'Bright
+Mango'](https://clutchpoints.com/sneakers/lakers-news-luka-doncic-releases-
+jordan-luka-77-bright-mango)
+
+[Charlotte Hornets · 19 hours agoPuma announces release date, price of LaMelo
+Ball's 5th signature shoe](https://clutchpoints.com/nba/charlotte-
+hornets/puma-announces-release-date-lamelo-ball-5th-signature-shoe)
+
+[Philadelphia 76ers · 20 hours agoSources: Joel Embiid's ongoing knee issues
+create genuine concern about 76ers'
+future](https://clutchpoints.com/nba/philadelphia-76ers/sources-joel-embiids-
+ongoing-knee-issues-create-genuine-concern-about-76ers-future)
+
+[Toronto Raptors · 20 hours agoScottie Barnes takes jab at Raptors' social
+media haters](https://clutchpoints.com/nba/toronto-raptors/raptors-news-
+scottie-barnes-takes-jab-social-media-haters)
 
 [1](https://clutchpoints.com/nba)[2](https://clutchpoints.com/nba/pages/2)[3](https://clutchpoints.com/nba/pages/3)[4](https://clutchpoints.com/nba/pages/4)[5](https://clutchpoints.com/nba/pages/5)[6](https://clutchpoints.com/nba/pages/6)[7](https://clutchpoints.com/nba/pages/7)[Next](https://clutchpoints.com/nba/pages/2)
 

@@ -61,75 +61,87 @@ nba.svg)](/ "NBA Logo Homepage Button")
 
 Atlantic
 
-[![Boston Celtics Logo](https://cdn.nba.com/logos/nba/fallback.svg)Boston
+[![Boston Celtics
+Logo](https://cdn.nba.com/logos/nba/1610612738/primary/L/logo.svg)Boston
 Celtics](/celtics/)[![Brooklyn Nets
-Logo](https://cdn.nba.com/logos/nba/fallback.svg)Brooklyn Nets](/nets/)[![New
-York Knicks Logo](https://cdn.nba.com/logos/nba/fallback.svg)New York
+Logo](https://cdn.nba.com/logos/nba/1610612751/primary/L/logo.svg)Brooklyn
+Nets](/nets/)[![New York Knicks
+Logo](https://cdn.nba.com/logos/nba/1610612752/primary/L/logo.svg)New York
 Knicks](/knicks/)[![Philadelphia 76ers
-Logo](https://cdn.nba.com/logos/nba/fallback.svg)Philadelphia
+Logo](https://cdn.nba.com/logos/nba/1610612755/primary/L/logo.svg)Philadelphia
 76ers](/sixers/)[![Toronto Raptors
-Logo](https://cdn.nba.com/logos/nba/fallback.svg)Toronto Raptors](/raptors/)
+Logo](https://cdn.nba.com/logos/nba/1610612761/primary/L/logo.svg)Toronto
+Raptors](/raptors/)
 
 Central
 
-[![Chicago Bulls Logo](https://cdn.nba.com/logos/nba/fallback.svg)Chicago
+[![Chicago Bulls
+Logo](https://cdn.nba.com/logos/nba/1610612741/primary/L/logo.svg)Chicago
 Bulls](/bulls/)[![Cleveland Cavaliers
-Logo](https://cdn.nba.com/logos/nba/fallback.svg)Cleveland
+Logo](https://cdn.nba.com/logos/nba/1610612739/primary/L/logo.svg)Cleveland
 Cavaliers](/cavaliers/)[![Detroit Pistons
-Logo](https://cdn.nba.com/logos/nba/fallback.svg)Detroit
+Logo](https://cdn.nba.com/logos/nba/1610612765/primary/L/logo.svg)Detroit
 Pistons](/pistons/)[![Indiana Pacers
-Logo](https://cdn.nba.com/logos/nba/fallback.svg)Indiana
+Logo](https://cdn.nba.com/logos/nba/1610612754/primary/L/logo.svg)Indiana
 Pacers](/pacers/)[![Milwaukee Bucks
-Logo](https://cdn.nba.com/logos/nba/fallback.svg)Milwaukee Bucks](/bucks/)
+Logo](https://cdn.nba.com/logos/nba/1610612749/primary/L/logo.svg)Milwaukee
+Bucks](/bucks/)
 
 Southeast
 
-[![Atlanta Hawks Logo](https://cdn.nba.com/logos/nba/fallback.svg)Atlanta
+[![Atlanta Hawks
+Logo](https://cdn.nba.com/logos/nba/1610612737/primary/L/logo.svg)Atlanta
 Hawks](/hawks/)[![Charlotte Hornets
-Logo](https://cdn.nba.com/logos/nba/fallback.svg)Charlotte
+Logo](https://cdn.nba.com/logos/nba/1610612766/primary/L/logo.svg)Charlotte
 Hornets](/hornets/)[![Miami Heat
-Logo](https://cdn.nba.com/logos/nba/fallback.svg)Miami Heat](/heat/)[![Orlando
-Magic Logo](https://cdn.nba.com/logos/nba/fallback.svg)Orlando
+Logo](https://cdn.nba.com/logos/nba/1610612748/primary/L/logo.svg)Miami
+Heat](/heat/)[![Orlando Magic
+Logo](https://cdn.nba.com/logos/nba/1610612753/primary/L/logo.svg)Orlando
 Magic](/magic/)[![Washington Wizards
-Logo](https://cdn.nba.com/logos/nba/fallback.svg)Washington
+Logo](https://cdn.nba.com/logos/nba/1610612764/primary/L/logo.svg)Washington
 Wizards](/wizards/)
 
 Northwest
 
-[![Denver Nuggets Logo](https://cdn.nba.com/logos/nba/fallback.svg)Denver
+[![Denver Nuggets
+Logo](https://cdn.nba.com/logos/nba/1610612743/primary/L/logo.svg)Denver
 Nuggets](/nuggets/)[![Minnesota Timberwolves
-Logo](https://cdn.nba.com/logos/nba/fallback.svg)Minnesota
+Logo](https://cdn.nba.com/logos/nba/1610612750/primary/L/logo.svg)Minnesota
 Timberwolves](/timberwolves/)[![Oklahoma City Thunder
-Logo](https://cdn.nba.com/logos/nba/fallback.svg)Oklahoma City
-Thunder](/thunder/)[![Portland Trail Blazers
-Logo](https://cdn.nba.com/logos/nba/fallback.svg)Portland Trail
-Blazers](/blazers/)[![Utah Jazz
-Logo](https://cdn.nba.com/logos/nba/fallback.svg)Utah Jazz](/jazz/)
+Logo](https://cdn.nba.com/logos/nba/1610612760/primary/L/logo.svg)Oklahoma
+City Thunder](/thunder/)[![Portland Trail Blazers
+Logo](https://cdn.nba.com/logos/nba/1610612757/primary/L/logo.svg)Portland
+Trail Blazers](/blazers/)[![Utah Jazz
+Logo](https://cdn.nba.com/logos/nba/1610612762/primary/L/logo.svg)Utah
+Jazz](/jazz/)
 
 Pacific
 
 [![Golden State Warriors
-Logo](https://cdn.nba.com/logos/nba/fallback.svg)Golden State
+Logo](https://cdn.nba.com/logos/nba/1610612744/primary/L/logo.svg)Golden State
 Warriors](/warriors/)[![LA Clippers
-Logo](https://cdn.nba.com/logos/nba/fallback.svg)LA
+Logo](https://cdn.nba.com/logos/nba/1610612746/primary/L/logo.svg)LA
 Clippers](/clippers/)[![Los Angeles Lakers
-Logo](https://cdn.nba.com/logos/nba/fallback.svg)Los Angeles
+Logo](https://cdn.nba.com/logos/nba/1610612747/primary/L/logo.svg)Los Angeles
 Lakers](/lakers/)[![Phoenix Suns
-Logo](https://cdn.nba.com/logos/nba/fallback.svg)Phoenix
+Logo](https://cdn.nba.com/logos/nba/1610612756/primary/L/logo.svg)Phoenix
 Suns](/suns/)[![Sacramento Kings
-Logo](https://cdn.nba.com/logos/nba/fallback.svg)Sacramento Kings](/kings/)
+Logo](https://cdn.nba.com/logos/nba/1610612758/primary/L/logo.svg)Sacramento
+Kings](/kings/)
 
 Southwest
 
-[![Dallas Mavericks Logo](https://cdn.nba.com/logos/nba/fallback.svg)Dallas
+[![Dallas Mavericks
+Logo](https://cdn.nba.com/logos/nba/1610612742/primary/L/logo.svg)Dallas
 Mavericks](/mavericks/)[![Houston Rockets
-Logo](https://cdn.nba.com/logos/nba/fallback.svg)Houston
+Logo](https://cdn.nba.com/logos/nba/1610612745/primary/L/logo.svg)Houston
 Rockets](/rockets/)[![Memphis Grizzlies
-Logo](https://cdn.nba.com/logos/nba/fallback.svg)Memphis
+Logo](https://cdn.nba.com/logos/nba/1610612763/primary/L/logo.svg)Memphis
 Grizzlies](/grizzlies/)[![New Orleans Pelicans
-Logo](https://cdn.nba.com/logos/nba/fallback.svg)New Orleans
+Logo](https://cdn.nba.com/logos/nba/1610612740/primary/L/logo.svg)New Orleans
 Pelicans](/pelicans/)[![San Antonio Spurs
-Logo](https://cdn.nba.com/logos/nba/fallback.svg)San Antonio Spurs](/spurs/)
+Logo](https://cdn.nba.com/logos/nba/1610612759/primary/L/logo.svg)San Antonio
+Spurs](/spurs/)
 
   * [Players](/players)
 
@@ -256,52 +268,63 @@ Logo](https://cdn.nba.com/logos/nba/fallback.svg)San Antonio Spurs](/spurs/)
     * [Learn The Game](/learn-the-game)
     * [NBA Official](https://official.nba.com)
 
-[![Offseason Power Rankings: Thunder clear favorites to repeat in
-West](https://cdn.nba.com/next/fallback.jpg)Offseason Power Rankings: State of
-the WestGet a team-by-team look at where all 15 squads in the Western
-Conference rank after the 2025 offseason.August 4, 2025](/news/offseason-
-power-rankings-west-2025 "Article link for Offseason Power Rankings: Thunder
-clear favorites to repeat in West")
+[![Ranking the 10 best players in the West heading into
+2025-26](https://cdn.nba.com/manage/2025/05/GettyImages-2213352638.jpg)10 best
+players in West entering 2025-26Ranking the 10 players who lead the way for
+the Western Conference as 2025-26 approaches.August 6,
+2025](/news/ranking-10-best-players-western-conference-2025-26 "Article link
+for Ranking the 10 best players in the West heading into 2025-26")
 
-  * [![De'Aaron Fox signs reported 4-year, $229 million extension with Spurs](https://cdn.nba.com/next/fallback.jpg)](/news/deaaron-fox-spurs-contract-extension "Article link for De'Aaron Fox signs reported 4-year, $229 million extension with Spurs")
+  * [![Offseason Power Rankings: Thunder clear favorites to repeat in West](https://cdn.nba.com/manage/2025/08/sga-williams.jpg)](/news/offseason-power-rankings-west-2025 "Article link for Offseason Power Rankings: Thunder clear favorites to repeat in West")
 
-#### [Fox signs reported max extension with SpursThe Spurs and guard De'Aaron
+#### [Offseason Power Rankings: State of the WestGet a team-by-team look at
+where all 15 squads in the Western Conference rank after the 2025
+offseason.](/news/offseason-power-rankings-west-2025 "Article link for
+Offseason Power Rankings: Thunder clear favorites to repeat in West")
+
+[August 5, 2025](/news/offseason-power-rankings-west-2025 "Article link for
+Offseason Power Rankings: Thunder clear favorites to repeat in West")
+
+  * [![De'Aaron Fox signs reported 4-year, $229 million extension with Spurs](https://cdn.nba.com/manage/2025/08/fox-driving.jpg)](/news/deaaron-fox-spurs-contract-extension "Article link for De'Aaron Fox signs reported 4-year, $229 million extension with Spurs")
+
+#### [Spurs' Fox signs reported 4-year extensionThe Spurs and guard De'Aaron
 Fox have reached an agreement on a max deal that will keep him with the team
 through 2029-30.](/news/deaaron-fox-spurs-contract-extension "Article link for
 De'Aaron Fox signs reported 4-year, $229 million extension with Spurs")
 
-[6 hours ago](/news/deaaron-fox-spurs-contract-extension "Article link for
+[August 5, 2025](/news/deaaron-fox-spurs-contract-extension "Article link for
 De'Aaron Fox signs reported 4-year, $229 million extension with Spurs")
 
-  * [![Luka Dončić agrees to 3-year, $165 million extension with Lakers](https://cdn.nba.com/next/fallback.jpg)](/news/luka-doncic-lakers-contract-extension "Article link for Luka Dončić agrees to 3-year, $165 million extension with Lakers")
+  * [![From the court to the community: The NBA Foundation celebrates 5 years of game-changing impact](https://cdn.nba.com/manage/2025/08/IMG_8228-1-e1754507659297.jpg)](/news/nba-foundation-celebrates-5-year-anniversary "Article link for From the court to the community: The NBA Foundation celebrates 5 years of game-changing impact")
 
-#### [Dončić agrees to 3-year extension with LakersThe 5-time All-Star and
-5-time All-NBA First Team guard re-signs with L.A. to avoid free agency next
-offseason.](/news/luka-doncic-lakers-contract-extension "Article link for Luka
-Dončić agrees to 3-year, $165 million extension with Lakers")
+#### [NBA Foundation marks 5-year anniversaryCelebrating its fifth year, The
+NBA Foundation is creating real change, on and off the court.](/news/nba-
+foundation-celebrates-5-year-anniversary "Article link for From the court to
+the community: The NBA Foundation celebrates 5 years of game-changing impact")
 
-[August 2, 2025](/news/luka-doncic-lakers-contract-extension "Article link for
-Luka Dončić agrees to 3-year, $165 million extension with Lakers")
+[August 5, 2025](/news/nba-foundation-celebrates-5-year-anniversary "Article
+link for From the court to the community: The NBA Foundation celebrates 5
+years of game-changing impact")
 
-  * [![Have Lakers improved enough this offseason? The answer seems clear](https://cdn.nba.com/next/fallback.jpg)](/news/have-lakers-improved-enough "Article link for Have Lakers improved enough this offseason? The answer seems clear")
-
-#### [How much have Lakers improved roster?While Deandre Ayton and Marcus
-Smart fill needs, the Lakers are counting on LeBron James and Luka Dončić to
-deliver.](/news/have-lakers-improved-enough "Article link for Have Lakers
-improved enough this offseason? The answer seems clear")
-
-[August 3, 2025](/news/have-lakers-improved-enough "Article link for Have
-Lakers improved enough this offseason? The answer seems clear")
-
+  * ### [The Athletic: Inside Luka's whirlwind tourDan Woike dives into Luka's offseason detailing his contract extension and his eagerness to get back on the court.August 5, 2025](/news/the-athletic-inside-luka-doncics-u-s-tour-from-lakers-extension-to-a-surprise-backstreet-boys-concert "Article link for The Athletic: Inside Luka Dončić’s U.S. tour: From Lakers extension to a surprise Backstreet Boys concert")
+  * ### [Celtics trade Niang, reportedly set to add BoucherThe Niang trade allows Boston the flexibility to remain below the second penalty apron after adding Boucher.9 hours ago](/news/celtics-trade-georges-niang-to-jazz "Article link for Celtics deal Georges Niang to Jazz, reportedly agree to deal with Chris Boucher")
   * ### [Offseason Power Rankings: State of the EastGet a team-by-team look at where all 15 squads in the Eastern Conference rank after the 2025 offseason.August 4, 2025](/news/offseason-power-rankings-east-2025 "Article link for Offseason Power Rankings: Cavs, Knicks leading the way in East")
   * ### [Lillard accepts role as GM at Weber StateLillard played at Weber State from 2008-2012 and won Big Sky Player of the Year twice before launching his NBA career.August 3, 2025](/news/damian-lillard-accepts-role-as-weber-state-general-manager "Article link for Damian Lillard announces he's taking over as GM of Weber State basketball")
   * ### [10 best players in East entering 2025-26Taking a closer look at the 10 players who lead the way for the Eastern Conference as 2025-26 approaches.August 2, 2025](/news/ranking-10-best-players-in-east-entering-2025-26 "Article link for Ranking the 10 best players in the East heading into 2025-26")
-  * ### [NBA to play 6 games in Europe over next 3 yearsNBA also announces regular-season games in Manchester and Paris in 2027 and in Berlin and Paris in 2028.July 31, 2025](/news/nba-announces-3-year-slate-of-games-in-europe-beginning-in-2026 "Article link for Grizzlies, Magic to play regular-season games in Berlin and London in 2026 as part of three-year slate of NBA games in Europe")
-  * ### [5 most under-the-radar offseason movesBeyond the blockbuster deals, there are always moves that go a bit under the radar that prove to be impactful.July 25, 2025](/news/5-most-under-the-radar-moves-from-2025-offseason "Article link for 5 most under-the-radar moves from 2025 offseason")
 
 ### Latest
 
-  * [![The Athletic: Damian Lillard to serve in general manager role at alma mater Weber State](https://cdn.nba.com/next/fallback.jpg)](/news/the-athletic-damian-lillard-to-serve-in-general-manager-role-at-alma-mater-weber-state "Article link for The Athletic: Damian Lillard to serve in general manager role at alma mater Weber State")
+  * [![Top 10 All-Time NBA Playoff Assist Leaders](https://cdn.nba.com/manage/2024/09/GettyImages-2105840276-scaled.jpg)](/news/top-10-all-time-nba-playoff-assist-leaders "Article link for Top 10 All-Time NBA Playoff Assist Leaders")
+
+#### [Top 10 all-time NBA playoff assist leadersRotoWire shines a light on the
+top NBA players who have showcased the best court vision and ability to
+elevate their team.](/news/top-10-all-time-nba-playoff-assist-leaders "Article
+link for Top 10 All-Time NBA Playoff Assist Leaders")
+
+[August 6, 2025](/news/top-10-all-time-nba-playoff-assist-leaders "Article
+link for Top 10 All-Time NBA Playoff Assist Leaders")
+
+  * [![The Athletic: Damian Lillard to serve in general manager role at alma mater Weber State](https://cdn.nba.com/manage/2025/08/GettyImages-2226402209-scaled.jpg)](/news/the-athletic-damian-lillard-to-serve-in-general-manager-role-at-alma-mater-weber-state "Article link for The Athletic: Damian Lillard to serve in general manager role at alma mater Weber State")
 
 #### [The Athletic: Lillard to serve as GM at alma materLillard follows in the
 footsteps of other notable NBA players who have stepped into similar
@@ -309,11 +332,11 @@ roles.](/news/the-athletic-damian-lillard-to-serve-in-general-manager-role-at-
 alma-mater-weber-state "Article link for The Athletic: Damian Lillard to serve
 in general manager role at alma mater Weber State")
 
-[23 hours ago](/news/the-athletic-damian-lillard-to-serve-in-general-manager-
-role-at-alma-mater-weber-state "Article link for The Athletic: Damian Lillard
-to serve in general manager role at alma mater Weber State")
+[August 4, 2025](/news/the-athletic-damian-lillard-to-serve-in-general-
+manager-role-at-alma-mater-weber-state "Article link for The Athletic: Damian
+Lillard to serve in general manager role at alma mater Weber State")
 
-  * [![This Week in NBA History: Week of Aug. 3](https://cdn.nba.com/next/fallback.jpg)](/news/this-date-in-nba-history-2024-25 "Article link for This Week in NBA History: Week of Aug. 3")
+  * [![This Week in NBA History: Week of Aug. 3](https://cdn.nba.com/manage/2022/07/1992-dream-team.jpg)](/news/this-date-in-nba-history-2024-25 "Article link for This Week in NBA History: Week of Aug. 3")
 
 #### [This Week in NBA History: Week of Aug. 3Known as the Dream Team, the
 1992 U.S. Olympic basketball team cruises to the gold medal at the Barcelona
@@ -323,7 +346,27 @@ in NBA History: Week of Aug. 3")
 [August 3, 2025](/news/this-date-in-nba-history-2024-25 "Article link for This
 Week in NBA History: Week of Aug. 3")
 
-  * [![Knicks sign Mikal Bridges to long-term contract extension](https://cdn.nba.com/next/fallback.jpg)](/news/knicks-mikal-bridges-agree-to-extension "Article link for Knicks sign Mikal Bridges to long-term contract extension")
+  * [![Luka Dončić agrees to 3-year, $165 million extension with Lakers](https://cdn.nba.com/manage/2025/08/GettyImages-2209990498-scaled-e1754152374119.jpg)](/news/luka-doncic-lakers-contract-extension "Article link for Luka Dončić agrees to 3-year, $165 million extension with Lakers")
+
+#### [Dončić agrees to 3-year extension with LakersThe 5-time All-Star and
+5-time All-NBA First Team guard re-signs with L.A. to avoid free agency next
+offseason.](/news/luka-doncic-lakers-contract-extension "Article link for Luka
+Dončić agrees to 3-year, $165 million extension with Lakers")
+
+[August 2, 2025](/news/luka-doncic-lakers-contract-extension "Article link for
+Luka Dončić agrees to 3-year, $165 million extension with Lakers")
+
+  * [![Have Lakers improved enough this offseason? The answer seems clear](https://cdn.nba.com/manage/2025/07/lebron-luka.jpg)](/news/have-lakers-improved-enough "Article link for Have Lakers improved enough this offseason? The answer seems clear")
+
+#### [How much have Lakers improved roster?While Deandre Ayton and Marcus
+Smart fill needs, the Lakers are counting on LeBron James and Luka Dončić to
+deliver.](/news/have-lakers-improved-enough "Article link for Have Lakers
+improved enough this offseason? The answer seems clear")
+
+[August 3, 2025](/news/have-lakers-improved-enough "Article link for Have
+Lakers improved enough this offseason? The answer seems clear")
+
+  * [![Knicks sign Mikal Bridges to long-term contract extension](https://cdn.nba.com/manage/2024/12/bridges-layup.jpg)](/news/knicks-mikal-bridges-agree-to-extension "Article link for Knicks sign Mikal Bridges to long-term contract extension")
 
 #### [Knicks sign Bridges to long-term extensionPer multiple reports, Bridges'
 extension is 4-year, $150 million deal that includes a player option for
@@ -333,7 +376,19 @@ Knicks sign Mikal Bridges to long-term contract extension")
 [August 2, 2025](/news/knicks-mikal-bridges-agree-to-extension "Article link
 for Knicks sign Mikal Bridges to long-term contract extension")
 
-  * [![Original Atlanta Hawks owner Tom Cousins dies at 93](https://cdn.nba.com/next/fallback.jpg)](/news/originals-hawks-owner-tom-cousins-dead-93 "Article link for Original Atlanta Hawks owner Tom Cousins dies at 93")
+  * [![Grizzlies, Magic to play regular-season games in Berlin and London in 2026 as part of three-year slate of NBA games in Europe](https://cdn.nba.com/manage/2025/07/NBA_European_Global_Games_Combined_16x9-2.jpg)](/news/nba-announces-3-year-slate-of-games-in-europe-beginning-in-2026 "Article link for Grizzlies, Magic to play regular-season games in Berlin and London in 2026 as part of three-year slate of NBA games in Europe")
+
+#### [NBA to play 6 games in Europe over next 3 yearsNBA also announces
+regular-season games in Manchester and Paris in 2027 and in Berlin and Paris
+in 2028.](/news/nba-announces-3-year-slate-of-games-in-europe-beginning-
+in-2026 "Article link for Grizzlies, Magic to play regular-season games in
+Berlin and London in 2026 as part of three-year slate of NBA games in Europe")
+
+[July 31, 2025](/news/nba-announces-3-year-slate-of-games-in-europe-beginning-
+in-2026 "Article link for Grizzlies, Magic to play regular-season games in
+Berlin and London in 2026 as part of three-year slate of NBA games in Europe")
+
+  * [![Original Atlanta Hawks owner Tom Cousins dies at 93](https://cdn.nba.com/manage/2025/07/hawks-logo.jpg)](/news/originals-hawks-owner-tom-cousins-dead-93 "Article link for Original Atlanta Hawks owner Tom Cousins dies at 93")
 
 #### [Original Hawks owner Cousins dies at 93Cousins was part of a group that
 in 1968 moved the Hawks from St. Louis to Atlanta, where they've since called
@@ -343,7 +398,7 @@ Original Atlanta Hawks owner Tom Cousins dies at 93")
 [July 29, 2025](/news/originals-hawks-owner-tom-cousins-dead-93 "Article link
 for Original Atlanta Hawks owner Tom Cousins dies at 93")
 
-  * [![NBA players that will play in FIBA EuroBasket 2025](https://cdn.nba.com/next/fallback.jpg)](/news/nba-players-in-eurobasket-2025 "Article link for NBA players that will play in FIBA EuroBasket 2025")
+  * [![NBA players that will play in FIBA EuroBasket 2025](https://cdn.nba.com/manage/2025/07/nikola-jokic-serbia-2.jpg)](/news/nba-players-in-eurobasket-2025 "Article link for NBA players that will play in FIBA EuroBasket 2025")
 
 #### [NBA players participating in FIBA EuroBasket 2025FIBA EuroBasket 2025
 will feature 24 countries, several of which boast current and former NBA
@@ -353,7 +408,7 @@ players on the preliminary roster.](/news/nba-players-in-eurobasket-2025
 [July 30, 2025](/news/nba-players-in-eurobasket-2025 "Article link for NBA
 players that will play in FIBA EuroBasket 2025")
 
-  * [![Season Review: 2024-25](https://cdn.nba.com/next/fallback.jpg)](/news/season-review-2024-25 "Article link for Season Review: 2024-25")
+  * [![Season Review: 2024-25](https://cdn.nba.com/manage/2025/06/shai-gilgeous-alexander-finals-mvp-4.jpg)](/news/season-review-2024-25 "Article link for Season Review: 2024-25")
 
 #### [Season Review of the 2024-25 seasonTake a look back at the 2024-25 NBA
 season, during which the Thunder emerged as NBA champions.](/news/season-
@@ -362,7 +417,7 @@ review-2024-25 "Article link for Season Review: 2024-25")
 [July 29, 2025](/news/season-review-2024-25 "Article link for Season Review:
 2024-25")
 
-  * [![The Athletic: Chris Paul returns to familiar place with Clippers but in different role: ‘I’m still in it’](https://cdn.nba.com/next/fallback.jpg)](/news/the-athletic-chris-paul-returns-to-familiar-place-with-clippers-but-in-different-role-im-still-in-it "Article link for The Athletic: Chris Paul returns to familiar place with Clippers but in different role: ‘I’m still in it’")
+  * [![The Athletic: Chris Paul returns to familiar place with Clippers but in different role: ‘I’m still in it’](https://cdn.nba.com/manage/2025/07/Capture-1-e1753804481184.jpg)](/news/the-athletic-chris-paul-returns-to-familiar-place-with-clippers-but-in-different-role-im-still-in-it "Article link for The Athletic: Chris Paul returns to familiar place with Clippers but in different role: ‘I’m still in it’")
 
 #### [The Athletic: Chris Paul returns to familiar placeChris Paul is back
 with the Clippers and embracing his new role with the
@@ -376,7 +431,7 @@ clippers-but-in-different-role-im-still-in-it "Article link for The Athletic:
 Chris Paul returns to familiar place with Clippers but in different role: ‘I’m
 still in it’")
 
-  * [![Mavs hire Ethan Casson in new role as president under CEO Rick Welts](https://cdn.nba.com/next/fallback.jpg)](/news/mavericks-hire-ethan-casson-in-new-role-under-ceo-rick-welts "Article link for Mavs hire Ethan Casson in new role as president under CEO Rick Welts")
+  * [![Mavs hire Ethan Casson in new role as president under CEO Rick Welts](https://cdn.nba.com/manage/2025/07/GettyImages-2224662482-scaled.jpg)](/news/mavericks-hire-ethan-casson-in-new-role-under-ceo-rick-welts "Article link for Mavs hire Ethan Casson in new role as president under CEO Rick Welts")
 
 #### [Mavs add president role under CEO WeltsCasson, who most recently served
 as CEO of the Wolves, will oversee day-to-day business operations in
@@ -388,59 +443,16 @@ Rick Welts")
 welts "Article link for Mavs hire Ethan Casson in new role as president under
 CEO Rick Welts")
 
-  * [![Chris Paul is back with the Clippers and it means so much to him](https://cdn.nba.com/next/fallback.jpg)](/news/chris-paul-joins-clippers-news-conference "Article link for Chris Paul is back with the Clippers and it means so much to him")
-
-#### [Paul on return to Clippers: 'I'm home'The veteran guard is thrilled to
-be closer to his wife and family as he seeks his 1st NBA title in his return
-to the Clippers.](/news/chris-paul-joins-clippers-news-conference "Article
-link for Chris Paul is back with the Clippers and it means so much to him")
-
-[July 30, 2025](/news/chris-paul-joins-clippers-news-conference "Article link
-for Chris Paul is back with the Clippers and it means so much to him")
-
-  * [![Unbridled joy: Nikola Jokić overcome with emotion after horse racing victory](https://cdn.nba.com/next/fallback.jpg)](/news/jokic-emotional-after-his-horse-wins-race "Article link for Unbridled joy: Nikola Jokić overcome with emotion after horse racing victory")
-
-#### [Jokić emotional after his horse wins raceNikola Jokić cries tears of joy
-and takes a champagne shower after his horse pulls away to win a harness
-racing event in Serbia.](/news/jokic-emotional-after-his-horse-wins-race
-"Article link for Unbridled joy: Nikola Jokić overcome with emotion after
-horse racing victory")
-
-[July 28, 2025](/news/jokic-emotional-after-his-horse-wins-race "Article link
-for Unbridled joy: Nikola Jokić overcome with emotion after horse racing
-victory")
-
-  * [![Billy Donovan, Bulls agree to contract extension](https://cdn.nba.com/next/fallback.jpg)](/news/bulls-coach-billy-donovan-contract-extension "Article link for Billy Donovan, Bulls agree to contract extension")
-
-#### [Donovan, Bulls agree to contract extensionDonovan has led Chicago to a
-195-205 record with 1 playoff appearance in 5 seasons as head
-coach.](/news/bulls-coach-billy-donovan-contract-extension "Article link for
-Billy Donovan, Bulls agree to contract extension")
-
-[July 27, 2025](/news/bulls-coach-billy-donovan-contract-extension "Article
-link for Billy Donovan, Bulls agree to contract extension")
-
-  * [![Lakers sign Summer League standout Chris Mañon to two-way contract](https://cdn.nba.com/next/fallback.jpg)](/news/lakers-sign-chris-manon "Article link for Lakers sign Summer League standout Chris Mañon to two-way contract")
-
-#### [Lakers sign rookie Mañon to two-way dealUndrafted out of Vanderbilt,
-Mañon played for the Warriors during Summer League, drawing attention for his
-two-way play.](/news/lakers-sign-chris-manon "Article link for Lakers sign
-Summer League standout Chris Mañon to two-way contract")
-
-[July 24, 2025](/news/lakers-sign-chris-manon "Article link for Lakers sign
-Summer League standout Chris Mañon to two-way contract")
-
 Load more
 
-  * #### [Top StoriesNBA Foundation celebrates its 5-year anniversary](/news/nba-foundation-celebrates-5-year-anniversary "Article link for From the court to the community: The NBA Foundation celebrates 5 years of game-changing impact")
+  * #### [Top StoriesTatum at Pats camp without walking boot](/news/celtics-jayson-tatum-rehab-progressing "Article link for Celtics' Jayson Tatum seen without boot or brace at Patriots training camp")
 
-[4 hours ago](/news/nba-foundation-celebrates-5-year-anniversary "Article link
-for From the court to the community: The NBA Foundation celebrates 5 years of
-game-changing impact")
+[20 hours ago](/news/celtics-jayson-tatum-rehab-progressing "Article link for
+Celtics' Jayson Tatum seen without boot or brace at Patriots training camp")
 
   * #### [Power RankingsOffseason Power Rankings: State of the West](/news/offseason-power-rankings-west-2025 "Article link for Offseason Power Rankings: Thunder clear favorites to repeat in West")
 
-[August 4, 2025](/news/offseason-power-rankings-west-2025 "Article link for
+[August 5, 2025](/news/offseason-power-rankings-west-2025 "Article link for
 Offseason Power Rankings: Thunder clear favorites to repeat in West")
 
   * #### [Trending TopicsTrending Topics: Is SGA OKC's best player ever?](/news/trending-topics-shai-gilgeous-alexander-best-thunder-player-ever "Article link for Trending Topics: Is Shai Gilgeous-Alexander the best Thunder player ever?")
