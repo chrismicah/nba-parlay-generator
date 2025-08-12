@@ -112,7 +112,9 @@ def main() -> None:
         
         # Print first few items for debugging
         if items_count <= 3:
-            print(f"Sample item {items_count}: {norm.get('author')} - {norm.get('text', '')[:100]}...")
+            text = norm.get('text') or ''
+            author = norm.get('author') or 'Unknown'
+            print(f"Sample item {items_count}: {author} - {text[:100]}...")
 
     if batch:
         save_jsonl(batch, out_jsonl, append=args.append)
