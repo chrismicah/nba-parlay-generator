@@ -1,0 +1,9 @@
+Traceback (most recent call last):
+  File "/Users/chris.s/Projects/nba_parlay_project/scripts/scrape_twitter_api.py", line 128, in <module>
+    main()
+  File "/Users/chris.s/Projects/nba_parlay_project/scripts/scrape_twitter_api.py", line 102, in main
+    client = ensure_client()
+             ^^^^^^^^^^^^^^^
+  File "/Users/chris.s/Projects/nba_parlay_project/scripts/scrape_twitter_api.py", line 47, in ensure_client
+    raise RuntimeError("TWITTER_BEARER_TOKEN not set in environment")
+RuntimeError: TWITTER_BEARER_TOKEN not set in environment

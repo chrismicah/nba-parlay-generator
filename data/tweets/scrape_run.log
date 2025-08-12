@@ -1,0 +1,493 @@
+Error retrieving https://twitter.com/i/api/graphql/7jT5GT59P8IFjgxwqnEdQw/SearchTimeline?variables=%7B%22rawQuery%22%3A%22from%3AShamsCharania%22%2C%22count%22%3A20%2C%22product%22%3A%22Latest%22%2C%22withDownvotePerspective%22%3Afalse%2C%22withReactionsMetadata%22%3Afalse%2C%22withReactionsPerspective%22%3Afalse%7D&features=%7B%22rweb_lists_timeline_redesign_enabled%22%3Afalse%2C%22blue_business_profile_image_shape_enabled%22%3Afalse%2C%22responsive_web_graphql_exclude_directive_enabled%22%3Atrue%2C%22verified_phone_label_enabled%22%3Afalse%2C%22creator_subscriptions_tweet_preview_api_enabled%22%3Afalse%2C%22responsive_web_graphql_timeline_navigation_enabled%22%3Atrue%2C%22responsive_web_graphql_skip_user_profile_image_extensions_enabled%22%3Afalse%2C%22tweetypie_unmention_optimization_enabled%22%3Atrue%2C%22vibe_api_enabled%22%3Atrue%2C%22responsive_web_edit_tweet_api_enabled%22%3Atrue%2C%22graphql_is_translatable_rweb_tweet_is_translatable_enabled%22%3Atrue%2C%22view_counts_everywhere_api_enabled%22%3Atrue%2C%22longform_notetweets_consumption_enabled%22%3Atrue%2C%22tweet_awards_web_tipping_enabled%22%3Afalse%2C%22freedom_of_speech_not_reach_fetch_enabled%22%3Afalse%2C%22standardized_nudges_misinfo%22%3Atrue%2C%22tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled%22%3Afalse%2C%22interactive_text_enabled%22%3Atrue%2C%22responsive_web_text_conversations_enabled%22%3Afalse%2C%22longform_notetweets_rich_text_read_enabled%22%3Afalse%2C%22longform_notetweets_inline_media_enabled%22%3Afalse%2C%22responsive_web_enhance_cards_enabled%22%3Afalse%2C%22responsive_web_twitter_blue_verified_badge_is_enabled%22%3Atrue%7D: blocked (404)
+4 requests to https://twitter.com/i/api/graphql/7jT5GT59P8IFjgxwqnEdQw/SearchTimeline?variables=%7B%22rawQuery%22%3A%22from%3AShamsCharania%22%2C%22count%22%3A20%2C%22product%22%3A%22Latest%22%2C%22withDownvotePerspective%22%3Afalse%2C%22withReactionsMetadata%22%3Afalse%2C%22withReactionsPerspective%22%3Afalse%7D&features=%7B%22rweb_lists_timeline_redesign_enabled%22%3Afalse%2C%22blue_business_profile_image_shape_enabled%22%3Afalse%2C%22responsive_web_graphql_exclude_directive_enabled%22%3Atrue%2C%22verified_phone_label_enabled%22%3Afalse%2C%22creator_subscriptions_tweet_preview_api_enabled%22%3Afalse%2C%22responsive_web_graphql_timeline_navigation_enabled%22%3Atrue%2C%22responsive_web_graphql_skip_user_profile_image_extensions_enabled%22%3Afalse%2C%22tweetypie_unmention_optimization_enabled%22%3Atrue%2C%22vibe_api_enabled%22%3Atrue%2C%22responsive_web_edit_tweet_api_enabled%22%3Atrue%2C%22graphql_is_translatable_rweb_tweet_is_translatable_enabled%22%3Atrue%2C%22view_counts_everywhere_api_enabled%22%3Atrue%2C%22longform_notetweets_consumption_enabled%22%3Atrue%2C%22tweet_awards_web_tipping_enabled%22%3Afalse%2C%22freedom_of_speech_not_reach_fetch_enabled%22%3Afalse%2C%22standardized_nudges_misinfo%22%3Atrue%2C%22tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled%22%3Afalse%2C%22interactive_text_enabled%22%3Atrue%2C%22responsive_web_text_conversations_enabled%22%3Afalse%2C%22longform_notetweets_rich_text_read_enabled%22%3Afalse%2C%22longform_notetweets_inline_media_enabled%22%3Afalse%2C%22responsive_web_enhance_cards_enabled%22%3Afalse%2C%22responsive_web_twitter_blue_verified_badge_is_enabled%22%3Atrue%7D failed, giving up.
+Errors: blocked (404), blocked (404), blocked (404), blocked (404)
+🔍 Scraping @ChrisBHaynes via Crawl4AI/Nitter …
+[INIT].... → Crawl4AI 0.7.2 
+[VSCROLL]. ℹ Starting virtual scroll capture for container: body 
+[VSCROLL]. ℹ Virtual scroll completed. Content was appended, no merging needed 
+[FETCH]... ↓ https://nitter.net/ChrisBHaynes                                                                
+| ✓ | ⏱: 1.28s 
+[SCRAPE].. ◆ https://nitter.net/ChrisBHaynes                                                                
+| ✓ | ⏱: 0.00s 
+[COMPLETE] ● https://nitter.net/ChrisBHaynes                                                                
+| ✓ | ⏱: 1.28s 
+[INIT].... → Crawl4AI 0.7.2 
+[VSCROLL]. ℹ Starting virtual scroll capture for container: body 
+[VSCROLL]. ℹ Virtual scroll completed. Content was appended, no merging needed 
+[FETCH]... ↓ https://nitter.poast.org/ChrisBHaynes                                                          
+| ✓ | ⏱: 1.15s 
+[SCRAPE].. ◆ https://nitter.poast.org/ChrisBHaynes                                                          
+| ✓ | ⏱: 0.00s 
+[COMPLETE] ● https://nitter.poast.org/ChrisBHaynes                                                          
+| ✓ | ⏱: 1.16s 
+[INIT].... → Crawl4AI 0.7.2 
+[ERROR]... × https://ntrqq.to/ChrisBHaynes                      | Error: Unexpected error in _crawl_web at 
+line 763 in _crawl_web (venv/lib/python3.11/site-packages/crawl4ai/async_crawler_strategy.py):
+Error: Failed on navigating ACS-GOTO:
+Page.goto: net::ERR_NAME_NOT_RESOLVED at https://ntrqq.to/ChrisBHaynes
+Call log:
+  - navigating to "https://ntrqq.to/ChrisBHaynes", waiting until "domcontentloaded"
+
+
+Code context:
+ 758                               tag="GOTO",
+ 759                               params={"url": url},
+ 760                           )
+ 761                           response = None
+ 762                       else:
+ 763 →                         raise RuntimeError(f"Failed on navigating ACS-GOTO:\n{str(e)}")
+ 764   
+ 765                   await self.execute_hook(
+ 766                       "after_goto", page, context=context, url=url, response=response, config=config
+ 767                   )
+ 768    
+[INIT].... → Crawl4AI 0.7.2 
+[ERROR]... × https://nitter.fprivacy.com/ChrisBHaynes           | Error: Unexpected error in _crawl_web at 
+line 763 in _crawl_web (venv/lib/python3.11/site-packages/crawl4ai/async_crawler_strategy.py):
+Error: Failed on navigating ACS-GOTO:
+Page.goto: Timeout 60000ms exceeded.
+Call log:
+  - navigating to "https://nitter.fprivacy.com/ChrisBHaynes", waiting until "domcontentloaded"
+
+
+Code context:
+ 758                               tag="GOTO",
+ 759                               params={"url": url},
+ 760                           )
+ 761                           response = None
+ 762                       else:
+ 763 →                         raise RuntimeError(f"Failed on navigating ACS-GOTO:\n{str(e)}")
+ 764   
+ 765                   await self.execute_hook(
+ 766                       "after_goto", page, context=context, url=url, response=response, config=config
+ 767                   )
+ 768    
+[INIT].... → Crawl4AI 0.7.2 
+[VSCROLL]. ℹ Starting virtual scroll capture for container: body 
+[VSCROLL]. ℹ Virtual scroll completed. Merged 10 unique elements from 2 chunks 
+[FETCH]... ↓ https://n.outercloud.com/ChrisBHaynes                                                          
+| ✓ | ⏱: 1.55s 
+[SCRAPE].. ◆ https://n.outercloud.com/ChrisBHaynes                                                          
+| ✓ | ⏱: 0.03s 
+[COMPLETE] ● https://n.outercloud.com/ChrisBHaynes                                                          
+| ✓ | ⏱: 1.58s 
+[INIT].... → Crawl4AI 0.7.2 
+[VSCROLL]. ℹ Starting virtual scroll capture for container: body 
+[VSCROLL]. ℹ Virtual scroll completed. Merged 11 unique elements from 3 chunks 
+[FETCH]... ↓ https://twitter.com/ChrisBHaynes                                                               
+| ✓ | ⏱: 11.27s 
+[SCRAPE].. ◆ https://twitter.com/ChrisBHaynes                                                               
+| ✓ | ⏱: 0.02s 
+[COMPLETE] ● https://twitter.com/ChrisBHaynes                                                               
+| ✓ | ⏱: 11.29s 
+  ↪️  2 tweets scraped for @ChrisBHaynes
+🔍 Scraping @Marc_DAmico via Crawl4AI/Nitter …
+[INIT].... → Crawl4AI 0.7.2 
+[VSCROLL]. ℹ Starting virtual scroll capture for container: body 
+[VSCROLL]. ℹ Virtual scroll completed. Content was appended, no merging needed 
+[FETCH]... ↓ https://nitter.net/Marc_DAmico                                                                 
+| ✓ | ⏱: 1.29s 
+[SCRAPE].. ◆ https://nitter.net/Marc_DAmico                                                                 
+| ✓ | ⏱: 0.00s 
+[COMPLETE] ● https://nitter.net/Marc_DAmico                                                                 
+| ✓ | ⏱: 1.29s 
+[INIT].... → Crawl4AI 0.7.2 
+[VSCROLL]. ℹ Starting virtual scroll capture for container: body 
+[VSCROLL]. ℹ Virtual scroll completed. Content was appended, no merging needed 
+[FETCH]... ↓ https://nitter.poast.org/Marc_DAmico                                                           
+| ✓ | ⏱: 1.12s 
+[SCRAPE].. ◆ https://nitter.poast.org/Marc_DAmico                                                           
+| ✓ | ⏱: 0.00s 
+[COMPLETE] ● https://nitter.poast.org/Marc_DAmico                                                           
+| ✓ | ⏱: 1.13s 
+[INIT].... → Crawl4AI 0.7.2 
+[ERROR]... × https://ntrqq.to/Marc_DAmico                       | Error: Unexpected error in _crawl_web at 
+line 763 in _crawl_web (venv/lib/python3.11/site-packages/crawl4ai/async_crawler_strategy.py):
+Error: Failed on navigating ACS-GOTO:
+Page.goto: net::ERR_NAME_NOT_RESOLVED at https://ntrqq.to/Marc_DAmico
+Call log:
+  - navigating to "https://ntrqq.to/Marc_DAmico", waiting until "domcontentloaded"
+
+
+Code context:
+ 758                               tag="GOTO",
+ 759                               params={"url": url},
+ 760                           )
+ 761                           response = None
+ 762                       else:
+ 763 →                         raise RuntimeError(f"Failed on navigating ACS-GOTO:\n{str(e)}")
+ 764   
+ 765                   await self.execute_hook(
+ 766                       "after_goto", page, context=context, url=url, response=response, config=config
+ 767                   )
+ 768    
+[INIT].... → Crawl4AI 0.7.2 
+[ERROR]... × https://nitter.fprivacy.com/Marc_DAmico            | Error: Unexpected error in _crawl_web at 
+line 763 in _crawl_web (venv/lib/python3.11/site-packages/crawl4ai/async_crawler_strategy.py):
+Error: Failed on navigating ACS-GOTO:
+Page.goto: Timeout 60000ms exceeded.
+Call log:
+  - navigating to "https://nitter.fprivacy.com/Marc_DAmico", waiting until "domcontentloaded"
+
+
+Code context:
+ 758                               tag="GOTO",
+ 759                               params={"url": url},
+ 760                           )
+ 761                           response = None
+ 762                       else:
+ 763 →                         raise RuntimeError(f"Failed on navigating ACS-GOTO:\n{str(e)}")
+ 764   
+ 765                   await self.execute_hook(
+ 766                       "after_goto", page, context=context, url=url, response=response, config=config
+ 767                   )
+ 768    
+[INIT].... → Crawl4AI 0.7.2 
+[VSCROLL]. ℹ Starting virtual scroll capture for container: body 
+[VSCROLL]. ℹ Virtual scroll completed. Merged 9 unique elements from 2 chunks 
+[FETCH]... ↓ https://n.outercloud.com/Marc_DAmico                                                           
+| ✓ | ⏱: 1.38s 
+[SCRAPE].. ◆ https://n.outercloud.com/Marc_DAmico                                                           
+| ✓ | ⏱: 0.01s 
+[COMPLETE] ● https://n.outercloud.com/Marc_DAmico                                                           
+| ✓ | ⏱: 1.40s 
+[INIT].... → Crawl4AI 0.7.2 
+[VSCROLL]. ℹ Starting virtual scroll capture for container: body 
+[VSCROLL]. ℹ Virtual scroll completed. Merged 11 unique elements from 5 chunks 
+[FETCH]... ↓ https://twitter.com/Marc_DAmico                                                                
+| ✓ | ⏱: 11.36s 
+[SCRAPE].. ◆ https://twitter.com/Marc_DAmico                                                                
+| ✓ | ⏱: 0.02s 
+[COMPLETE] ● https://twitter.com/Marc_DAmico                                                                
+| ✓ | ⏱: 11.38s 
+  ↪️  3 tweets scraped for @Marc_DAmico
+🔍 Scraping @Rotoworld_BK via Crawl4AI/Nitter …
+[INIT].... → Crawl4AI 0.7.2 
+[VSCROLL]. ℹ Starting virtual scroll capture for container: body 
+[VSCROLL]. ℹ Virtual scroll completed. Content was appended, no merging needed 
+[FETCH]... ↓ https://nitter.net/Rotoworld_BK                                                                
+| ✓ | ⏱: 1.30s 
+[SCRAPE].. ◆ https://nitter.net/Rotoworld_BK                                                                
+| ✓ | ⏱: 0.00s 
+[COMPLETE] ● https://nitter.net/Rotoworld_BK                                                                
+| ✓ | ⏱: 1.30s 
+[INIT].... → Crawl4AI 0.7.2 
+[VSCROLL]. ℹ Starting virtual scroll capture for container: body 
+[VSCROLL]. ℹ Virtual scroll completed. Content was appended, no merging needed 
+[FETCH]... ↓ https://nitter.poast.org/Rotoworld_BK                                                          
+| ✓ | ⏱: 1.13s 
+[SCRAPE].. ◆ https://nitter.poast.org/Rotoworld_BK                                                          
+| ✓ | ⏱: 0.00s 
+[COMPLETE] ● https://nitter.poast.org/Rotoworld_BK                                                          
+| ✓ | ⏱: 1.18s 
+[INIT].... → Crawl4AI 0.7.2 
+[ERROR]... × https://ntrqq.to/Rotoworld_BK                      | Error: Unexpected error in _crawl_web at 
+line 763 in _crawl_web (venv/lib/python3.11/site-packages/crawl4ai/async_crawler_strategy.py):
+Error: Failed on navigating ACS-GOTO:
+Page.goto: net::ERR_NAME_NOT_RESOLVED at https://ntrqq.to/Rotoworld_BK
+Call log:
+  - navigating to "https://ntrqq.to/Rotoworld_BK", waiting until "domcontentloaded"
+
+
+Code context:
+ 758                               tag="GOTO",
+ 759                               params={"url": url},
+ 760                           )
+ 761                           response = None
+ 762                       else:
+ 763 →                         raise RuntimeError(f"Failed on navigating ACS-GOTO:\n{str(e)}")
+ 764   
+ 765                   await self.execute_hook(
+ 766                       "after_goto", page, context=context, url=url, response=response, config=config
+ 767                   )
+ 768    
+[INIT].... → Crawl4AI 0.7.2 
+[ERROR]... × https://nitter.fprivacy.com/Rotoworld_BK           | Error: Unexpected error in _crawl_web at 
+line 763 in _crawl_web (venv/lib/python3.11/site-packages/crawl4ai/async_crawler_strategy.py):
+Error: Failed on navigating ACS-GOTO:
+Page.goto: Timeout 60000ms exceeded.
+Call log:
+  - navigating to "https://nitter.fprivacy.com/Rotoworld_BK", waiting until "domcontentloaded"
+
+
+Code context:
+ 758                               tag="GOTO",
+ 759                               params={"url": url},
+ 760                           )
+ 761                           response = None
+ 762                       else:
+ 763 →                         raise RuntimeError(f"Failed on navigating ACS-GOTO:\n{str(e)}")
+ 764   
+ 765                   await self.execute_hook(
+ 766                       "after_goto", page, context=context, url=url, response=response, config=config
+ 767                   )
+ 768    
+[INIT].... → Crawl4AI 0.7.2 
+[VSCROLL]. ℹ Starting virtual scroll capture for container: body 
+[VSCROLL]. ℹ Virtual scroll completed. Merged 9 unique elements from 2 chunks 
+[FETCH]... ↓ https://n.outercloud.com/Rotoworld_BK                                                          
+| ✓ | ⏱: 1.27s 
+[SCRAPE].. ◆ https://n.outercloud.com/Rotoworld_BK                                                          
+| ✓ | ⏱: 0.01s 
+[COMPLETE] ● https://n.outercloud.com/Rotoworld_BK                                                          
+| ✓ | ⏱: 1.29s 
+[INIT].... → Crawl4AI 0.7.2 
+[VSCROLL]. ℹ Starting virtual scroll capture for container: body 
+[VSCROLL]. ℹ Virtual scroll completed. Merged 9 unique elements from 1 chunks 
+[FETCH]... ↓ https://twitter.com/Rotoworld_BK                                                               
+| ✓ | ⏱: 11.23s 
+[SCRAPE].. ◆ https://twitter.com/Rotoworld_BK                                                               
+| ✓ | ⏱: 0.01s 
+[COMPLETE] ● https://twitter.com/Rotoworld_BK                                                               
+| ✓ | ⏱: 11.24s 
+Error retrieving https://twitter.com/i/api/graphql/7jT5GT59P8IFjgxwqnEdQw/SearchTimeline?variables=%7B%22rawQuery%22%3A%22from%3ARotoworld_BK%22%2C%22count%22%3A20%2C%22product%22%3A%22Latest%22%2C%22withDownvotePerspective%22%3Afalse%2C%22withReactionsMetadata%22%3Afalse%2C%22withReactionsPerspective%22%3Afalse%7D&features=%7B%22rweb_lists_timeline_redesign_enabled%22%3Afalse%2C%22blue_business_profile_image_shape_enabled%22%3Afalse%2C%22responsive_web_graphql_exclude_directive_enabled%22%3Atrue%2C%22verified_phone_label_enabled%22%3Afalse%2C%22creator_subscriptions_tweet_preview_api_enabled%22%3Afalse%2C%22responsive_web_graphql_timeline_navigation_enabled%22%3Atrue%2C%22responsive_web_graphql_skip_user_profile_image_extensions_enabled%22%3Afalse%2C%22tweetypie_unmention_optimization_enabled%22%3Atrue%2C%22vibe_api_enabled%22%3Atrue%2C%22responsive_web_edit_tweet_api_enabled%22%3Atrue%2C%22graphql_is_translatable_rweb_tweet_is_translatable_enabled%22%3Atrue%2C%22view_counts_everywhere_api_enabled%22%3Atrue%2C%22longform_notetweets_consumption_enabled%22%3Atrue%2C%22tweet_awards_web_tipping_enabled%22%3Afalse%2C%22freedom_of_speech_not_reach_fetch_enabled%22%3Afalse%2C%22standardized_nudges_misinfo%22%3Atrue%2C%22tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled%22%3Afalse%2C%22interactive_text_enabled%22%3Atrue%2C%22responsive_web_text_conversations_enabled%22%3Afalse%2C%22longform_notetweets_rich_text_read_enabled%22%3Afalse%2C%22longform_notetweets_inline_media_enabled%22%3Afalse%2C%22responsive_web_enhance_cards_enabled%22%3Afalse%2C%22responsive_web_twitter_blue_verified_badge_is_enabled%22%3Atrue%7D: blocked (404)
+4 requests to https://twitter.com/i/api/graphql/7jT5GT59P8IFjgxwqnEdQw/SearchTimeline?variables=%7B%22rawQuery%22%3A%22from%3ARotoworld_BK%22%2C%22count%22%3A20%2C%22product%22%3A%22Latest%22%2C%22withDownvotePerspective%22%3Afalse%2C%22withReactionsMetadata%22%3Afalse%2C%22withReactionsPerspective%22%3Afalse%7D&features=%7B%22rweb_lists_timeline_redesign_enabled%22%3Afalse%2C%22blue_business_profile_image_shape_enabled%22%3Afalse%2C%22responsive_web_graphql_exclude_directive_enabled%22%3Atrue%2C%22verified_phone_label_enabled%22%3Afalse%2C%22creator_subscriptions_tweet_preview_api_enabled%22%3Afalse%2C%22responsive_web_graphql_timeline_navigation_enabled%22%3Atrue%2C%22responsive_web_graphql_skip_user_profile_image_extensions_enabled%22%3Afalse%2C%22tweetypie_unmention_optimization_enabled%22%3Atrue%2C%22vibe_api_enabled%22%3Atrue%2C%22responsive_web_edit_tweet_api_enabled%22%3Atrue%2C%22graphql_is_translatable_rweb_tweet_is_translatable_enabled%22%3Atrue%2C%22view_counts_everywhere_api_enabled%22%3Atrue%2C%22longform_notetweets_consumption_enabled%22%3Atrue%2C%22tweet_awards_web_tipping_enabled%22%3Afalse%2C%22freedom_of_speech_not_reach_fetch_enabled%22%3Afalse%2C%22standardized_nudges_misinfo%22%3Atrue%2C%22tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled%22%3Afalse%2C%22interactive_text_enabled%22%3Atrue%2C%22responsive_web_text_conversations_enabled%22%3Afalse%2C%22longform_notetweets_rich_text_read_enabled%22%3Afalse%2C%22longform_notetweets_inline_media_enabled%22%3Afalse%2C%22responsive_web_enhance_cards_enabled%22%3Afalse%2C%22responsive_web_twitter_blue_verified_badge_is_enabled%22%3Atrue%7D failed, giving up.
+Errors: blocked (404), blocked (404), blocked (404), blocked (404)
+  ↪️  0 tweets scraped for @Rotoworld_BK
+🔍 Scraping @danbesbris via Crawl4AI/Nitter …
+[INIT].... → Crawl4AI 0.7.2 
+[VSCROLL]. ℹ Starting virtual scroll capture for container: body 
+[VSCROLL]. ℹ Virtual scroll completed. Content was appended, no merging needed 
+[FETCH]... ↓ https://nitter.net/danbesbris                                                                  
+| ✓ | ⏱: 1.37s 
+[SCRAPE].. ◆ https://nitter.net/danbesbris                                                                  
+| ✓ | ⏱: 0.00s 
+[COMPLETE] ● https://nitter.net/danbesbris                                                                  
+| ✓ | ⏱: 1.37s 
+[INIT].... → Crawl4AI 0.7.2 
+[VSCROLL]. ℹ Starting virtual scroll capture for container: body 
+[VSCROLL]. ℹ Virtual scroll completed. Content was appended, no merging needed 
+[FETCH]... ↓ https://nitter.poast.org/danbesbris                                                            
+| ✓ | ⏱: 1.20s 
+[SCRAPE].. ◆ https://nitter.poast.org/danbesbris                                                            
+| ✓ | ⏱: 0.00s 
+[COMPLETE] ● https://nitter.poast.org/danbesbris                                                            
+| ✓ | ⏱: 1.20s 
+[INIT].... → Crawl4AI 0.7.2 
+[ERROR]... × https://ntrqq.to/danbesbris                        | Error: Unexpected error in _crawl_web at 
+line 763 in _crawl_web (venv/lib/python3.11/site-packages/crawl4ai/async_crawler_strategy.py):
+Error: Failed on navigating ACS-GOTO:
+Page.goto: net::ERR_NAME_NOT_RESOLVED at https://ntrqq.to/danbesbris
+Call log:
+  - navigating to "https://ntrqq.to/danbesbris", waiting until "domcontentloaded"
+
+
+Code context:
+ 758                               tag="GOTO",
+ 759                               params={"url": url},
+ 760                           )
+ 761                           response = None
+ 762                       else:
+ 763 →                         raise RuntimeError(f"Failed on navigating ACS-GOTO:\n{str(e)}")
+ 764   
+ 765                   await self.execute_hook(
+ 766                       "after_goto", page, context=context, url=url, response=response, config=config
+ 767                   )
+ 768    
+[INIT].... → Crawl4AI 0.7.2 
+[ERROR]... × https://nitter.fprivacy.com/danbesbris             | Error: Unexpected error in _crawl_web at 
+line 763 in _crawl_web (venv/lib/python3.11/site-packages/crawl4ai/async_crawler_strategy.py):
+Error: Failed on navigating ACS-GOTO:
+Page.goto: Timeout 60000ms exceeded.
+Call log:
+  - navigating to "https://nitter.fprivacy.com/danbesbris", waiting until "domcontentloaded"
+
+
+Code context:
+ 758                               tag="GOTO",
+ 759                               params={"url": url},
+ 760                           )
+ 761                           response = None
+ 762                       else:
+ 763 →                         raise RuntimeError(f"Failed on navigating ACS-GOTO:\n{str(e)}")
+ 764   
+ 765                   await self.execute_hook(
+ 766                       "after_goto", page, context=context, url=url, response=response, config=config
+ 767                   )
+ 768    
+[INIT].... → Crawl4AI 0.7.2 
+[VSCROLL]. ℹ Starting virtual scroll capture for container: body 
+[VSCROLL]. ℹ Virtual scroll completed. Merged 9 unique elements from 2 chunks 
+[FETCH]... ↓ https://n.outercloud.com/danbesbris                                                            
+| ✓ | ⏱: 1.35s 
+[SCRAPE].. ◆ https://n.outercloud.com/danbesbris                                                            
+| ✓ | ⏱: 0.01s 
+[COMPLETE] ● https://n.outercloud.com/danbesbris                                                            
+| ✓ | ⏱: 1.37s 
+[INIT].... → Crawl4AI 0.7.2 
+[VSCROLL]. ℹ Starting virtual scroll capture for container: body 
+[VSCROLL]. ℹ Virtual scroll completed. Merged 12 unique elements from 4 chunks 
+[FETCH]... ↓ https://twitter.com/danbesbris                                                                 
+| ✓ | ⏱: 11.49s 
+[SCRAPE].. ◆ https://twitter.com/danbesbris                                                                 
+| ✓ | ⏱: 0.03s 
+[COMPLETE] ● https://twitter.com/danbesbris                                                                 
+| ✓ | ⏱: 11.51s 
+  ↪️  2 tweets scraped for @danbesbris
+🔍 Scraping @Underdog__NBA via Crawl4AI/Nitter …
+[INIT].... → Crawl4AI 0.7.2 
+[VSCROLL]. ℹ Starting virtual scroll capture for container: body 
+[VSCROLL]. ℹ Virtual scroll completed. Content was appended, no merging needed 
+[FETCH]... ↓ https://nitter.net/Underdog__NBA                                                               
+| ✓ | ⏱: 1.32s 
+[SCRAPE].. ◆ https://nitter.net/Underdog__NBA                                                               
+| ✓ | ⏱: 0.00s 
+[COMPLETE] ● https://nitter.net/Underdog__NBA                                                               
+| ✓ | ⏱: 1.32s 
+[INIT].... → Crawl4AI 0.7.2 
+[VSCROLL]. ℹ Starting virtual scroll capture for container: body 
+[VSCROLL]. ℹ Virtual scroll completed. Content was appended, no merging needed 
+[FETCH]... ↓ https://nitter.poast.org/Underdog__NBA                                                         
+| ✓ | ⏱: 1.13s 
+[SCRAPE].. ◆ https://nitter.poast.org/Underdog__NBA                                                         
+| ✓ | ⏱: 0.00s 
+[COMPLETE] ● https://nitter.poast.org/Underdog__NBA                                                         
+| ✓ | ⏱: 1.13s 
+[INIT].... → Crawl4AI 0.7.2 
+[ERROR]... × https://ntrqq.to/Underdog__NBA                     | Error: Unexpected error in _crawl_web at 
+line 763 in _crawl_web (venv/lib/python3.11/site-packages/crawl4ai/async_crawler_strategy.py):
+Error: Failed on navigating ACS-GOTO:
+Page.goto: net::ERR_NAME_NOT_RESOLVED at https://ntrqq.to/Underdog__NBA
+Call log:
+  - navigating to "https://ntrqq.to/Underdog__NBA", waiting until "domcontentloaded"
+
+
+Code context:
+ 758                               tag="GOTO",
+ 759                               params={"url": url},
+ 760                           )
+ 761                           response = None
+ 762                       else:
+ 763 →                         raise RuntimeError(f"Failed on navigating ACS-GOTO:\n{str(e)}")
+ 764   
+ 765                   await self.execute_hook(
+ 766                       "after_goto", page, context=context, url=url, response=response, config=config
+ 767                   )
+ 768    
+[INIT].... → Crawl4AI 0.7.2 
+[ERROR]... × https://nitter.fprivacy.com/Underdog__NBA          | Error: Unexpected error in _crawl_web at 
+line 763 in _crawl_web (venv/lib/python3.11/site-packages/crawl4ai/async_crawler_strategy.py):
+Error: Failed on navigating ACS-GOTO:
+Page.goto: Timeout 60000ms exceeded.
+Call log:
+  - navigating to "https://nitter.fprivacy.com/Underdog__NBA", waiting until "domcontentloaded"
+
+
+Code context:
+ 758                               tag="GOTO",
+ 759                               params={"url": url},
+ 760                           )
+ 761                           response = None
+ 762                       else:
+ 763 →                         raise RuntimeError(f"Failed on navigating ACS-GOTO:\n{str(e)}")
+ 764   
+ 765                   await self.execute_hook(
+ 766                       "after_goto", page, context=context, url=url, response=response, config=config
+ 767                   )
+ 768    
+[INIT].... → Crawl4AI 0.7.2 
+[VSCROLL]. ℹ Starting virtual scroll capture for container: body 
+[VSCROLL]. ℹ Virtual scroll completed. Merged 9 unique elements from 2 chunks 
+[FETCH]... ↓ https://n.outercloud.com/Underdog__NBA                                                         
+| ✓ | ⏱: 1.47s 
+[SCRAPE].. ◆ https://n.outercloud.com/Underdog__NBA                                                         
+| ✓ | ⏱: 0.02s 
+[COMPLETE] ● https://n.outercloud.com/Underdog__NBA                                                         
+| ✓ | ⏱: 1.50s 
+[INIT].... → Crawl4AI 0.7.2 
+[VSCROLL]. ℹ Starting virtual scroll capture for container: body 
+[VSCROLL]. ℹ Virtual scroll completed. Merged 10 unique elements from 2 chunks 
+[FETCH]... ↓ https://twitter.com/Underdog__NBA                                                              
+| ✓ | ⏱: 11.35s 
+[SCRAPE].. ◆ https://twitter.com/Underdog__NBA                                                              
+| ✓ | ⏱: 0.01s 
+[COMPLETE] ● https://twitter.com/Underdog__NBA                                                              
+| ✓ | ⏱: 11.36s 
+Error retrieving https://twitter.com/i/api/graphql/7jT5GT59P8IFjgxwqnEdQw/SearchTimeline?variables=%7B%22rawQuery%22%3A%22from%3AUnderdog__NBA%22%2C%22count%22%3A20%2C%22product%22%3A%22Latest%22%2C%22withDownvotePerspective%22%3Afalse%2C%22withReactionsMetadata%22%3Afalse%2C%22withReactionsPerspective%22%3Afalse%7D&features=%7B%22rweb_lists_timeline_redesign_enabled%22%3Afalse%2C%22blue_business_profile_image_shape_enabled%22%3Afalse%2C%22responsive_web_graphql_exclude_directive_enabled%22%3Atrue%2C%22verified_phone_label_enabled%22%3Afalse%2C%22creator_subscriptions_tweet_preview_api_enabled%22%3Afalse%2C%22responsive_web_graphql_timeline_navigation_enabled%22%3Atrue%2C%22responsive_web_graphql_skip_user_profile_image_extensions_enabled%22%3Afalse%2C%22tweetypie_unmention_optimization_enabled%22%3Atrue%2C%22vibe_api_enabled%22%3Atrue%2C%22responsive_web_edit_tweet_api_enabled%22%3Atrue%2C%22graphql_is_translatable_rweb_tweet_is_translatable_enabled%22%3Atrue%2C%22view_counts_everywhere_api_enabled%22%3Atrue%2C%22longform_notetweets_consumption_enabled%22%3Atrue%2C%22tweet_awards_web_tipping_enabled%22%3Afalse%2C%22freedom_of_speech_not_reach_fetch_enabled%22%3Afalse%2C%22standardized_nudges_misinfo%22%3Atrue%2C%22tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled%22%3Afalse%2C%22interactive_text_enabled%22%3Atrue%2C%22responsive_web_text_conversations_enabled%22%3Afalse%2C%22longform_notetweets_rich_text_read_enabled%22%3Afalse%2C%22longform_notetweets_inline_media_enabled%22%3Afalse%2C%22responsive_web_enhance_cards_enabled%22%3Afalse%2C%22responsive_web_twitter_blue_verified_badge_is_enabled%22%3Atrue%7D: blocked (404)
+4 requests to https://twitter.com/i/api/graphql/7jT5GT59P8IFjgxwqnEdQw/SearchTimeline?variables=%7B%22rawQuery%22%3A%22from%3AUnderdog__NBA%22%2C%22count%22%3A20%2C%22product%22%3A%22Latest%22%2C%22withDownvotePerspective%22%3Afalse%2C%22withReactionsMetadata%22%3Afalse%2C%22withReactionsPerspective%22%3Afalse%7D&features=%7B%22rweb_lists_timeline_redesign_enabled%22%3Afalse%2C%22blue_business_profile_image_shape_enabled%22%3Afalse%2C%22responsive_web_graphql_exclude_directive_enabled%22%3Atrue%2C%22verified_phone_label_enabled%22%3Afalse%2C%22creator_subscriptions_tweet_preview_api_enabled%22%3Afalse%2C%22responsive_web_graphql_timeline_navigation_enabled%22%3Atrue%2C%22responsive_web_graphql_skip_user_profile_image_extensions_enabled%22%3Afalse%2C%22tweetypie_unmention_optimization_enabled%22%3Atrue%2C%22vibe_api_enabled%22%3Atrue%2C%22responsive_web_edit_tweet_api_enabled%22%3Atrue%2C%22graphql_is_translatable_rweb_tweet_is_translatable_enabled%22%3Atrue%2C%22view_counts_everywhere_api_enabled%22%3Atrue%2C%22longform_notetweets_consumption_enabled%22%3Atrue%2C%22tweet_awards_web_tipping_enabled%22%3Afalse%2C%22freedom_of_speech_not_reach_fetch_enabled%22%3Afalse%2C%22standardized_nudges_misinfo%22%3Atrue%2C%22tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled%22%3Afalse%2C%22interactive_text_enabled%22%3Atrue%2C%22responsive_web_text_conversations_enabled%22%3Afalse%2C%22longform_notetweets_rich_text_read_enabled%22%3Afalse%2C%22longform_notetweets_inline_media_enabled%22%3Afalse%2C%22responsive_web_enhance_cards_enabled%22%3Afalse%2C%22responsive_web_twitter_blue_verified_badge_is_enabled%22%3Atrue%7D failed, giving up.
+Errors: blocked (404), blocked (404), blocked (404), blocked (404)
+  ↪️  0 tweets scraped for @Underdog__NBA
+🔍 Scraping @SteveJonesJr via Crawl4AI/Nitter …
+[INIT].... → Crawl4AI 0.7.2 
+[VSCROLL]. ℹ Starting virtual scroll capture for container: body 
+[VSCROLL]. ℹ Virtual scroll completed. Content was appended, no merging needed 
+[FETCH]... ↓ https://nitter.net/SteveJonesJr                                                                
+| ✓ | ⏱: 2.29s 
+[SCRAPE].. ◆ https://nitter.net/SteveJonesJr                                                                
+| ✓ | ⏱: 0.00s 
+[COMPLETE] ● https://nitter.net/SteveJonesJr                                                                
+| ✓ | ⏱: 2.30s 
+[INIT].... → Crawl4AI 0.7.2 
+[VSCROLL]. ℹ Starting virtual scroll capture for container: body 
+[VSCROLL]. ℹ Virtual scroll completed. Content was appended, no merging needed 
+[FETCH]... ↓ https://nitter.poast.org/SteveJonesJr                                                          
+| ✓ | ⏱: 2.36s 
+[SCRAPE].. ◆ https://nitter.poast.org/SteveJonesJr                                                          
+| ✓ | ⏱: 0.00s 
+[COMPLETE] ● https://nitter.poast.org/SteveJonesJr                                                          
+| ✓ | ⏱: 2.37s 
+[INIT].... → Crawl4AI 0.7.2 
+[ERROR]... × https://ntrqq.to/SteveJonesJr                      | Error: Unexpected error in _crawl_web at 
+line 763 in _crawl_web (venv/lib/python3.11/site-packages/crawl4ai/async_crawler_strategy.py):
+Error: Failed on navigating ACS-GOTO:
+Page.goto: net::ERR_NAME_NOT_RESOLVED at https://ntrqq.to/SteveJonesJr
+Call log:
+  - navigating to "https://ntrqq.to/SteveJonesJr", waiting until "domcontentloaded"
+
+
+Code context:
+ 758                               tag="GOTO",
+ 759                               params={"url": url},
+ 760                           )
+ 761                           response = None
+ 762                       else:
+ 763 →                         raise RuntimeError(f"Failed on navigating ACS-GOTO:\n{str(e)}")
+ 764   
+ 765                   await self.execute_hook(
+ 766                       "after_goto", page, context=context, url=url, response=response, config=config
+ 767                   )
+ 768    
+[INIT].... → Crawl4AI 0.7.2 
+[ERROR]... × https://nitter.fprivacy.com/SteveJonesJr           | Error: Unexpected error in _crawl_web at 
+line 763 in _crawl_web (venv/lib/python3.11/site-packages/crawl4ai/async_crawler_strategy.py):
+Error: Failed on navigating ACS-GOTO:
+Page.goto: Timeout 60000ms exceeded.
+Call log:
+  - navigating to "https://nitter.fprivacy.com/SteveJonesJr", waiting until "domcontentloaded"
+
+
+Code context:
+ 758                               tag="GOTO",
+ 759                               params={"url": url},
+ 760                           )
+ 761                           response = None
+ 762                       else:
+ 763 →                         raise RuntimeError(f"Failed on navigating ACS-GOTO:\n{str(e)}")
+ 764   
+ 765                   await self.execute_hook(
+ 766                       "after_goto", page, context=context, url=url, response=response, config=config
+ 767                   )
+ 768    
+[INIT].... → Crawl4AI 0.7.2 
+[VSCROLL]. ℹ Starting virtual scroll capture for container: body 
+[VSCROLL]. ℹ Virtual scroll completed. Merged 9 unique elements from 2 chunks 
+[FETCH]... ↓ https://n.outercloud.com/SteveJonesJr                                                          
+| ✓ | ⏱: 1.80s 
+[SCRAPE].. ◆ https://n.outercloud.com/SteveJonesJr                                                          
+| ✓ | ⏱: 0.01s 
+[COMPLETE] ● https://n.outercloud.com/SteveJonesJr                                                          
+| ✓ | ⏱: 1.82s 
+[INIT].... → Crawl4AI 0.7.2 
+[VSCROLL]. ℹ Starting virtual scroll capture for container: body 
+[VSCROLL]. ℹ Virtual scroll completed. Merged 10 unique elements from 2 chunks 
+[FETCH]... ↓ https://twitter.com/SteveJonesJr                                                               
+| ✓ | ⏱: 1.79s 
+[SCRAPE].. ◆ https://twitter.com/SteveJonesJr                                                               
+| ✓ | ⏱: 0.01s 
+[COMPLETE] ● https://twitter.com/SteveJonesJr                                                               
+| ✓ | ⏱: 1.80s 
+Error retrieving https://twitter.com/i/api/graphql/7jT5GT59P8IFjgxwqnEdQw/SearchTimeline?variables=%7B%22rawQuery%22%3A%22from%3ASteveJonesJr%22%2C%22count%22%3A20%2C%22product%22%3A%22Latest%22%2C%22withDownvotePerspective%22%3Afalse%2C%22withReactionsMetadata%22%3Afalse%2C%22withReactionsPerspective%22%3Afalse%7D&features=%7B%22rweb_lists_timeline_redesign_enabled%22%3Afalse%2C%22blue_business_profile_image_shape_enabled%22%3Afalse%2C%22responsive_web_graphql_exclude_directive_enabled%22%3Atrue%2C%22verified_phone_label_enabled%22%3Afalse%2C%22creator_subscriptions_tweet_preview_api_enabled%22%3Afalse%2C%22responsive_web_graphql_timeline_navigation_enabled%22%3Atrue%2C%22responsive_web_graphql_skip_user_profile_image_extensions_enabled%22%3Afalse%2C%22tweetypie_unmention_optimization_enabled%22%3Atrue%2C%22vibe_api_enabled%22%3Atrue%2C%22responsive_web_edit_tweet_api_enabled%22%3Atrue%2C%22graphql_is_translatable_rweb_tweet_is_translatable_enabled%22%3Atrue%2C%22view_counts_everywhere_api_enabled%22%3Atrue%2C%22longform_notetweets_consumption_enabled%22%3Atrue%2C%22tweet_awards_web_tipping_enabled%22%3Afalse%2C%22freedom_of_speech_not_reach_fetch_enabled%22%3Afalse%2C%22standardized_nudges_misinfo%22%3Atrue%2C%22tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled%22%3Afalse%2C%22interactive_text_enabled%22%3Atrue%2C%22responsive_web_text_conversations_enabled%22%3Afalse%2C%22longform_notetweets_rich_text_read_enabled%22%3Afalse%2C%22longform_notetweets_inline_media_enabled%22%3Afalse%2C%22responsive_web_enhance_cards_enabled%22%3Afalse%2C%22responsive_web_twitter_blue_verified_badge_is_enabled%22%3Atrue%7D: blocked (404)
+4 requests to https://twitter.com/i/api/graphql/7jT5GT59P8IFjgxwqnEdQw/SearchTimeline?variables=%7B%22rawQuery%22%3A%22from%3ASteveJonesJr%22%2C%22count%22%3A20%2C%22product%22%3A%22Latest%22%2C%22withDownvotePerspective%22%3Afalse%2C%22withReactionsMetadata%22%3Afalse%2C%22withReactionsPerspective%22%3Afalse%7D&features=%7B%22rweb_lists_timeline_redesign_enabled%22%3Afalse%2C%22blue_business_profile_image_shape_enabled%22%3Afalse%2C%22responsive_web_graphql_exclude_directive_enabled%22%3Atrue%2C%22verified_phone_label_enabled%22%3Afalse%2C%22creator_subscriptions_tweet_preview_api_enabled%22%3Afalse%2C%22responsive_web_graphql_timeline_navigation_enabled%22%3Atrue%2C%22responsive_web_graphql_skip_user_profile_image_extensions_enabled%22%3Afalse%2C%22tweetypie_unmention_optimization_enabled%22%3Atrue%2C%22vibe_api_enabled%22%3Atrue%2C%22responsive_web_edit_tweet_api_enabled%22%3Atrue%2C%22graphql_is_translatable_rweb_tweet_is_translatable_enabled%22%3Atrue%2C%22view_counts_everywhere_api_enabled%22%3Atrue%2C%22longform_notetweets_consumption_enabled%22%3Atrue%2C%22tweet_awards_web_tipping_enabled%22%3Afalse%2C%22freedom_of_speech_not_reach_fetch_enabled%22%3Afalse%2C%22standardized_nudges_misinfo%22%3Atrue%2C%22tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled%22%3Afalse%2C%22interactive_text_enabled%22%3Atrue%2C%22responsive_web_text_conversations_enabled%22%3Afalse%2C%22longform_notetweets_rich_text_read_enabled%22%3Afalse%2C%22longform_notetweets_inline_media_enabled%22%3Afalse%2C%22responsive_web_enhance_cards_enabled%22%3Afalse%2C%22responsive_web_twitter_blue_verified_badge_is_enabled%22%3Atrue%7D failed, giving up.
+Errors: blocked (404), blocked (404), blocked (404), blocked (404)
+  ↪️  0 tweets scraped for @SteveJonesJr
+✅ Saved 7 rows → /Users/chris.s/Projects/nba_parlay_project/data/tweets/nba_tweets_expanded_dataset.csv

@@ -1,0 +1,123 @@
+[INIT].... → Crawl4AI 0.7.2 
+[VSCROLL]. ℹ Starting virtual scroll capture for container: body 
+[VSCROLL]. ℹ Virtual scroll completed. Merged 9 unique elements from 1 chunks 
+[FETCH]... ↓ https://twitter.com/ShamsCharania                                             
+| ✓ | ⏱: 46.53s 
+[SCRAPE].. ◆ https://twitter.com/ShamsCharania                                             
+| ✓ | ⏱: 0.00s 
+[COMPLETE] ● https://twitter.com/ShamsCharania                                             
+| ✓ | ⏱: 46.53s 
+✅ Saved: data/tweets/ShamsCharania/20250808T185847Z.md
+[INIT].... → Crawl4AI 0.7.2 
+[VSCROLL]. ℹ Starting virtual scroll capture for container: body 
+[VSCROLL]. ℹ Virtual scroll completed. Merged 10 unique elements from 2 chunks 
+[FETCH]... ↓ https://twitter.com/ChrisBHaynes                                              
+| ✓ | ⏱: 46.36s 
+[SCRAPE].. ◆ https://twitter.com/ChrisBHaynes                                              
+| ✓ | ⏱: 0.01s 
+[COMPLETE] ● https://twitter.com/ChrisBHaynes                                              
+| ✓ | ⏱: 46.37s 
+✅ Saved: data/tweets/ChrisBHaynes/20250808T185935Z.md
+[INIT].... → Crawl4AI 0.7.2 
+[VSCROLL]. ℹ Starting virtual scroll capture for container: body 
+[VSCROLL]. ℹ Virtual scroll completed. Merged 11 unique elements from 3 chunks 
+[FETCH]... ↓ https://twitter.com/Marc_DAmico                                               
+| ✓ | ⏱: 46.53s 
+[SCRAPE].. ◆ https://twitter.com/Marc_DAmico                                               
+| ✓ | ⏱: 0.02s 
+[COMPLETE] ● https://twitter.com/Marc_DAmico                                               
+| ✓ | ⏱: 46.56s 
+✅ Saved: data/tweets/Marc_DAmico/20250808T190022Z.md
+[INIT].... → Crawl4AI 0.7.2 
+[VSCROLL]. ℹ Starting virtual scroll capture for container: body 
+[VSCROLL]. ℹ Virtual scroll completed. Merged 9 unique elements from 1 chunks 
+[FETCH]... ↓ https://twitter.com/Rotoworld_BK                                              
+| ✓ | ⏱: 46.17s 
+[SCRAPE].. ◆ https://twitter.com/Rotoworld_BK                                              
+| ✓ | ⏱: 0.01s 
+[COMPLETE] ● https://twitter.com/Rotoworld_BK                                              
+| ✓ | ⏱: 46.18s 
+✅ Saved: data/tweets/Rotoworld_BK/20250808T190109Z.md
+[INIT].... → Crawl4AI 0.7.2 
+[VSCROLL]. ℹ Starting virtual scroll capture for container: body 
+[VSCROLL]. ℹ Virtual scroll completed. Merged 10 unique elements from 2 chunks 
+[FETCH]... ↓ https://twitter.com/danbesbris                                                
+| ✓ | ⏱: 47.49s 
+[SCRAPE].. ◆ https://twitter.com/danbesbris                                                
+| ✓ | ⏱: 0.01s 
+[COMPLETE] ● https://twitter.com/danbesbris                                                
+| ✓ | ⏱: 47.50s 
+✅ Saved: data/tweets/danbesbris/20250808T190156Z.md
+[INIT].... → Crawl4AI 0.7.2 
+[VSCROLL]. ℹ Starting virtual scroll capture for container: body 
+[VSCROLL]. ℹ Virtual scroll completed. Merged 9 unique elements from 1 chunks 
+[FETCH]... ↓ https://twitter.com/Underdog__NBA                                             
+| ✓ | ⏱: 46.37s 
+[SCRAPE].. ◆ https://twitter.com/Underdog__NBA                                             
+| ✓ | ⏱: 0.00s 
+[COMPLETE] ● https://twitter.com/Underdog__NBA                                             
+| ✓ | ⏱: 46.37s 
+✅ Saved: data/tweets/Underdog__NBA/20250808T190245Z.md
+[INIT].... → Crawl4AI 0.7.2 
+[VSCROLL]. ℹ Starting virtual scroll capture for container: body 
+[VSCROLL]. ℹ Virtual scroll completed. Merged 9 unique elements from 1 chunks 
+[FETCH]... ↓ https://twitter.com/SteveJonesJr                                              
+| ✓ | ⏱: 46.30s 
+[SCRAPE].. ◆ https://twitter.com/SteveJonesJr                                              
+| ✓ | ⏱: 0.01s 
+[COMPLETE] ● https://twitter.com/SteveJonesJr                                              
+| ✓ | ⏱: 46.31s 
+✅ Saved: data/tweets/SteveJonesJr/20250808T190332Z.md
+[INIT].... → Crawl4AI 0.7.2 
+[VSCROLL]. ℹ Starting virtual scroll capture for container: body 
+[VSCROLL]. ℹ Virtual scroll completed. Merged 9 unique elements from 1 chunks 
+[FETCH]... ↓ https://twitter.com/NBACentral                                                
+| ✓ | ⏱: 46.35s 
+[SCRAPE].. ◆ https://twitter.com/NBACentral                                                
+| ✓ | ⏱: 0.01s 
+[COMPLETE] ● https://twitter.com/NBACentral                                                
+| ✓ | ⏱: 46.36s 
+✅ Saved: data/tweets/NBACentral/20250808T190419Z.md
+[INIT].... → Crawl4AI 0.7.2 
+[VSCROLL]. ℹ Starting virtual scroll capture for container: body 
+[VSCROLL]. ℹ Virtual scroll completed. Merged 10 unique elements from 2 chunks 
+[FETCH]... ↓ https://twitter.com/BleacherReport                                            
+| ✓ | ⏱: 46.49s 
+[SCRAPE].. ◆ https://twitter.com/BleacherReport                                            
+| ✓ | ⏱: 0.01s 
+[COMPLETE] ● https://twitter.com/BleacherReport                                            
+| ✓ | ⏱: 46.50s 
+✅ Saved: data/tweets/BleacherReport/20250808T190506Z.md
+[INIT].... → Crawl4AI 0.7.2 
+[VSCROLL]. ℹ Starting virtual scroll capture for container: body 
+[VSCROLL]. ℹ Virtual scroll capture failed: Page.evaluate: TypeError: Cannot read 
+properties of undefined (reading 'toLowerCase')
+    at eval (eval at evaluate (:291:30), <anonymous>:79:34)
+    at async <anonymous>:317:30 
+[FETCH]... ↓ https://twitter.com/statmuse                                                  
+| ✓ | ⏱: 46.28s 
+[SCRAPE].. ◆ https://twitter.com/statmuse                                                  
+| ✓ | ⏱: 0.03s 
+[COMPLETE] ● https://twitter.com/statmuse                                                  
+| ✓ | ⏱: 46.31s 
+✅ Saved: data/tweets/statmuse/20250808T190554Z.md
+[INIT].... → Crawl4AI 0.7.2 
+[VSCROLL]. ℹ Starting virtual scroll capture for container: body 
+[VSCROLL]. ℹ Virtual scroll completed. Merged 10 unique elements from 2 chunks 
+[FETCH]... ↓ https://twitter.com/TheSteinLine                                              
+| ✓ | ⏱: 46.57s 
+[SCRAPE].. ◆ https://twitter.com/TheSteinLine                                              
+| ✓ | ⏱: 0.01s 
+[COMPLETE] ● https://twitter.com/TheSteinLine                                              
+| ✓ | ⏱: 46.58s 
+✅ Saved: data/tweets/TheSteinLine/20250808T190641Z.md
+[INIT].... → Crawl4AI 0.7.2 
+[VSCROLL]. ℹ Starting virtual scroll capture for container: body 
+[VSCROLL]. ℹ Virtual scroll completed. Merged 9 unique elements from 1 chunks 
+[FETCH]... ↓ https://twitter.com/wojespnESPNU                                              
+| ✓ | ⏱: 46.22s 
+[SCRAPE].. ◆ https://twitter.com/wojespnESPNU                                              
+| ✓ | ⏱: 0.01s 
+[COMPLETE] ● https://twitter.com/wojespnESPNU                                              
+| ✓ | ⏱: 46.23s 
+✅ Saved: data/tweets/wojespnESPNU/20250808T190728Z.md
