@@ -78,7 +78,10 @@ class BetsLogger:
                 actual_outcome TEXT,
                 is_win INTEGER,
                 created_at TEXT NOT NULL,
-                updated_at TEXT NOT NULL
+                updated_at TEXT NOT NULL,
+                odds_at_alert REAL,
+                closing_line_odds REAL,
+                clv_percentage REAL
             )
         """)
         
@@ -86,8 +89,32 @@ class BetsLogger:
         cursor.execute("CREATE INDEX IF NOT EXISTS idx_bets_parlay_id ON bets(parlay_id)")
         cursor.execute("CREATE INDEX IF NOT EXISTS idx_bets_game_id ON bets(game_id)")
         
+        # Migrate existing schema if needed
+        self._migrate_schema()
+        
         self.connection.commit()
         logger.info("Database schema ensured")
+    
+    def _migrate_schema(self) -> None:
+        """Migrate existing schema to add CLV columns."""
+        cursor = self.connection.cursor()
+        
+        # Check if CLV columns exist
+        cursor.execute("PRAGMA table_info(bets)")
+        columns = {row[1] for row in cursor.fetchall()}
+        
+        if 'odds_at_alert' not in columns:
+            logger.info("Adding CLV columns to existing schema")
+            
+            # Add new columns
+            cursor.execute("ALTER TABLE bets ADD COLUMN odds_at_alert REAL")
+            cursor.execute("ALTER TABLE bets ADD COLUMN closing_line_odds REAL")
+            cursor.execute("ALTER TABLE bets ADD COLUMN clv_percentage REAL")
+            
+            # Backfill odds_at_alert from odds
+            cursor.execute("UPDATE bets SET odds_at_alert = odds WHERE odds_at_alert IS NULL")
+            
+            logger.info("Schema migration completed")
     
     def _get_utc_timestamp(self) -> str:
         """Get current UTC timestamp in ISO format."""
@@ -118,10 +145,10 @@ class BetsLogger:
         cursor.execute("""
             INSERT INTO bets (
                 game_id, parlay_id, leg_description, odds, stake, 
-                predicted_outcome, created_at, updated_at
-            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+                predicted_outcome, created_at, updated_at, odds_at_alert
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
         """, (game_id, parlay_id, leg_description, odds, stake, 
-              predicted_outcome, timestamp, timestamp))
+              predicted_outcome, timestamp, timestamp, odds))
         
         bet_id = cursor.lastrowid
         self.connection.commit()
@@ -153,10 +180,10 @@ class BetsLogger:
             cursor.execute("""
                 INSERT INTO bets (
                     game_id, parlay_id, leg_description, odds, stake, 
-                    predicted_outcome, created_at, updated_at
-                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+                    predicted_outcome, created_at, updated_at, odds_at_alert
+                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
             """, (game_id, parlay_id, leg['leg_description'], leg['odds'], 
-                  leg['stake'], leg['predicted_outcome'], timestamp, timestamp))
+                  leg['stake'], leg['predicted_outcome'], timestamp, timestamp, leg['odds']))
             
             bet_ids.append(cursor.lastrowid)
         
@@ -260,3 +287,100 @@ class BetsLogger:
         
         logger.debug(f"Upserted outcome: parlay_id={parlay_id}, leg={leg_description}, affected={affected_count}")
         return affected_count
+    
+    def compute_clv(self, odds_at_alert: float, closing_line_odds: float) -> float:
+        """
+        Compute CLV (Closing Line Value) percentage.
+        
+        Args:
+            odds_at_alert: Odds when the bet was placed
+            closing_line_odds: Odds at closing time
+            
+        Returns:
+            CLV percentage (positive means you beat the close)
+        """
+        if closing_line_odds <= 0:
+            raise ValueError("Closing line odds must be positive")
+        
+        clv = ((odds_at_alert - closing_line_odds) / closing_line_odds) * 100.0
+        return round(clv, 4)
+    
+    def set_closing_line(self, bet_id: int, closing_line_odds: float) -> None:
+        """
+        Set closing line odds and compute CLV.
+        
+        Args:
+            bet_id: ID of the bet to update
+            closing_line_odds: Closing line odds
+        """
+        if not self.connection:
+            raise RuntimeError("Database connection not established")
+        
+        # Get odds_at_alert for this bet
+        cursor = self.connection.cursor()
+        cursor.execute("SELECT odds_at_alert FROM bets WHERE bet_id = ?", (bet_id,))
+        row = cursor.fetchone()
+        
+        if not row:
+            raise ValueError(f"Bet with ID {bet_id} not found")
+        
+        odds_at_alert = row[0]
+        if odds_at_alert is None:
+            raise ValueError(f"Bet {bet_id} has no odds_at_alert value")
+        
+        # Compute CLV
+        clv_percentage = self.compute_clv(odds_at_alert, closing_line_odds)
+        
+        # Update the bet
+        timestamp = self._get_utc_timestamp()
+        cursor.execute("""
+            UPDATE bets 
+            SET closing_line_odds = ?, clv_percentage = ?, updated_at = ?
+            WHERE bet_id = ?
+        """, (closing_line_odds, clv_percentage, timestamp, bet_id))
+        
+        if cursor.rowcount == 0:
+            raise ValueError(f"Bet with ID {bet_id} not found")
+        
+        self.connection.commit()
+        logger.debug(f"Set closing line: bet_id={bet_id}, closing_odds={closing_line_odds}, clv={clv_percentage}%")
+    
+    def fetch_bets_missing_clv(self, game_ids: Optional[List[str]] = None, 
+                              since_iso: Optional[str] = None) -> List[sqlite3.Row]:
+        """
+        Fetch bets that are missing closing line odds.
+        
+        Args:
+            game_ids: Optional filter by game IDs
+            since_iso: Optional filter by creation date (ISO format)
+            
+        Returns:
+            List of bets missing CLV data
+        """
+        if not self.connection:
+            raise RuntimeError("Database connection not established")
+        
+        query = """
+            SELECT * FROM bets 
+            WHERE odds_at_alert IS NOT NULL 
+            AND closing_line_odds IS NULL
+        """
+        params = []
+        
+        if game_ids:
+            placeholders = ','.join(['?' for _ in game_ids])
+            query += f" AND game_id IN ({placeholders})"
+            params.extend(game_ids)
+        
+        if since_iso:
+            query += " AND created_at >= ?"
+            params.append(since_iso)
+        
+        query += " ORDER BY created_at DESC"
+        
+        cursor = self.connection.cursor()
+        cursor.execute(query, params)
+        
+        rows = cursor.fetchall()
+        logger.debug(f"Fetched {len(rows)} bets missing CLV")
+        return rows
