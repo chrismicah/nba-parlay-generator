@@ -1,0 +1,15 @@
+{
+  "label_encoder": {
+    "day_to_day": 0,
+    "minor": 1,
+    "out_for_season": 2,
+    "unconfirmed": 3
+  },
+  "label_decoder": {
+    "0": "day_to_day",
+    "1": "minor",
+    "2": "out_for_season",
+    "3": "unconfirmed"
+  },
+  "confidence_threshold": 0.8
+}
