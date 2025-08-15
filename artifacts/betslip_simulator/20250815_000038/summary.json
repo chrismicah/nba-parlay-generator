@@ -1,0 +1,41 @@
+{
+  "timestamp": "2025-08-15T00:01:11.288842",
+  "args": {
+    "books": [
+      "fanduel"
+    ],
+    "sport_key": "basketball_nba",
+    "game_id": "test_game",
+    "home": "Los Angeles Lakers",
+    "away": "Golden State Warriors",
+    "legs_json": "test_legs.json",
+    "region": "us",
+    "headed": false,
+    "manual_login": false,
+    "mfa_code": null,
+    "mfa_prompt": false,
+    "timeout_sec": 40,
+    "slowmo_ms": 0,
+    "screenshot_dir": "artifacts/betslip_simulator/20250815_000038",
+    "video": false,
+    "max_retries": 1,
+    "dry_run": true,
+    "logout": false
+  },
+  "results": [
+    {
+      "book": "fanduel",
+      "status": "ERROR",
+      "legs_added": 0,
+      "legs_attempted": 3,
+      "errors": [
+        {
+          "message": "Navigation failed",
+          "selector": "navigation",
+          "screenshot": "nav_failed.png"
+        }
+      ],
+      "duration": 32.51415491104126
+    }
+  ]
+}

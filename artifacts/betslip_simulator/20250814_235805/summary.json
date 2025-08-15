@@ -1,0 +1,11 @@
+{
+  "timestamp": "2025-08-15T00:00:00.631368",
+  "args": {
+    "books": [
+      "fanduel"
+    ],
+    "sport_key": "basketball_nba",
+    "game_id": "test_game",
+    "home": "Los Angeles Lakers",
+    "away": "Golden State Warriors",
+    "legs_json": 
