@@ -1,0 +1,950 @@
+{
+  "metadata": {
+    "generated_at": "2025-08-15T13:59:48.538641",
+    "total_examples": 10,
+    "source_dataset": "data/parlay_reasoning_dataset.jsonl"
+  },
+  "examples": [
+    {
+      "example_id": "few_shot_01",
+      "input_data": {
+        "available_games": [
+          {
+            "selection": "Bucks Moneyline (-180)",
+            "market_type": "moneyline",
+            "team": "Bucks",
+            "factors": [
+              "Bucks are 12-2 at home this season with dominant defense",
+              "Opponent missing their starting point guard and shooting guard",
+              "Vegas opened at -165, moved to -180 despite balanced public money indicating sharp action"
+            ]
+          },
+          {
+            "selection": "Celtics -4.5 (-110)",
+            "market_type": "spread",
+            "team": "Celtics",
+            "factors": [
+              "Celtics are 18-6 ATS as favorites this season",
+              "Opponent playing back-to-back after overtime game last night",
+              "Jimmy Butler confirmed healthy after questionable tag, team at full strength"
+            ]
+          },
+          {
+            "selection": "Nuggets vs Opponent Under 218.5 (-105)",
+            "market_type": "totals",
+            "team": "Nuggets",
+            "factors": [
+              "Weather conditions: 25mph winds affecting outdoor arena ventilation",
+              "Both teams shoot poorly on road (sub-33% from three combined)",
+              "Total opened at 221, moved down to 218.5 on sharp under action"
+            ]
+          }
+        ],
+        "market_conditions": {},
+        "injury_intel": [],
+        "line_movements": [
+          "Line movement from -3.5 to -4.5 shows sharp money backing Celtics"
+        ],
+        "statistical_insights": [
+          "Bucks have won 8 straight games by average margin of 14 points",
+          "Both teams rank bottom-5 in pace, average combined 208 points in last 6 meetings"
+        ]
+      },
+      "reasoning": "PARLAY ANALYSIS (3 legs):\n\nLEG 1: Bucks Moneyline (-180)\nOdds: 1.56 at DraftKings\n• Bucks are 12-2 at home this season with dominant defense\n• Opponent missing their starting point guard and shooting guard\n• Bucks have won 8 straight games by average margin of 14 points\n• Vegas opened at -165, moved to -180 despite balanced public money indicating sharp action\n\nLEG 2: Celtics -4.5 (-110)\nOdds: 1.91 at FanDuel\n• Celtics are 18-6 ATS as favorites this season\n• Opponent playing back-to-back after overtime game last night\n• Jimmy Butler confirmed healthy after questionable tag, team at full strength\n• Line movement from -3.5 to -4.5 shows sharp money backing Celtics\n\nLEG 3: Nuggets vs Opponent Under 218.5 (-105)\nOdds: 1.95 at BetMGM\n• Both teams rank bottom-5 in pace, average combined 208 points in last 6 meetings\n• Weather conditions: 25mph winds affecting outdoor arena ventilation\n• Both teams shoot poorly on road (sub-33% from three combined)\n• Total opened at 221, moved down to 218.5 on sharp under action\n\nOVERALL ASSESSMENT:\nCombined odds: 5.98\nRisk assessment: Low risk - All legs backed by strong fundamentals\nValue assessment: Strong value with multiple confirming factors\nConfidence factors: Injury advantages, sharp money alignment, statistical edges all favorable",
+      "generated_parlay": {
+        "legs": [
+          {
+            "description": "LEG 1: Bucks Moneyline (-180)",
+            "odds": 1.56,
+            "reasoning_points": [
+              "Bucks are 12-2 at home this season with dominant defense",
+              "Opponent missing their starting point guard and shooting guard",
+              "Bucks have won 8 straight games by average margin of 14 points",
+              "Vegas opened at -165, moved to -180 despite balanced public money indicating sharp action"
+            ]
+          },
+          {
+            "description": "LEG 2: Celtics -4.5 (-110)",
+            "odds": 1.91,
+            "reasoning_points": [
+              "Celtics are 18-6 ATS as favorites this season",
+              "Opponent playing back-to-back after overtime game last night",
+              "Jimmy Butler confirmed healthy after questionable tag, team at full strength",
+              "Line movement from -3.5 to -4.5 shows sharp money backing Celtics"
+            ]
+          },
+          {
+            "description": "LEG 3: Nuggets vs Opponent Under 218.5 (-105)",
+            "odds": 1.95,
+            "reasoning_points": [
+              "Both teams rank bottom-5 in pace, average combined 208 points in last 6 meetings",
+              "Weather conditions: 25mph winds affecting outdoor arena ventilation",
+              "Both teams shoot poorly on road (sub-33% from three combined)",
+              "Total opened at 221, moved down to 218.5 on sharp under action"
+            ]
+          }
+        ],
+        "total_odds": 5.98,
+        "risk_assessment": "Low risk - All legs backed by strong fundamentals",
+        "value_assessment": "Strong value with multiple confirming factors"
+      },
+      "outcome": "win",
+      "confidence_score": 0.9,
+      "success_metrics": {
+        "success_score": 2.231666666666667,
+        "rank": 1,
+        "total_odds": 5.98,
+        "legs_count": 2,
+        "outcome": "win",
+        "confidence_label": "high_confidence"
+      }
+    },
+    {
+      "example_id": "few_shot_02",
+      "input_data": {
+        "available_games": [
+          {
+            "selection": "Suns Moneyline (-180)",
+            "market_type": "moneyline",
+            "team": "Suns",
+            "factors": [
+              "Suns are 12-2 at home this season with dominant defense",
+              "Opponent missing their starting point guard and shooting guard",
+              "Vegas opened at -165, moved to -180 despite balanced public money indicating sharp action"
+            ]
+          },
+          {
+            "selection": "Warriors -4.5 (-110)",
+            "market_type": "spread",
+            "team": "Warriors",
+            "factors": [
+              "Warriors are 18-6 ATS as favorites this season",
+              "Opponent playing back-to-back after overtime game last night",
+              "Joel Embiid confirmed healthy after questionable tag, team at full strength"
+            ]
+          },
+          {
+            "selection": "Celtics vs Opponent Under 218.5 (-105)",
+            "market_type": "totals",
+            "team": "Celtics",
+            "factors": [
+              "Weather conditions: 25mph winds affecting outdoor arena ventilation",
+              "Both teams shoot poorly on road (sub-33% from three combined)",
+              "Total opened at 221, moved down to 218.5 on sharp under action"
+            ]
+          }
+        ],
+        "market_conditions": {},
+        "injury_intel": [],
+        "line_movements": [
+          "Line movement from -3.5 to -4.5 shows sharp money backing Warriors"
+        ],
+        "statistical_insights": [
+          "Suns have won 8 straight games by average margin of 14 points",
+          "Both teams rank bottom-5 in pace, average combined 208 points in last 6 meetings"
+        ]
+      },
+      "reasoning": "PARLAY ANALYSIS (3 legs):\n\nLEG 1: Suns Moneyline (-180)\nOdds: 1.56 at DraftKings\n• Suns are 12-2 at home this season with dominant defense\n• Opponent missing their starting point guard and shooting guard\n• Suns have won 8 straight games by average margin of 14 points\n• Vegas opened at -165, moved to -180 despite balanced public money indicating sharp action\n\nLEG 2: Warriors -4.5 (-110)\nOdds: 1.91 at FanDuel\n• Warriors are 18-6 ATS as favorites this season\n• Opponent playing back-to-back after overtime game last night\n• Joel Embiid confirmed healthy after questionable tag, team at full strength\n• Line movement from -3.5 to -4.5 shows sharp money backing Warriors\n\nLEG 3: Celtics vs Opponent Under 218.5 (-105)\nOdds: 1.95 at BetMGM\n• Both teams rank bottom-5 in pace, average combined 208 points in last 6 meetings\n• Weather conditions: 25mph winds affecting outdoor arena ventilation\n• Both teams shoot poorly on road (sub-33% from three combined)\n• Total opened at 221, moved down to 218.5 on sharp under action\n\nOVERALL ASSESSMENT:\nCombined odds: 5.98\nRisk assessment: Low risk - All legs backed by strong fundamentals\nValue assessment: Strong value with multiple confirming factors\nConfidence factors: Injury advantages, sharp money alignment, statistical edges all favorable",
+      "generated_parlay": {
+        "legs": [
+          {
+            "description": "LEG 1: Suns Moneyline (-180)",
+            "odds": 1.56,
+            "reasoning_points": [
+              "Suns are 12-2 at home this season with dominant defense",
+              "Opponent missing their starting point guard and shooting guard",
+              "Suns have won 8 straight games by average margin of 14 points",
+              "Vegas opened at -165, moved to -180 despite balanced public money indicating sharp action"
+            ]
+          },
+          {
+            "description": "LEG 2: Warriors -4.5 (-110)",
+            "odds": 1.91,
+            "reasoning_points": [
+              "Warriors are 18-6 ATS as favorites this season",
+              "Opponent playing back-to-back after overtime game last night",
+              "Joel Embiid confirmed healthy after questionable tag, team at full strength",
+              "Line movement from -3.5 to -4.5 shows sharp money backing Warriors"
+            ]
+          },
+          {
+            "description": "LEG 3: Celtics vs Opponent Under 218.5 (-105)",
+            "odds": 1.95,
+            "reasoning_points": [
+              "Both teams rank bottom-5 in pace, average combined 208 points in last 6 meetings",
+              "Weather conditions: 25mph winds affecting outdoor arena ventilation",
+              "Both teams shoot poorly on road (sub-33% from three combined)",
+              "Total opened at 221, moved down to 218.5 on sharp under action"
+            ]
+          }
+        ],
+        "total_odds": 5.98,
+        "risk_assessment": "Low risk - All legs backed by strong fundamentals",
+        "value_assessment": "Strong value with multiple confirming factors"
+      },
+      "outcome": "win",
+      "confidence_score": 0.9,
+      "success_metrics": {
+        "success_score": 2.224166666666667,
+        "rank": 2,
+        "total_odds": 5.89,
+        "legs_count": 3,
+        "outcome": "win",
+        "confidence_label": "high_confidence"
+      }
+    },
+    {
+      "example_id": "few_shot_03",
+      "input_data": {
+        "available_games": [
+          {
+            "selection": "Jazz Moneyline (-180)",
+            "market_type": "moneyline",
+            "team": "Jazz",
+            "factors": [
+              "Jazz are 12-2 at home this season with dominant defense",
+              "Opponent missing their starting point guard and shooting guard",
+              "Vegas opened at -165, moved to -180 despite balanced public money indicating sharp action"
+            ]
+          },
+          {
+            "selection": "Nuggets -4.5 (-110)",
+            "market_type": "spread",
+            "team": "Nuggets",
+            "factors": [
+              "Nuggets are 18-6 ATS as favorites this season",
+              "Opponent playing back-to-back after overtime game last night",
+              "Nikola Jokic confirmed healthy after questionable tag, team at full strength"
+            ]
+          },
+          {
+            "selection": "Kings vs Opponent Under 218.5 (-105)",
+            "market_type": "totals",
+            "team": "Kings",
+            "factors": [
+              "Weather conditions: 25mph winds affecting outdoor arena ventilation",
+              "Both teams shoot poorly on road (sub-33% from three combined)",
+              "Total opened at 221, moved down to 218.5 on sharp under action"
+            ]
+          }
+        ],
+        "market_conditions": {},
+        "injury_intel": [],
+        "line_movements": [
+          "Line movement from -3.5 to -4.5 shows sharp money backing Nuggets"
+        ],
+        "statistical_insights": [
+          "Jazz have won 8 straight games by average margin of 14 points",
+          "Both teams rank bottom-5 in pace, average combined 208 points in last 6 meetings"
+        ]
+      },
+      "reasoning": "PARLAY ANALYSIS (3 legs):\n\nLEG 1: Jazz Moneyline (-180)\nOdds: 1.56 at DraftKings\n• Jazz are 12-2 at home this season with dominant defense\n• Opponent missing their starting point guard and shooting guard\n• Jazz have won 8 straight games by average margin of 14 points\n• Vegas opened at -165, moved to -180 despite balanced public money indicating sharp action\n\nLEG 2: Nuggets -4.5 (-110)\nOdds: 1.91 at FanDuel\n• Nuggets are 18-6 ATS as favorites this season\n• Opponent playing back-to-back after overtime game last night\n• Nikola Jokic confirmed healthy after questionable tag, team at full strength\n• Line movement from -3.5 to -4.5 shows sharp money backing Nuggets\n\nLEG 3: Kings vs Opponent Under 218.5 (-105)\nOdds: 1.95 at BetMGM\n• Both teams rank bottom-5 in pace, average combined 208 points in last 6 meetings\n• Weather conditions: 25mph winds affecting outdoor arena ventilation\n• Both teams shoot poorly on road (sub-33% from three combined)\n• Total opened at 221, moved down to 218.5 on sharp under action\n\nOVERALL ASSESSMENT:\nCombined odds: 5.98\nRisk assessment: Low risk - All legs backed by strong fundamentals\nValue assessment: Strong value with multiple confirming factors\nConfidence factors: Injury advantages, sharp money alignment, statistical edges all favorable",
+      "generated_parlay": {
+        "legs": [
+          {
+            "description": "LEG 1: Jazz Moneyline (-180)",
+            "odds": 1.56,
+            "reasoning_points": [
+              "Jazz are 12-2 at home this season with dominant defense",
+              "Opponent missing their starting point guard and shooting guard",
+              "Jazz have won 8 straight games by average margin of 14 points",
+              "Vegas opened at -165, moved to -180 despite balanced public money indicating sharp action"
+            ]
+          },
+          {
+            "description": "LEG 2: Nuggets -4.5 (-110)",
+            "odds": 1.91,
+            "reasoning_points": [
+              "Nuggets are 18-6 ATS as favorites this season",
+              "Opponent playing back-to-back after overtime game last night",
+              "Nikola Jokic confirmed healthy after questionable tag, team at full strength",
+              "Line movement from -3.5 to -4.5 shows sharp money backing Nuggets"
+            ]
+          },
+          {
+            "description": "LEG 3: Kings vs Opponent Under 218.5 (-105)",
+            "odds": 1.95,
+            "reasoning_points": [
+              "Both teams rank bottom-5 in pace, average combined 208 points in last 6 meetings",
+              "Weather conditions: 25mph winds affecting outdoor arena ventilation",
+              "Both teams shoot poorly on road (sub-33% from three combined)",
+              "Total opened at 221, moved down to 218.5 on sharp under action"
+            ]
+          }
+        ],
+        "total_odds": 5.98,
+        "risk_assessment": "Low risk - All legs backed by strong fundamentals",
+        "value_assessment": "Strong value with multiple confirming factors"
+      },
+      "outcome": "win",
+      "confidence_score": 0.9,
+      "success_metrics": {
+        "success_score": 2.2133333333333334,
+        "rank": 3,
+        "total_odds": 5.76,
+        "legs_count": 2,
+        "outcome": "win",
+        "confidence_label": "high_confidence"
+      }
+    },
+    {
+      "example_id": "few_shot_04",
+      "input_data": {
+        "available_games": [
+          {
+            "selection": "Magic Moneyline (-180)",
+            "market_type": "moneyline",
+            "team": "Magic",
+            "factors": [
+              "Magic are 12-2 at home this season with dominant defense",
+              "Opponent missing their starting point guard and shooting guard",
+              "Vegas opened at -165, moved to -180 despite balanced public money indicating sharp action"
+            ]
+          },
+          {
+            "selection": "Raptors -4.5 (-110)",
+            "market_type": "spread",
+            "team": "Raptors",
+            "factors": [
+              "Raptors are 18-6 ATS as favorites this season",
+              "Opponent playing back-to-back after overtime game last night",
+              "Damian Lillard confirmed healthy after questionable tag, team at full strength"
+            ]
+          },
+          {
+            "selection": "Bucks vs Opponent Under 218.5 (-105)",
+            "market_type": "totals",
+            "team": "Bucks",
+            "factors": [
+              "Weather conditions: 25mph winds affecting outdoor arena ventilation",
+              "Both teams shoot poorly on road (sub-33% from three combined)",
+              "Total opened at 221, moved down to 218.5 on sharp under action"
+            ]
+          }
+        ],
+        "market_conditions": {},
+        "injury_intel": [],
+        "line_movements": [
+          "Line movement from -3.5 to -4.5 shows sharp money backing Raptors"
+        ],
+        "statistical_insights": [
+          "Magic have won 8 straight games by average margin of 14 points",
+          "Both teams rank bottom-5 in pace, average combined 208 points in last 6 meetings"
+        ]
+      },
+      "reasoning": "PARLAY ANALYSIS (3 legs):\n\nLEG 1: Magic Moneyline (-180)\nOdds: 1.56 at DraftKings\n• Magic are 12-2 at home this season with dominant defense\n• Opponent missing their starting point guard and shooting guard\n• Magic have won 8 straight games by average margin of 14 points\n• Vegas opened at -165, moved to -180 despite balanced public money indicating sharp action\n\nLEG 2: Raptors -4.5 (-110)\nOdds: 1.91 at FanDuel\n• Raptors are 18-6 ATS as favorites this season\n• Opponent playing back-to-back after overtime game last night\n• Damian Lillard confirmed healthy after questionable tag, team at full strength\n• Line movement from -3.5 to -4.5 shows sharp money backing Raptors\n\nLEG 3: Bucks vs Opponent Under 218.5 (-105)\nOdds: 1.95 at BetMGM\n• Both teams rank bottom-5 in pace, average combined 208 points in last 6 meetings\n• Weather conditions: 25mph winds affecting outdoor arena ventilation\n• Both teams shoot poorly on road (sub-33% from three combined)\n• Total opened at 221, moved down to 218.5 on sharp under action\n\nOVERALL ASSESSMENT:\nCombined odds: 5.98\nRisk assessment: Low risk - All legs backed by strong fundamentals\nValue assessment: Strong value with multiple confirming factors\nConfidence factors: Injury advantages, sharp money alignment, statistical edges all favorable",
+      "generated_parlay": {
+        "legs": [
+          {
+            "description": "LEG 1: Magic Moneyline (-180)",
+            "odds": 1.56,
+            "reasoning_points": [
+              "Magic are 12-2 at home this season with dominant defense",
+              "Opponent missing their starting point guard and shooting guard",
+              "Magic have won 8 straight games by average margin of 14 points",
+              "Vegas opened at -165, moved to -180 despite balanced public money indicating sharp action"
+            ]
+          },
+          {
+            "description": "LEG 2: Raptors -4.5 (-110)",
+            "odds": 1.91,
+            "reasoning_points": [
+              "Raptors are 18-6 ATS as favorites this season",
+              "Opponent playing back-to-back after overtime game last night",
+              "Damian Lillard confirmed healthy after questionable tag, team at full strength",
+              "Line movement from -3.5 to -4.5 shows sharp money backing Raptors"
+            ]
+          },
+          {
+            "description": "LEG 3: Bucks vs Opponent Under 218.5 (-105)",
+            "odds": 1.95,
+            "reasoning_points": [
+              "Both teams rank bottom-5 in pace, average combined 208 points in last 6 meetings",
+              "Weather conditions: 25mph winds affecting outdoor arena ventilation",
+              "Both teams shoot poorly on road (sub-33% from three combined)",
+              "Total opened at 221, moved down to 218.5 on sharp under action"
+            ]
+          }
+        ],
+        "total_odds": 5.98,
+        "risk_assessment": "Low risk - All legs backed by strong fundamentals",
+        "value_assessment": "Strong value with multiple confirming factors"
+      },
+      "outcome": "win",
+      "confidence_score": 0.9,
+      "success_metrics": {
+        "success_score": 2.2125000000000004,
+        "rank": 4,
+        "total_odds": 5.75,
+        "legs_count": 4,
+        "outcome": "win",
+        "confidence_label": "high_confidence"
+      }
+    },
+    {
+      "example_id": "few_shot_05",
+      "input_data": {
+        "available_games": [
+          {
+            "selection": "Celtics Moneyline (-180)",
+            "market_type": "moneyline",
+            "team": "Celtics",
+            "factors": [
+              "Celtics are 12-2 at home this season with dominant defense",
+              "Opponent missing their starting point guard and shooting guard",
+              "Vegas opened at -165, moved to -180 despite balanced public money indicating sharp action"
+            ]
+          },
+          {
+            "selection": "Hawks -4.5 (-110)",
+            "market_type": "spread",
+            "team": "Hawks",
+            "factors": [
+              "Hawks are 18-6 ATS as favorites this season",
+              "Opponent playing back-to-back after overtime game last night",
+              "Trae Young confirmed healthy after questionable tag, team at full strength"
+            ]
+          },
+          {
+            "selection": "Timberwolves vs Opponent Under 218.5 (-105)",
+            "market_type": "totals",
+            "team": "Timberwolves",
+            "factors": [
+              "Weather conditions: 25mph winds affecting outdoor arena ventilation",
+              "Both teams shoot poorly on road (sub-33% from three combined)",
+              "Total opened at 221, moved down to 218.5 on sharp under action"
+            ]
+          }
+        ],
+        "market_conditions": {},
+        "injury_intel": [],
+        "line_movements": [
+          "Line movement from -3.5 to -4.5 shows sharp money backing Hawks"
+        ],
+        "statistical_insights": [
+          "Celtics have won 8 straight games by average margin of 14 points",
+          "Both teams rank bottom-5 in pace, average combined 208 points in last 6 meetings"
+        ]
+      },
+      "reasoning": "PARLAY ANALYSIS (3 legs):\n\nLEG 1: Celtics Moneyline (-180)\nOdds: 1.56 at DraftKings\n• Celtics are 12-2 at home this season with dominant defense\n• Opponent missing their starting point guard and shooting guard\n• Celtics have won 8 straight games by average margin of 14 points\n• Vegas opened at -165, moved to -180 despite balanced public money indicating sharp action\n\nLEG 2: Hawks -4.5 (-110)\nOdds: 1.91 at FanDuel\n• Hawks are 18-6 ATS as favorites this season\n• Opponent playing back-to-back after overtime game last night\n• Trae Young confirmed healthy after questionable tag, team at full strength\n• Line movement from -3.5 to -4.5 shows sharp money backing Hawks\n\nLEG 3: Timberwolves vs Opponent Under 218.5 (-105)\nOdds: 1.95 at BetMGM\n• Both teams rank bottom-5 in pace, average combined 208 points in last 6 meetings\n• Weather conditions: 25mph winds affecting outdoor arena ventilation\n• Both teams shoot poorly on road (sub-33% from three combined)\n• Total opened at 221, moved down to 218.5 on sharp under action\n\nOVERALL ASSESSMENT:\nCombined odds: 5.98\nRisk assessment: Low risk - All legs backed by strong fundamentals\nValue assessment: Strong value with multiple confirming factors\nConfidence factors: Injury advantages, sharp money alignment, statistical edges all favorable",
+      "generated_parlay": {
+        "legs": [
+          {
+            "description": "LEG 1: Celtics Moneyline (-180)",
+            "odds": 1.56,
+            "reasoning_points": [
+              "Celtics are 12-2 at home this season with dominant defense",
+              "Opponent missing their starting point guard and shooting guard",
+              "Celtics have won 8 straight games by average margin of 14 points",
+              "Vegas opened at -165, moved to -180 despite balanced public money indicating sharp action"
+            ]
+          },
+          {
+            "description": "LEG 2: Hawks -4.5 (-110)",
+            "odds": 1.91,
+            "reasoning_points": [
+              "Hawks are 18-6 ATS as favorites this season",
+              "Opponent playing back-to-back after overtime game last night",
+              "Trae Young confirmed healthy after questionable tag, team at full strength",
+              "Line movement from -3.5 to -4.5 shows sharp money backing Hawks"
+            ]
+          },
+          {
+            "description": "LEG 3: Timberwolves vs Opponent Under 218.5 (-105)",
+            "odds": 1.95,
+            "reasoning_points": [
+              "Both teams rank bottom-5 in pace, average combined 208 points in last 6 meetings",
+              "Weather conditions: 25mph winds affecting outdoor arena ventilation",
+              "Both teams shoot poorly on road (sub-33% from three combined)",
+              "Total opened at 221, moved down to 218.5 on sharp under action"
+            ]
+          }
+        ],
+        "total_odds": 5.98,
+        "risk_assessment": "Low risk - All legs backed by strong fundamentals",
+        "value_assessment": "Strong value with multiple confirming factors"
+      },
+      "outcome": "win",
+      "confidence_score": 0.9,
+      "success_metrics": {
+        "success_score": 2.2125000000000004,
+        "rank": 5,
+        "total_odds": 5.75,
+        "legs_count": 4,
+        "outcome": "win",
+        "confidence_label": "high_confidence"
+      }
+    },
+    {
+      "example_id": "few_shot_06",
+      "input_data": {
+        "available_games": [
+          {
+            "selection": "Thunder Moneyline (-180)",
+            "market_type": "moneyline",
+            "team": "Thunder",
+            "factors": [
+              "Thunder are 12-2 at home this season with dominant defense",
+              "Opponent missing their starting point guard and shooting guard",
+              "Vegas opened at -165, moved to -180 despite balanced public money indicating sharp action"
+            ]
+          },
+          {
+            "selection": "Magic -4.5 (-110)",
+            "market_type": "spread",
+            "team": "Magic",
+            "factors": [
+              "Magic are 18-6 ATS as favorites this season",
+              "Opponent playing back-to-back after overtime game last night",
+              "Jayson Tatum confirmed healthy after questionable tag, team at full strength"
+            ]
+          },
+          {
+            "selection": "Hawks vs Opponent Under 218.5 (-105)",
+            "market_type": "totals",
+            "team": "Hawks",
+            "factors": [
+              "Weather conditions: 25mph winds affecting outdoor arena ventilation",
+              "Both teams shoot poorly on road (sub-33% from three combined)",
+              "Total opened at 221, moved down to 218.5 on sharp under action"
+            ]
+          }
+        ],
+        "market_conditions": {},
+        "injury_intel": [],
+        "line_movements": [
+          "Line movement from -3.5 to -4.5 shows sharp money backing Magic"
+        ],
+        "statistical_insights": [
+          "Thunder have won 8 straight games by average margin of 14 points",
+          "Both teams rank bottom-5 in pace, average combined 208 points in last 6 meetings"
+        ]
+      },
+      "reasoning": "PARLAY ANALYSIS (3 legs):\n\nLEG 1: Thunder Moneyline (-180)\nOdds: 1.56 at DraftKings\n• Thunder are 12-2 at home this season with dominant defense\n• Opponent missing their starting point guard and shooting guard\n• Thunder have won 8 straight games by average margin of 14 points\n• Vegas opened at -165, moved to -180 despite balanced public money indicating sharp action\n\nLEG 2: Magic -4.5 (-110)\nOdds: 1.91 at FanDuel\n• Magic are 18-6 ATS as favorites this season\n• Opponent playing back-to-back after overtime game last night\n• Jayson Tatum confirmed healthy after questionable tag, team at full strength\n• Line movement from -3.5 to -4.5 shows sharp money backing Magic\n\nLEG 3: Hawks vs Opponent Under 218.5 (-105)\nOdds: 1.95 at BetMGM\n• Both teams rank bottom-5 in pace, average combined 208 points in last 6 meetings\n• Weather conditions: 25mph winds affecting outdoor arena ventilation\n• Both teams shoot poorly on road (sub-33% from three combined)\n• Total opened at 221, moved down to 218.5 on sharp under action\n\nOVERALL ASSESSMENT:\nCombined odds: 5.98\nRisk assessment: Low risk - All legs backed by strong fundamentals\nValue assessment: Strong value with multiple confirming factors\nConfidence factors: Injury advantages, sharp money alignment, statistical edges all favorable",
+      "generated_parlay": {
+        "legs": [
+          {
+            "description": "LEG 1: Thunder Moneyline (-180)",
+            "odds": 1.56,
+            "reasoning_points": [
+              "Thunder are 12-2 at home this season with dominant defense",
+              "Opponent missing their starting point guard and shooting guard",
+              "Thunder have won 8 straight games by average margin of 14 points",
+              "Vegas opened at -165, moved to -180 despite balanced public money indicating sharp action"
+            ]
+          },
+          {
+            "description": "LEG 2: Magic -4.5 (-110)",
+            "odds": 1.91,
+            "reasoning_points": [
+              "Magic are 18-6 ATS as favorites this season",
+              "Opponent playing back-to-back after overtime game last night",
+              "Jayson Tatum confirmed healthy after questionable tag, team at full strength",
+              "Line movement from -3.5 to -4.5 shows sharp money backing Magic"
+            ]
+          },
+          {
+            "description": "LEG 3: Hawks vs Opponent Under 218.5 (-105)",
+            "odds": 1.95,
+            "reasoning_points": [
+              "Both teams rank bottom-5 in pace, average combined 208 points in last 6 meetings",
+              "Weather conditions: 25mph winds affecting outdoor arena ventilation",
+              "Both teams shoot poorly on road (sub-33% from three combined)",
+              "Total opened at 221, moved down to 218.5 on sharp under action"
+            ]
+          }
+        ],
+        "total_odds": 5.98,
+        "risk_assessment": "Low risk - All legs backed by strong fundamentals",
+        "value_assessment": "Strong value with multiple confirming factors"
+      },
+      "outcome": "win",
+      "confidence_score": 0.9,
+      "success_metrics": {
+        "success_score": 2.211666666666667,
+        "rank": 6,
+        "total_odds": 5.74,
+        "legs_count": 2,
+        "outcome": "win",
+        "confidence_label": "high_confidence"
+      }
+    },
+    {
+      "example_id": "few_shot_07",
+      "input_data": {
+        "available_games": [
+          {
+            "selection": "Grizzlies Moneyline (-180)",
+            "market_type": "moneyline",
+            "team": "Grizzlies",
+            "factors": [
+              "Grizzlies are 12-2 at home this season with dominant defense",
+              "Opponent missing their starting point guard and shooting guard",
+              "Vegas opened at -165, moved to -180 despite balanced public money indicating sharp action"
+            ]
+          },
+          {
+            "selection": "Hornets -4.5 (-110)",
+            "market_type": "spread",
+            "team": "Hornets",
+            "factors": [
+              "Hornets are 18-6 ATS as favorites this season",
+              "Opponent playing back-to-back after overtime game last night",
+              "Devin Booker confirmed healthy after questionable tag, team at full strength"
+            ]
+          },
+          {
+            "selection": "Pacers vs Opponent Under 218.5 (-105)",
+            "market_type": "totals",
+            "team": "Pacers",
+            "factors": [
+              "Weather conditions: 25mph winds affecting outdoor arena ventilation",
+              "Both teams shoot poorly on road (sub-33% from three combined)",
+              "Total opened at 221, moved down to 218.5 on sharp under action"
+            ]
+          }
+        ],
+        "market_conditions": {},
+        "injury_intel": [],
+        "line_movements": [
+          "Line movement from -3.5 to -4.5 shows sharp money backing Hornets"
+        ],
+        "statistical_insights": [
+          "Grizzlies have won 8 straight games by average margin of 14 points",
+          "Both teams rank bottom-5 in pace, average combined 208 points in last 6 meetings"
+        ]
+      },
+      "reasoning": "PARLAY ANALYSIS (3 legs):\n\nLEG 1: Grizzlies Moneyline (-180)\nOdds: 1.56 at DraftKings\n• Grizzlies are 12-2 at home this season with dominant defense\n• Opponent missing their starting point guard and shooting guard\n• Grizzlies have won 8 straight games by average margin of 14 points\n• Vegas opened at -165, moved to -180 despite balanced public money indicating sharp action\n\nLEG 2: Hornets -4.5 (-110)\nOdds: 1.91 at FanDuel\n• Hornets are 18-6 ATS as favorites this season\n• Opponent playing back-to-back after overtime game last night\n• Devin Booker confirmed healthy after questionable tag, team at full strength\n• Line movement from -3.5 to -4.5 shows sharp money backing Hornets\n\nLEG 3: Pacers vs Opponent Under 218.5 (-105)\nOdds: 1.95 at BetMGM\n• Both teams rank bottom-5 in pace, average combined 208 points in last 6 meetings\n• Weather conditions: 25mph winds affecting outdoor arena ventilation\n• Both teams shoot poorly on road (sub-33% from three combined)\n• Total opened at 221, moved down to 218.5 on sharp under action\n\nOVERALL ASSESSMENT:\nCombined odds: 5.98\nRisk assessment: Low risk - All legs backed by strong fundamentals\nValue assessment: Strong value with multiple confirming factors\nConfidence factors: Injury advantages, sharp money alignment, statistical edges all favorable",
+      "generated_parlay": {
+        "legs": [
+          {
+            "description": "LEG 1: Grizzlies Moneyline (-180)",
+            "odds": 1.56,
+            "reasoning_points": [
+              "Grizzlies are 12-2 at home this season with dominant defense",
+              "Opponent missing their starting point guard and shooting guard",
+              "Grizzlies have won 8 straight games by average margin of 14 points",
+              "Vegas opened at -165, moved to -180 despite balanced public money indicating sharp action"
+            ]
+          },
+          {
+            "description": "LEG 2: Hornets -4.5 (-110)",
+            "odds": 1.91,
+            "reasoning_points": [
+              "Hornets are 18-6 ATS as favorites this season",
+              "Opponent playing back-to-back after overtime game last night",
+              "Devin Booker confirmed healthy after questionable tag, team at full strength",
+              "Line movement from -3.5 to -4.5 shows sharp money backing Hornets"
+            ]
+          },
+          {
+            "description": "LEG 3: Pacers vs Opponent Under 218.5 (-105)",
+            "odds": 1.95,
+            "reasoning_points": [
+              "Both teams rank bottom-5 in pace, average combined 208 points in last 6 meetings",
+              "Weather conditions: 25mph winds affecting outdoor arena ventilation",
+              "Both teams shoot poorly on road (sub-33% from three combined)",
+              "Total opened at 221, moved down to 218.5 on sharp under action"
+            ]
+          }
+        ],
+        "total_odds": 5.98,
+        "risk_assessment": "Low risk - All legs backed by strong fundamentals",
+        "value_assessment": "Strong value with multiple confirming factors"
+      },
+      "outcome": "win",
+      "confidence_score": 0.9,
+      "success_metrics": {
+        "success_score": 2.2100000000000004,
+        "rank": 7,
+        "total_odds": 5.72,
+        "legs_count": 4,
+        "outcome": "win",
+        "confidence_label": "high_confidence"
+      }
+    },
+    {
+      "example_id": "few_shot_08",
+      "input_data": {
+        "available_games": [
+          {
+            "selection": "Celtics Moneyline (-180)",
+            "market_type": "moneyline",
+            "team": "Celtics",
+            "factors": [
+              "Celtics are 12-2 at home this season with dominant defense",
+              "Opponent missing their starting point guard and shooting guard",
+              "Vegas opened at -165, moved to -180 despite balanced public money indicating sharp action"
+            ]
+          },
+          {
+            "selection": "Rockets -4.5 (-110)",
+            "market_type": "spread",
+            "team": "Rockets",
+            "factors": [
+              "Rockets are 18-6 ATS as favorites this season",
+              "Opponent playing back-to-back after overtime game last night",
+              "Nikola Jokic confirmed healthy after questionable tag, team at full strength"
+            ]
+          },
+          {
+            "selection": "Warriors vs Opponent Under 218.5 (-105)",
+            "market_type": "totals",
+            "team": "Warriors",
+            "factors": [
+              "Weather conditions: 25mph winds affecting outdoor arena ventilation",
+              "Both teams shoot poorly on road (sub-33% from three combined)",
+              "Total opened at 221, moved down to 218.5 on sharp under action"
+            ]
+          }
+        ],
+        "market_conditions": {},
+        "injury_intel": [],
+        "line_movements": [
+          "Line movement from -3.5 to -4.5 shows sharp money backing Rockets"
+        ],
+        "statistical_insights": [
+          "Celtics have won 8 straight games by average margin of 14 points",
+          "Both teams rank bottom-5 in pace, average combined 208 points in last 6 meetings"
+        ]
+      },
+      "reasoning": "PARLAY ANALYSIS (3 legs):\n\nLEG 1: Celtics Moneyline (-180)\nOdds: 1.56 at DraftKings\n• Celtics are 12-2 at home this season with dominant defense\n• Opponent missing their starting point guard and shooting guard\n• Celtics have won 8 straight games by average margin of 14 points\n• Vegas opened at -165, moved to -180 despite balanced public money indicating sharp action\n\nLEG 2: Rockets -4.5 (-110)\nOdds: 1.91 at FanDuel\n• Rockets are 18-6 ATS as favorites this season\n• Opponent playing back-to-back after overtime game last night\n• Nikola Jokic confirmed healthy after questionable tag, team at full strength\n• Line movement from -3.5 to -4.5 shows sharp money backing Rockets\n\nLEG 3: Warriors vs Opponent Under 218.5 (-105)\nOdds: 1.95 at BetMGM\n• Both teams rank bottom-5 in pace, average combined 208 points in last 6 meetings\n• Weather conditions: 25mph winds affecting outdoor arena ventilation\n• Both teams shoot poorly on road (sub-33% from three combined)\n• Total opened at 221, moved down to 218.5 on sharp under action\n\nOVERALL ASSESSMENT:\nCombined odds: 5.98\nRisk assessment: Low risk - All legs backed by strong fundamentals\nValue assessment: Strong value with multiple confirming factors\nConfidence factors: Injury advantages, sharp money alignment, statistical edges all favorable",
+      "generated_parlay": {
+        "legs": [
+          {
+            "description": "LEG 1: Celtics Moneyline (-180)",
+            "odds": 1.56,
+            "reasoning_points": [
+              "Celtics are 12-2 at home this season with dominant defense",
+              "Opponent missing their starting point guard and shooting guard",
+              "Celtics have won 8 straight games by average margin of 14 points",
+              "Vegas opened at -165, moved to -180 despite balanced public money indicating sharp action"
+            ]
+          },
+          {
+            "description": "LEG 2: Rockets -4.5 (-110)",
+            "odds": 1.91,
+            "reasoning_points": [
+              "Rockets are 18-6 ATS as favorites this season",
+              "Opponent playing back-to-back after overtime game last night",
+              "Nikola Jokic confirmed healthy after questionable tag, team at full strength",
+              "Line movement from -3.5 to -4.5 shows sharp money backing Rockets"
+            ]
+          },
+          {
+            "description": "LEG 3: Warriors vs Opponent Under 218.5 (-105)",
+            "odds": 1.95,
+            "reasoning_points": [
+              "Both teams rank bottom-5 in pace, average combined 208 points in last 6 meetings",
+              "Weather conditions: 25mph winds affecting outdoor arena ventilation",
+              "Both teams shoot poorly on road (sub-33% from three combined)",
+              "Total opened at 221, moved down to 218.5 on sharp under action"
+            ]
+          }
+        ],
+        "total_odds": 5.98,
+        "risk_assessment": "Low risk - All legs backed by strong fundamentals",
+        "value_assessment": "Strong value with multiple confirming factors"
+      },
+      "outcome": "win",
+      "confidence_score": 0.9,
+      "success_metrics": {
+        "success_score": 2.204166666666667,
+        "rank": 8,
+        "total_odds": 5.65,
+        "legs_count": 2,
+        "outcome": "win",
+        "confidence_label": "high_confidence"
+      }
+    },
+    {
+      "example_id": "few_shot_09",
+      "input_data": {
+        "available_games": [
+          {
+            "selection": "Celtics Moneyline (-180)",
+            "market_type": "moneyline",
+            "team": "Celtics",
+            "factors": [
+              "Celtics are 12-2 at home this season with dominant defense",
+              "Opponent missing their starting point guard and shooting guard",
+              "Vegas opened at -165, moved to -180 despite balanced public money indicating sharp action"
+            ]
+          },
+          {
+            "selection": "Pacers -4.5 (-110)",
+            "market_type": "spread",
+            "team": "Pacers",
+            "factors": [
+              "Pacers are 18-6 ATS as favorites this season",
+              "Opponent playing back-to-back after overtime game last night",
+              "Jayson Tatum confirmed healthy after questionable tag, team at full strength"
+            ]
+          },
+          {
+            "selection": "Warriors vs Opponent Under 218.5 (-105)",
+            "market_type": "totals",
+            "team": "Warriors",
+            "factors": [
+              "Weather conditions: 25mph winds affecting outdoor arena ventilation",
+              "Both teams shoot poorly on road (sub-33% from three combined)",
+              "Total opened at 221, moved down to 218.5 on sharp under action"
+            ]
+          }
+        ],
+        "market_conditions": {},
+        "injury_intel": [],
+        "line_movements": [
+          "Line movement from -3.5 to -4.5 shows sharp money backing Pacers"
+        ],
+        "statistical_insights": [
+          "Celtics have won 8 straight games by average margin of 14 points",
+          "Both teams rank bottom-5 in pace, average combined 208 points in last 6 meetings"
+        ]
+      },
+      "reasoning": "PARLAY ANALYSIS (3 legs):\n\nLEG 1: Celtics Moneyline (-180)\nOdds: 1.56 at DraftKings\n• Celtics are 12-2 at home this season with dominant defense\n• Opponent missing their starting point guard and shooting guard\n• Celtics have won 8 straight games by average margin of 14 points\n• Vegas opened at -165, moved to -180 despite balanced public money indicating sharp action\n\nLEG 2: Pacers -4.5 (-110)\nOdds: 1.91 at FanDuel\n• Pacers are 18-6 ATS as favorites this season\n• Opponent playing back-to-back after overtime game last night\n• Jayson Tatum confirmed healthy after questionable tag, team at full strength\n• Line movement from -3.5 to -4.5 shows sharp money backing Pacers\n\nLEG 3: Warriors vs Opponent Under 218.5 (-105)\nOdds: 1.95 at BetMGM\n• Both teams rank bottom-5 in pace, average combined 208 points in last 6 meetings\n• Weather conditions: 25mph winds affecting outdoor arena ventilation\n• Both teams shoot poorly on road (sub-33% from three combined)\n• Total opened at 221, moved down to 218.5 on sharp under action\n\nOVERALL ASSESSMENT:\nCombined odds: 5.98\nRisk assessment: Low risk - All legs backed by strong fundamentals\nValue assessment: Strong value with multiple confirming factors\nConfidence factors: Injury advantages, sharp money alignment, statistical edges all favorable",
+      "generated_parlay": {
+        "legs": [
+          {
+            "description": "LEG 1: Celtics Moneyline (-180)",
+            "odds": 1.56,
+            "reasoning_points": [
+              "Celtics are 12-2 at home this season with dominant defense",
+              "Opponent missing their starting point guard and shooting guard",
+              "Celtics have won 8 straight games by average margin of 14 points",
+              "Vegas opened at -165, moved to -180 despite balanced public money indicating sharp action"
+            ]
+          },
+          {
+            "description": "LEG 2: Pacers -4.5 (-110)",
+            "odds": 1.91,
+            "reasoning_points": [
+              "Pacers are 18-6 ATS as favorites this season",
+              "Opponent playing back-to-back after overtime game last night",
+              "Jayson Tatum confirmed healthy after questionable tag, team at full strength",
+              "Line movement from -3.5 to -4.5 shows sharp money backing Pacers"
+            ]
+          },
+          {
+            "description": "LEG 3: Warriors vs Opponent Under 218.5 (-105)",
+            "odds": 1.95,
+            "reasoning_points": [
+              "Both teams rank bottom-5 in pace, average combined 208 points in last 6 meetings",
+              "Weather conditions: 25mph winds affecting outdoor arena ventilation",
+              "Both teams shoot poorly on road (sub-33% from three combined)",
+              "Total opened at 221, moved down to 218.5 on sharp under action"
+            ]
+          }
+        ],
+        "total_odds": 5.98,
+        "risk_assessment": "Low risk - All legs backed by strong fundamentals",
+        "value_assessment": "Strong value with multiple confirming factors"
+      },
+      "outcome": "win",
+      "confidence_score": 0.9,
+      "success_metrics": {
+        "success_score": 2.1966666666666668,
+        "rank": 9,
+        "total_odds": 5.56,
+        "legs_count": 3,
+        "outcome": "win",
+        "confidence_label": "high_confidence"
+      }
+    },
+    {
+      "example_id": "few_shot_10",
+      "input_data": {
+        "available_games": [
+          {
+            "selection": "Pistons Moneyline (-180)",
+            "market_type": "moneyline",
+            "team": "Pistons",
+            "factors": [
+              "Pistons are 12-2 at home this season with dominant defense",
+              "Opponent missing their starting point guard and shooting guard",
+              "Vegas opened at -165, moved to -180 despite balanced public money indicating sharp action"
+            ]
+          },
+          {
+            "selection": "Thunder -4.5 (-110)",
+            "market_type": "spread",
+            "team": "Thunder",
+            "factors": [
+              "Thunder are 18-6 ATS as favorites this season",
+              "Opponent playing back-to-back after overtime game last night",
+              "Joel Embiid confirmed healthy after questionable tag, team at full strength"
+            ]
+          },
+          {
+            "selection": "Bucks vs Opponent Under 218.5 (-105)",
+            "market_type": "totals",
+            "team": "Bucks",
+            "factors": [
+              "Weather conditions: 25mph winds affecting outdoor arena ventilation",
+              "Both teams shoot poorly on road (sub-33% from three combined)",
+              "Total opened at 221, moved down to 218.5 on sharp under action"
+            ]
+          }
+        ],
+        "market_conditions": {},
+        "injury_intel": [],
+        "line_movements": [
+          "Line movement from -3.5 to -4.5 shows sharp money backing Thunder"
+        ],
+        "statistical_insights": [
+          "Pistons have won 8 straight games by average margin of 14 points",
+          "Both teams rank bottom-5 in pace, average combined 208 points in last 6 meetings"
+        ]
+      },
+      "reasoning": "PARLAY ANALYSIS (3 legs):\n\nLEG 1: Pistons Moneyline (-180)\nOdds: 1.56 at DraftKings\n• Pistons are 12-2 at home this season with dominant defense\n• Opponent missing their starting point guard and shooting guard\n• Pistons have won 8 straight games by average margin of 14 points\n• Vegas opened at -165, moved to -180 despite balanced public money indicating sharp action\n\nLEG 2: Thunder -4.5 (-110)\nOdds: 1.91 at FanDuel\n• Thunder are 18-6 ATS as favorites this season\n• Opponent playing back-to-back after overtime game last night\n• Joel Embiid confirmed healthy after questionable tag, team at full strength\n• Line movement from -3.5 to -4.5 shows sharp money backing Thunder\n\nLEG 3: Bucks vs Opponent Under 218.5 (-105)\nOdds: 1.95 at BetMGM\n• Both teams rank bottom-5 in pace, average combined 208 points in last 6 meetings\n• Weather conditions: 25mph winds affecting outdoor arena ventilation\n• Both teams shoot poorly on road (sub-33% from three combined)\n• Total opened at 221, moved down to 218.5 on sharp under action\n\nOVERALL ASSESSMENT:\nCombined odds: 5.98\nRisk assessment: Low risk - All legs backed by strong fundamentals\nValue assessment: Strong value with multiple confirming factors\nConfidence factors: Injury advantages, sharp money alignment, statistical edges all favorable",
+      "generated_parlay": {
+        "legs": [
+          {
+            "description": "LEG 1: Pistons Moneyline (-180)",
+            "odds": 1.56,
+            "reasoning_points": [
+              "Pistons are 12-2 at home this season with dominant defense",
+              "Opponent missing their starting point guard and shooting guard",
+              "Pistons have won 8 straight games by average margin of 14 points",
+              "Vegas opened at -165, moved to -180 despite balanced public money indicating sharp action"
+            ]
+          },
+          {
+            "description": "LEG 2: Thunder -4.5 (-110)",
+            "odds": 1.91,
+            "reasoning_points": [
+              "Thunder are 18-6 ATS as favorites this season",
+              "Opponent playing back-to-back after overtime game last night",
+              "Joel Embiid confirmed healthy after questionable tag, team at full strength",
+              "Line movement from -3.5 to -4.5 shows sharp money backing Thunder"
+            ]
+          },
+          {
+            "description": "LEG 3: Bucks vs Opponent Under 218.5 (-105)",
+            "odds": 1.95,
+            "reasoning_points": [
+              "Both teams rank bottom-5 in pace, average combined 208 points in last 6 meetings",
+              "Weather conditions: 25mph winds affecting outdoor arena ventilation",
+              "Both teams shoot poorly on road (sub-33% from three combined)",
+              "Total opened at 221, moved down to 218.5 on sharp under action"
+            ]
+          }
+        ],
+        "total_odds": 5.98,
+        "risk_assessment": "Low risk - All legs backed by strong fundamentals",
+        "value_assessment": "Strong value with multiple confirming factors"
+      },
+      "outcome": "win",
+      "confidence_score": 0.9,
+      "success_metrics": {
+        "success_score": 2.19,
+        "rank": 10,
+        "total_odds": 5.48,
+        "legs_count": 2,
+        "outcome": "win",
+        "confidence_label": "high_confidence"
+      }
+    }
+  ],
+  "prompt_template": "=== HIGH-CONFIDENCE SUCCESSFUL PARLAY EXAMPLES ===\nThe following are examples of successful high-confidence parlays with detailed reasoning:\n\nEXAMPLE 1 (Success Score: 2.23):\nInput Context:\n- Line Movement: 1 movements detected\n- Statistical Insights: 2 trends found\n\nGenerated Reasoning:\nPARLAY ANALYSIS (3 legs):\n\nLEG 1: Bucks Moneyline (-180)\nOdds: 1.56 at DraftKings\n• Bucks are 12-2 at home this season with dominant defense\n• Opponent missing their starting point guard and shooting guard\n• Bucks have won 8 straight games by average margin of 14 points\n• Vegas opened at -165, moved to -180 despite balanced public money indicating sharp action\n\nLEG 2: Celtics -4.5 (-110)\nOdds: 1.91 at FanDuel\n• Celtics are 18-6 ATS as favorites this season\n• Opponent playing back-to-back after overtime game last night\n• Jimmy Butler confirmed healthy after questionable tag, team at full strength\n• Line movement from -3.5 to -4.5 shows sharp money backing Celtics\n\nLEG 3: Nuggets vs Opponent Under 218.5 (-105)\nOdds: 1.95 at BetMGM\n• Both teams rank bottom-5 in pace, average combined 208 points in last 6 meetings\n• Weather conditions: 25mph winds affecting outdoor arena ventilation\n• Both teams shoot poorly on road (sub-33% from three combined)\n• Total opened at 221, moved down to 218.5 on sharp under action\n\nOVERALL ASSESSMENT:\nCombined odds: 5.98\nRisk assessment: Low risk - All legs backed by strong fundamentals\nValue assessment: Strong value with multiple confirming factors\nConfidence factors: Injury advantages, sharp money alignment, statistical edges all favorable\n\nOutcome: WIN (Confidence: 0.90)\nParlay Details: 2 legs, 5.98 total odds\n\n--------------------------------------------------------------------------------\n\nEXAMPLE 2 (Success Score: 2.22):\nInput Context:\n- Line Movement: 1 movements detected\n- Statistical Insights: 2 trends found\n\nGenerated Reasoning:\nPARLAY ANALYSIS (3 legs):\n\nLEG 1: Suns Moneyline (-180)\nOdds: 1.56 at DraftKings\n• Suns are 12-2 at home this season with dominant defense\n• Opponent missing their starting point guard and shooting guard\n• Suns have won 8 straight games by average margin of 14 points\n• Vegas opened at -165, moved to -180 despite balanced public money indicating sharp action\n\nLEG 2: Warriors -4.5 (-110)\nOdds: 1.91 at FanDuel\n• Warriors are 18-6 ATS as favorites this season\n• Opponent playing back-to-back after overtime game last night\n• Joel Embiid confirmed healthy after questionable tag, team at full strength\n• Line movement from -3.5 to -4.5 shows sharp money backing Warriors\n\nLEG 3: Celtics vs Opponent Under 218.5 (-105)\nOdds: 1.95 at BetMGM\n• Both teams rank bottom-5 in pace, average combined 208 points in last 6 meetings\n• Weather conditions: 25mph winds affecting outdoor arena ventilation\n• Both teams shoot poorly on road (sub-33% from three combined)\n• Total opened at 221, moved down to 218.5 on sharp under action\n\nOVERALL ASSESSMENT:\nCombined odds: 5.98\nRisk assessment: Low risk - All legs backed by strong fundamentals\nValue assessment: Strong value with multiple confirming factors\nConfidence factors: Injury advantages, sharp money alignment, statistical edges all favorable\n\nOutcome: WIN (Confidence: 0.90)\nParlay Details: 3 legs, 5.89 total odds\n\n--------------------------------------------------------------------------------\n\nEXAMPLE 3 (Success Score: 2.21):\nInput Context:\n- Line Movement: 1 movements detected\n- Statistical Insights: 2 trends found\n\nGenerated Reasoning:\nPARLAY ANALYSIS (3 legs):\n\nLEG 1: Jazz Moneyline (-180)\nOdds: 1.56 at DraftKings\n• Jazz are 12-2 at home this season with dominant defense\n• Opponent missing their starting point guard and shooting guard\n• Jazz have won 8 straight games by average margin of 14 points\n• Vegas opened at -165, moved to -180 despite balanced public money indicating sharp action\n\nLEG 2: Nuggets -4.5 (-110)\nOdds: 1.91 at FanDuel\n• Nuggets are 18-6 ATS as favorites this season\n• Opponent playing back-to-back after overtime game last night\n• Nikola Jokic confirmed healthy after questionable tag, team at full strength\n• Line movement from -3.5 to -4.5 shows sharp money backing Nuggets\n\nLEG 3: Kings vs Opponent Under 218.5 (-105)\nOdds: 1.95 at BetMGM\n• Both teams rank bottom-5 in pace, average combined 208 points in last 6 meetings\n• Weather conditions: 25mph winds affecting outdoor arena ventilation\n• Both teams shoot poorly on road (sub-33% from three combined)\n• Total opened at 221, moved down to 218.5 on sharp under action\n\nOVERALL ASSESSMENT:\nCombined odds: 5.98\nRisk assessment: Low risk - All legs backed by strong fundamentals\nValue assessment: Strong value with multiple confirming factors\nConfidence factors: Injury advantages, sharp money alignment, statistical edges all favorable\n\nOutcome: WIN (Confidence: 0.90)\nParlay Details: 2 legs, 5.76 total odds\n\n--------------------------------------------------------------------------------\n\nEXAMPLE 4 (Success Score: 2.21):\nInput Context:\n- Line Movement: 1 movements detected\n- Statistical Insights: 2 trends found\n\nGenerated Reasoning:\nPARLAY ANALYSIS (3 legs):\n\nLEG 1: Magic Moneyline (-180)\nOdds: 1.56 at DraftKings\n• Magic are 12-2 at home this season with dominant defense\n• Opponent missing their starting point guard and shooting guard\n• Magic have won 8 straight games by average margin of 14 points\n• Vegas opened at -165, moved to -180 despite balanced public money indicating sharp action\n\nLEG 2: Raptors -4.5 (-110)\nOdds: 1.91 at FanDuel\n• Raptors are 18-6 ATS as favorites this season\n• Opponent playing back-to-back after overtime game last night\n• Damian Lillard confirmed healthy after questionable tag, team at full strength\n• Line movement from -3.5 to -4.5 shows sharp money backing Raptors\n\nLEG 3: Bucks vs Opponent Under 218.5 (-105)\nOdds: 1.95 at BetMGM\n• Both teams rank bottom-5 in pace, average combined 208 points in last 6 meetings\n• Weather conditions: 25mph winds affecting outdoor arena ventilation\n• Both teams shoot poorly on road (sub-33% from three combined)\n• Total opened at 221, moved down to 218.5 on sharp under action\n\nOVERALL ASSESSMENT:\nCombined odds: 5.98\nRisk assessment: Low risk - All legs backed by strong fundamentals\nValue assessment: Strong value with multiple confirming factors\nConfidence factors: Injury advantages, sharp money alignment, statistical edges all favorable\n\nOutcome: WIN (Confidence: 0.90)\nParlay Details: 4 legs, 5.75 total odds\n\n--------------------------------------------------------------------------------\n\nEXAMPLE 5 (Success Score: 2.21):\nInput Context:\n- Line Movement: 1 movements detected\n- Statistical Insights: 2 trends found\n\nGenerated Reasoning:\nPARLAY ANALYSIS (3 legs):\n\nLEG 1: Celtics Moneyline (-180)\nOdds: 1.56 at DraftKings\n• Celtics are 12-2 at home this season with dominant defense\n• Opponent missing their starting point guard and shooting guard\n• Celtics have won 8 straight games by average margin of 14 points\n• Vegas opened at -165, moved to -180 despite balanced public money indicating sharp action\n\nLEG 2: Hawks -4.5 (-110)\nOdds: 1.91 at FanDuel\n• Hawks are 18-6 ATS as favorites this season\n• Opponent playing back-to-back after overtime game last night\n• Trae Young confirmed healthy after questionable tag, team at full strength\n• Line movement from -3.5 to -4.5 shows sharp money backing Hawks\n\nLEG 3: Timberwolves vs Opponent Under 218.5 (-105)\nOdds: 1.95 at BetMGM\n• Both teams rank bottom-5 in pace, average combined 208 points in last 6 meetings\n• Weather conditions: 25mph winds affecting outdoor arena ventilation\n• Both teams shoot poorly on road (sub-33% from three combined)\n• Total opened at 221, moved down to 218.5 on sharp under action\n\nOVERALL ASSESSMENT:\nCombined odds: 5.98\nRisk assessment: Low risk - All legs backed by strong fundamentals\nValue assessment: Strong value with multiple confirming factors\nConfidence factors: Injury advantages, sharp money alignment, statistical edges all favorable\n\nOutcome: WIN (Confidence: 0.90)\nParlay Details: 4 legs, 5.75 total odds\n\n--------------------------------------------------------------------------------\n\nGUIDANCE FOR NEW PARLAYS:\n- Focus on statistical edges and sharp money movements\n- Prefer 2-4 leg parlays with odds between 2.0-8.0\n- Weight injury advantages and line movement heavily\n- Avoid public money traps and high-risk scenarios\n- Generate detailed reasoning with specific factors\n"
+}
