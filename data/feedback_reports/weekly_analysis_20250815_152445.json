@@ -1,0 +1,15 @@
+{
+  "analysis_period": "Last 30 days",
+  "total_bets": 0,
+  "overall_win_rate": 0.0,
+  "confidence_calibration": {},
+  "flagged_patterns": [],
+  "successful_patterns": [],
+  "few_shot_candidates": [],
+  "retraining_recommendation": false,
+  "retraining_data_size": 0,
+  "improvement_suggestions": [
+    "No bet data available for analysis"
+  ],
+  "timestamp": "2025-08-15T19:24:45.973288+00:00"
+}
