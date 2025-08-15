@@ -23,6 +23,9 @@ import json
 
 from tools.odds_fetcher_tool import OddsFetcherTool, GameOdds, BookOdds, Selection
 
+# Import parlay rules engine (JIRA-022)
+from tools.parlay_rules import ParlayRulesEngine, ValidationResult as RulesValidationResult
+
 # Import correlation model (optional dependency)
 try:
     from tools.correlation_model import DynamicCorrelationModel, BetNode
@@ -105,6 +108,8 @@ class ParlayValidation:
     market_snapshot_games: int
     correlation_warnings: List[str] = field(default_factory=list)  # Added for JIRA-022A
     max_correlation_score: Optional[float] = None  # Added for JIRA-022A
+    rules_validation: Optional[RulesValidationResult] = None  # Added for JIRA-022
+    correlation_tax_multiplier: float = 1.0  # Added for JIRA-022
     
     def success_rate(self) -> float:
         """Calculate percentage of legs that passed validation."""
@@ -132,7 +137,8 @@ class ParlayBuilder:
     
     def __init__(self, sport_key: str = "basketball_nba", 
                  correlation_threshold: float = 0.7,
-                 db_path: str = "data/parlays.sqlite"):
+                 db_path: str = "data/parlays.sqlite",
+                 default_sportsbook: str = "DRAFTKINGS"):
         """
         Initialize ParlayBuilder.
         
@@ -140,12 +146,18 @@ class ParlayBuilder:
             sport_key: Sport to fetch odds for (default: basketball_nba)
             correlation_threshold: Threshold for flagging correlated legs (default: 0.7)
             db_path: Path to SQLite database for correlation model training
+            default_sportsbook: Default sportsbook for rules validation (default: DRAFTKINGS)
         """
         self.sport_key = sport_key
         self.correlation_threshold = correlation_threshold
+        self.default_sportsbook = default_sportsbook
         self.odds_fetcher = OddsFetcherTool()
         self._current_market_snapshot: Optional[List[GameOdds]] = None
         self._snapshot_timestamp: Optional[str] = None
+        
+        # Initialize parlay rules engine (JIRA-022)
+        self.rules_engine = ParlayRulesEngine(correlation_threshold=correlation_threshold)
+        logger.info("Parlay rules engine initialized for compatibility validation")
         
         # Initialize correlation model (JIRA-022A)
         self.correlation_model = None
@@ -395,14 +407,16 @@ class ParlayBuilder:
     
     def validate_parlay_legs(self, potential_legs: List[ParlayLeg], 
                            regions: str = "us",
-                           markets: Optional[List[str]] = None) -> ParlayValidation:
+                           markets: Optional[List[str]] = None,
+                           sportsbook: Optional[str] = None) -> ParlayValidation:
         """
-        Validate parlay legs against current market availability.
+        Validate parlay legs against current market availability and compatibility rules.
         
         Args:
             potential_legs: List of potential parlay legs to validate
             regions: Regions to fetch odds for
             markets: Markets to include in validation
+            sportsbook: Target sportsbook for rules validation (uses default if None)
             
         Returns:
             ParlayValidation with results
@@ -413,9 +427,30 @@ class ParlayBuilder:
         if not potential_legs:
             raise ParlayBuilderError("No potential legs provided for validation")
         
-        logger.info(f"Validating {len(potential_legs)} potential parlay legs")
+        if sportsbook is None:
+            sportsbook = self.default_sportsbook
         
-        # Check for correlations first (JIRA-022A)
+        logger.info(f"Validating {len(potential_legs)} potential parlay legs for {sportsbook}")
+        
+        # First, validate against parlay rules (JIRA-022)
+        leg_dicts = [leg.to_dict() for leg in potential_legs]
+        rules_validation = self.rules_engine.validate_parlay(leg_dicts, sportsbook)
+        
+        # If rules validation fails with hard blocks, return early
+        if not rules_validation.is_valid:
+            logger.warning(f"Parlay rejected due to rule violations: {rules_validation.get_rejection_reason()}")
+            return ParlayValidation(
+                original_legs=potential_legs,
+                valid_legs=[],
+                invalid_legs=[],
+                total_odds=0.0,
+                validation_timestamp=datetime.now(timezone.utc).isoformat(),
+                market_snapshot_games=0,
+                rules_validation=rules_validation,
+                correlation_tax_multiplier=rules_validation.correlation_tax_multiplier
+            )
+        
+        # Check for correlations (JIRA-022A)
         correlation_warnings, max_correlation = self._check_correlations(potential_legs)
         
         # Fetch fresh market data
@@ -462,7 +497,9 @@ class ParlayBuilder:
             validation_timestamp=self._snapshot_timestamp or datetime.now(timezone.utc).isoformat(),
             market_snapshot_games=len(current_games),
             correlation_warnings=correlation_warnings,  # Added for JIRA-022A
-            max_correlation_score=max_correlation  # Added for JIRA-022A
+            max_correlation_score=max_correlation,  # Added for JIRA-022A
+            rules_validation=rules_validation,  # Added for JIRA-022
+            correlation_tax_multiplier=rules_validation.correlation_tax_multiplier  # Added for JIRA-022
         )
         
         logger.info(f"Validation complete: {len(valid_legs)}/{len(potential_legs)} legs valid "
@@ -533,7 +570,8 @@ class ParlayBuilder:
     def build_validated_parlay(self, potential_legs: List[ParlayLeg],
                              min_legs: int = 2,
                              regions: str = "us",
-                             markets: Optional[List[str]] = None) -> Optional[ParlayValidation]:
+                             markets: Optional[List[str]] = None,
+                             sportsbook: Optional[str] = None) -> Optional[ParlayValidation]:
         """
         Build a validated parlay from potential legs.
         
@@ -542,11 +580,12 @@ class ParlayBuilder:
             min_legs: Minimum number of legs required for viable parlay
             regions: Regions to fetch odds for
             markets: Markets to include
+            sportsbook: Target sportsbook for rules validation
             
         Returns:
             ParlayValidation if viable parlay can be built, None otherwise
         """
-        validation = self.validate_parlay_legs(potential_legs, regions, markets)
+        validation = self.validate_parlay_legs(potential_legs, regions, markets, sportsbook)
         
         if validation.is_viable(min_legs):
             logger.info(f"Built viable parlay: {len(validation.valid_legs)} legs, "
@@ -556,6 +595,28 @@ class ParlayBuilder:
             logger.warning(f"Unable to build viable parlay: only {len(validation.valid_legs)} "
                           f"valid legs (minimum {min_legs} required)")
             return None
+    
+    def is_parlay_valid(self, potential_legs: List[ParlayLeg], 
+                       sportsbook: Optional[str] = None) -> Tuple[bool, str]:
+        """
+        Quick validation check using the static rules engine only.
+        
+        This method provides fast parlay validation against compatibility rules
+        without fetching live market data. Use this for rapid pre-filtering
+        before performing full validation.
+        
+        Args:
+            potential_legs: List of potential parlay legs
+            sportsbook: Target sportsbook for rules validation
+            
+        Returns:
+            Tuple of (is_valid, rejection_reason)
+        """
+        if sportsbook is None:
+            sportsbook = self.default_sportsbook
+        
+        leg_dicts = [leg.to_dict() for leg in potential_legs]
+        return self.rules_engine.is_parlay_valid(leg_dicts, sportsbook)
     
     def get_market_summary(self) -> Dict[str, Any]:
         """
@@ -667,16 +728,46 @@ def main():
         for i, leg in enumerate(sample_legs, 1):
             print(f"  {i}. {leg.selection_name} ({leg.market_type}) @ {leg.odds_decimal} - {leg.bookmaker}")
         
+        # Test quick validation (rules only)
+        print(f"\n🚫 Testing Quick Rules Validation:")
         try:
-            validation = builder.validate_parlay_legs(sample_legs)
+            valid, reason = builder.is_parlay_valid(sample_legs, "DRAFTKINGS")
+            print(f"DraftKings Rules Check: {'✅ VALID' if valid else '❌ INVALID'}")
+            if not valid:
+                print(f"  Reason: {reason}")
             
-            print(f"\n✅ Validation Results:")
+            valid, reason = builder.is_parlay_valid(sample_legs, "ESPN_BET")
+            print(f"ESPN Bet Rules Check: {'✅ VALID' if valid else '❌ INVALID'}")
+            if not valid:
+                print(f"  Reason: {reason}")
+        except Exception as e:
+            print(f"⚠️ Rules validation failed: {e}")
+        
+        # Test full validation (rules + market data)
+        try:
+            validation = builder.validate_parlay_legs(sample_legs, sportsbook="DRAFTKINGS")
+            
+            print(f"\n✅ Full Validation Results:")
             print(f"Original Legs: {len(validation.original_legs)}")
             print(f"Valid Legs: {len(validation.valid_legs)}")
             print(f"Invalid Legs: {len(validation.invalid_legs)}")
             print(f"Success Rate: {validation.success_rate():.1f}%")
             print(f"Total Odds: {validation.total_odds:.2f}")
+            print(f"Correlation Tax: {validation.correlation_tax_multiplier:.2f}x")
             print(f"Viable Parlay: {'Yes' if validation.is_viable() else 'No'}")
+            
+            # Show rules validation results
+            if validation.rules_validation:
+                rules = validation.rules_validation
+                print(f"\n🚫 Rules Validation:")
+                print(f"  Rules Valid: {'Yes' if rules.is_valid else 'No'}")
+                print(f"  Violations: {len(rules.violations)}")
+                print(f"  Warnings: {len(rules.warnings)}")
+                
+                if rules.violations:
+                    print(f"  Rule Violations:")
+                    for violation in rules.violations[:3]:  # Show first 3
+                        print(f"    • {violation.severity.value.upper()}: {violation.description}")
             
             if validation.invalid_legs:
                 print(f"\n❌ Invalid Legs:")
@@ -690,12 +781,16 @@ def main():
             print("💡 Expected during off-season when no games are available")
         
         print(f"\n🎯 ParlayBuilder Implementation Complete!")
-        print(f"✅ JIRA-021 requirements fulfilled:")
+        print(f"✅ JIRA-021 & JIRA-022 requirements fulfilled:")
         print(f"  • Fetches fresh market snapshots from OddsFetcherTool")
         print(f"  • Validates legs against current availability")
         print(f"  • Filters out suspended/unavailable markets")
         print(f"  • Provides detailed validation results")
         print(f"  • Handles both active season and off-season scenarios")
+        print(f"  • Enforces parlay compatibility rules (JIRA-022)")
+        print(f"  • Blocks mutually exclusive and correlated combinations")
+        print(f"  • Applies sportsbook-specific restrictions")
+        print(f"  • Calculates correlation tax for risk assessment")
         
     except KeyboardInterrupt:
         print(f"\n⏹️ Test interrupted by user")
