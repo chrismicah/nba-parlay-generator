@@ -23,6 +23,14 @@ import json
 
 from tools.odds_fetcher_tool import OddsFetcherTool, GameOdds, BookOdds, Selection
 
+# Import correlation model (optional dependency)
+try:
+    from tools.correlation_model import DynamicCorrelationModel, BetNode
+    HAS_CORRELATION_MODEL = True
+except ImportError:
+    HAS_CORRELATION_MODEL = False
+    logger.warning("Correlation model not available. Install PyTorch Geometric for correlation detection.")
+
 # Set up logging
 logger = logging.getLogger(__name__)
 
@@ -83,6 +91,7 @@ class ValidationResult:
     current_odds: Optional[float] = None
     current_line: Optional[float] = None
     alternative_bookmakers: List[str] = field(default_factory=list)
+    correlation_score: Optional[float] = None  # Added for JIRA-022A
 
 
 @dataclass
@@ -94,6 +103,8 @@ class ParlayValidation:
     total_odds: float
     validation_timestamp: str
     market_snapshot_games: int
+    correlation_warnings: List[str] = field(default_factory=list)  # Added for JIRA-022A
+    max_correlation_score: Optional[float] = None  # Added for JIRA-022A
     
     def success_rate(self) -> float:
         """Calculate percentage of legs that passed validation."""
@@ -119,17 +130,32 @@ class ParlayBuilder:
     markets by fetching fresh odds data and filtering out suspended or unavailable bets.
     """
     
-    def __init__(self, sport_key: str = "basketball_nba"):
+    def __init__(self, sport_key: str = "basketball_nba", 
+                 correlation_threshold: float = 0.7,
+                 db_path: str = "data/parlays.sqlite"):
         """
         Initialize ParlayBuilder.
         
         Args:
             sport_key: Sport to fetch odds for (default: basketball_nba)
+            correlation_threshold: Threshold for flagging correlated legs (default: 0.7)
+            db_path: Path to SQLite database for correlation model training
         """
         self.sport_key = sport_key
+        self.correlation_threshold = correlation_threshold
         self.odds_fetcher = OddsFetcherTool()
         self._current_market_snapshot: Optional[List[GameOdds]] = None
         self._snapshot_timestamp: Optional[str] = None
+        
+        # Initialize correlation model (JIRA-022A)
+        self.correlation_model = None
+        if HAS_CORRELATION_MODEL:
+            try:
+                self.correlation_model = DynamicCorrelationModel(db_path)
+                self.correlation_model.load_model()  # Try to load existing model
+                logger.info("Correlation model initialized for dynamic correlation detection")
+            except Exception as e:
+                logger.warning(f"Failed to initialize correlation model: {e}")
         
         logger.info(f"ParlayBuilder initialized for sport: {sport_key}")
     
@@ -253,6 +279,120 @@ class ParlayBuilder:
         
         return alternatives
     
+    def _convert_leg_to_bet_node(self, leg: ParlayLeg) -> 'BetNode':
+        """Convert ParlayLeg to BetNode for correlation analysis."""
+        if not HAS_CORRELATION_MODEL:
+            return None
+        
+        # Extract team from selection name (simplified)
+        team = None
+        selection_lower = leg.selection_name.lower()
+        nba_teams = [
+            'lakers', 'celtics', 'warriors', 'nets', 'heat', 'bulls', 'knicks',
+            'clippers', 'nuggets', 'suns', 'mavericks', 'rockets', 'spurs',
+            'thunder', 'jazz', 'blazers', 'kings', 'timberwolves', 'pelicans',
+            'magic', 'hawks', 'hornets', 'pistons', 'pacers', 'cavaliers',
+            'raptors', 'wizards', 'bucks', '76ers', 'grizzlies'
+        ]
+        
+        for nba_team in nba_teams:
+            if nba_team in selection_lower:
+                team = nba_team.title()
+                break
+        
+        return BetNode(
+            bet_id=0,  # Placeholder
+            game_id=leg.game_id,
+            market_type=leg.market_type,
+            team=team,
+            player=None,  # Could be extracted from selection_name if needed
+            line_value=leg.line,
+            odds=leg.odds_decimal,
+            outcome=None  # Unknown for potential legs
+        )
+    
+    def _check_correlations(self, potential_legs: List[ParlayLeg]) -> Tuple[List[str], float]:
+        """
+        Check for correlations between potential parlay legs.
+        
+        Args:
+            potential_legs: List of potential parlay legs
+            
+        Returns:
+            Tuple of (correlation_warnings, max_correlation_score)
+        """
+        warnings = []
+        max_correlation = 0.0
+        
+        if not self.correlation_model or len(potential_legs) < 2:
+            return warnings, max_correlation
+        
+        # Convert legs to bet nodes
+        bet_nodes = []
+        for leg in potential_legs:
+            bet_node = self._convert_leg_to_bet_node(leg)
+            if bet_node:
+                bet_nodes.append((leg, bet_node))
+        
+        # Check pairwise correlations
+        for i, (leg1, node1) in enumerate(bet_nodes):
+            for leg2, node2 in bet_nodes[i+1:]:
+                try:
+                    if self.correlation_model:
+                        # Get feature vectors
+                        features1 = node1.to_feature_vector()
+                        features2 = node2.to_feature_vector()
+                        
+                        # Predict correlation
+                        correlation_score = self.correlation_model.predict_correlation(
+                            features1, features2
+                        )
+                        
+                        # Boost correlation for same-game legs (rule-based enhancement)
+                        if leg1.game_id == leg2.game_id:
+                            correlation_score = max(correlation_score, 0.8)  # Same game = high correlation
+                    else:
+                        # Simple rule-based correlation when no model available
+                        correlation_score = self._simple_correlation_check(leg1, leg2)
+                    
+                    max_correlation = max(max_correlation, correlation_score)
+                    
+                    # Flag high correlations
+                    if correlation_score > self.correlation_threshold:
+                        warning = (f"High correlation detected ({correlation_score:.3f}) between "
+                                 f"{leg1.selection_name} and {leg2.selection_name}")
+                        warnings.append(warning)
+                        logger.warning(warning)
+                    
+                except Exception as e:
+                    logger.debug(f"Correlation check failed for {leg1.selection_name} vs {leg2.selection_name}: {e}")
+        
+        return warnings, max_correlation
+    
+    def _simple_correlation_check(self, leg1: ParlayLeg, leg2: ParlayLeg) -> float:
+        """Simple rule-based correlation check when no ML model is available."""
+        correlation_score = 0.0
+        
+        # Same game = high correlation
+        if leg1.game_id == leg2.game_id:
+            correlation_score = 0.85
+            
+            # Same team in same game = very high correlation
+            if (leg1.selection_name.lower() in leg2.selection_name.lower() or 
+                leg2.selection_name.lower() in leg1.selection_name.lower()):
+                correlation_score = 0.95
+        
+        # Same team different games = medium correlation
+        elif (leg1.selection_name.lower() in leg2.selection_name.lower() or 
+              leg2.selection_name.lower() in leg1.selection_name.lower()):
+            correlation_score = 0.4
+        
+        # Same market type = low correlation
+        elif leg1.market_type == leg2.market_type:
+            correlation_score = 0.2
+        
+        return correlation_score
+    
     def validate_parlay_legs(self, potential_legs: List[ParlayLeg], 
                            regions: str = "us",
                            markets: Optional[List[str]] = None) -> ParlayValidation:
@@ -274,6 +414,9 @@ class ParlayBuilder:
             raise ParlayBuilderError("No potential legs provided for validation")
         
         logger.info(f"Validating {len(potential_legs)} potential parlay legs")
+        
+        # Check for correlations first (JIRA-022A)
+        correlation_warnings, max_correlation = self._check_correlations(potential_legs)
         
         # Fetch fresh market data
         try:
@@ -317,7 +460,9 @@ class ParlayBuilder:
             invalid_legs=invalid_results,
             total_odds=total_odds,
             validation_timestamp=self._snapshot_timestamp or datetime.now(timezone.utc).isoformat(),
-            market_snapshot_games=len(current_games)
+            market_snapshot_games=len(current_games),
+            correlation_warnings=correlation_warnings,  # Added for JIRA-022A
+            max_correlation_score=max_correlation  # Added for JIRA-022A
         )
         
         logger.info(f"Validation complete: {len(valid_legs)}/{len(potential_legs)} legs valid "
