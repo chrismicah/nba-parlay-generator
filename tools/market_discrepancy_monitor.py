@@ -18,6 +18,14 @@ import queue
 
 from tools.market_discrepancy_detector import MarketDiscrepancyDetector, ArbitrageOpportunity, ValueOpportunity
 
+# Import final market verifier (JIRA-024)
+try:
+    from tools.final_market_verifier import FinalMarketVerifier, VerificationConfig, VerificationResult
+    HAS_FINAL_VERIFIER = True
+except ImportError:
+    HAS_FINAL_VERIFIER = False
+    logging.warning("FinalMarketVerifier not available - alerts will be sent without final verification")
+
 logger = logging.getLogger(__name__)
 
 
@@ -61,11 +69,19 @@ class MonitoringConfig:
     enabled_markets: List[str] = None
     priority_games: List[str] = None
     
+    # Final verification settings (JIRA-024)
+    enable_final_verification: bool = True
+    verification_config: Optional['VerificationConfig'] = None
+    
     def __post_init__(self):
         if self.enabled_markets is None:
             self.enabled_markets = ['h2h', 'spreads', 'totals']
         if self.priority_games is None:
             self.priority_games = []
+        if self.verification_config is None and HAS_FINAL_VERIFIER:
+            # Default verification config
+            from tools.final_market_verifier import VerificationConfig
+            self.verification_config = VerificationConfig()
 
 
 class MarketDiscrepancyMonitor:
@@ -95,6 +111,14 @@ class MarketDiscrepancyMonitor:
             min_value_edge=self.config.min_value_edge
         )
         
+        # Initialize final market verifier (JIRA-024)
+        self.final_verifier = None
+        if self.config.enable_final_verification and HAS_FINAL_VERIFIER:
+            self.final_verifier = FinalMarketVerifier(self.config.verification_config)
+            logger.info("Final market verification enabled")
+        else:
+            logger.warning("Final market verification disabled or unavailable")
+        
         # Monitoring state
         self.is_monitoring = False
         self.monitor_thread = None
@@ -109,6 +133,8 @@ class MarketDiscrepancyMonitor:
         # Statistics
         self.scan_count = 0
         self.total_alerts_generated = 0
+        self.alerts_verified = 0
+        self.alerts_cancelled_verification = 0
         self.start_time = None
         
         logger.info("MarketDiscrepancyMonitor initialized")
@@ -328,7 +354,45 @@ class MarketDiscrepancyMonitor:
                 logger.error(f"Error processing alert: {e}")
     
     def _send_alert(self, alert: Alert):
-        """Send alert to all registered handlers."""
+        """Send alert to all registered handlers with final verification (JIRA-024)."""
+        # Perform final market verification before dispatch
+        if self.final_verifier:
+            try:
+                verification_report = self.final_verifier.verify_alert_before_dispatch(alert)
+                self.alerts_verified += 1
+                
+                if not verification_report.should_dispatch_alert:
+                    # Cancel the alert
+                    self.alerts_cancelled_verification += 1
+                    logger.info(f"Alert {alert.alert_id} cancelled after verification: {verification_report.cancellation_reason}")
+                    
+                    # Remove from active alerts since it was cancelled
+                    if alert.alert_id in self.active_alerts:
+                        del self.active_alerts[alert.alert_id]
+                    
+                    # Log verification details
+                    logger.debug(f"Verification report for {alert.alert_id}: "
+                               f"Result={verification_report.verification_result.value}, "
+                               f"Max odds shift={verification_report.max_odds_shift}, "
+                               f"Unavailable markets={len(verification_report.unavailable_markets)}")
+                    
+                    return  # Don't send the alert
+                
+                # Alert passed verification, add verification info to alert message
+                alert.message += f" [Verified: {verification_report.verification_result.value}]"
+                
+                logger.info(f"Alert {alert.alert_id} passed final verification")
+                
+            except Exception as e:
+                logger.error(f"Final verification failed for alert {alert.alert_id}: {e}")
+                # Decide whether to send alert anyway or cancel it
+                if alert.priority in ['critical', 'high']:
+                    logger.warning(f"Sending {alert.priority} priority alert despite verification failure")
+                else:
+                    logger.info(f"Cancelling {alert.priority} priority alert due to verification failure")
+                    return
+        
+        # Send alert to all handlers
         for handler in self.alert_handlers:
             try:
                 handler(alert)
@@ -376,7 +440,7 @@ class MarketDiscrepancyMonitor:
         if self.start_time:
             uptime = (datetime.now(timezone.utc) - self.start_time).total_seconds()
         
-        return {
+        stats = {
             'is_monitoring': self.is_monitoring,
             'uptime_seconds': uptime,
             'scan_count': self.scan_count,
@@ -386,6 +450,21 @@ class MarketDiscrepancyMonitor:
             'detector_stats': self.detector.get_summary_stats(),
             'config': asdict(self.config)
         }
+        
+        # Add verification statistics (JIRA-024)
+        if self.final_verifier:
+            verification_stats = self.final_verifier.get_verification_stats()
+            stats.update({
+                'verification_enabled': True,
+                'alerts_verified': self.alerts_verified,
+                'alerts_cancelled_verification': self.alerts_cancelled_verification,
+                'verification_success_rate': verification_stats['success_rate'],
+                'verification_details': verification_stats
+            })
+        else:
+            stats['verification_enabled'] = False
+        
+        return stats
     
     def export_alerts(self, 
                      start_time: Optional[datetime] = None,
