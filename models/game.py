@@ -5,6 +5,7 @@ from datetime import datetime
 
 class CanonicalGameObject(BaseModel):
     game_id: str
+    sport: str = "nba"  # Default to NBA for backward compatibility
     home_team: str
     away_team: str
     game_time: datetime

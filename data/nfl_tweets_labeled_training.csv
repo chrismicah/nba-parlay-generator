@@ -1,0 +1,13 @@
+account,text,label,timestamp,sport,author_credibility,timestamp_weight
+AdamSchefter,Chiefs QB Patrick Mahomes out 2-3 weeks with ankle sprain sustained in practice,injury_news,2025-08-18 19:35:44,nfl,1.0,1.0
+RapSheet,"Packers RB Aaron Jones day-to-day with knee soreness, expected to play Sunday",injury_news,2025-08-18 16:35:44,nfl,1.0,1.0
+NFLInjuryNws,Bills WR Stefon Diggs ruled OUT for Week 10 with hamstring injury,injury_news,2025-08-18 13:35:44,nfl,0.8,1.0
+FantasyLabsNFL,"Bills starting lineup: Allen, Diggs, Singletary, Knox confirmed for Sunday",lineup_news,2025-08-18 09:35:44,nfl,0.8,1.0
+RotoWireNFL,Eagles start Hurts at QB with Barkley getting bulk of RB carries,lineup_news,2025-08-18 06:35:44,nfl,0.8,1.0
+RapSheet,"Cowboys expected to start Prescott, Elliott, Lamb in key divisional matchup",lineup_news,2025-08-18 03:35:44,nfl,1.0,1.0
+AdamSchefter,Cowboys defense has been exceptional despite Micah Parsons absence in recent games,general_commentary,2025-08-17 21:35:44,nfl,1.0,1.0
+RapSheet,49ers run game thriving with Deebo Samuel's versatility and Christian McCaffrey's return,general_commentary,2025-08-16 21:35:44,nfl,1.0,0.8
+NFLInjuryNws,Ravens offensive line showing remarkable improvement in pass protection metrics,general_commentary,2025-08-15 21:35:44,nfl,0.8,0.8
+FantasyLabsNFL,Join our $5K NFL DFS contest this weekend! Sign up with promo code TOUCHDOWN,irrelevant,2025-08-17 21:35:44,nfl,0.8,1.0
+RotoWireNFL,Check out our MLB playoff predictions and championship odds breakdown!,irrelevant,2025-08-16 21:35:44,nfl,0.8,0.8
+NFLInjuryNws,Follow us on Instagram for exclusive behind-the-scenes content @nflinjurynews,irrelevant,2025-08-14 21:35:44,nfl,0.8,0.8

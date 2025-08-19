@@ -1,0 +1,21 @@
+{
+  "model_type": "MultiSport BioBERT Injury Classifier",
+  "training_date": "2025-08-18T23:21:33.133070",
+  "overall_accuracy": 0.9195402298850575,
+  "confident_accuracy": 1.0,
+  "coverage": 0.12643678160919541,
+  "nfl_accuracy": 0.9195402298850575,
+  "nba_accuracy": "N/A",
+  "confidence_threshold": 0.8,
+  "features": [
+    "sport_context",
+    "author_credibility",
+    "timestamp_weight"
+  ],
+  "label_distribution": {
+    "day_to_day": 0,
+    "minor": 1,
+    "out_for_season": 2,
+    "unconfirmed": 3
+  }
+}

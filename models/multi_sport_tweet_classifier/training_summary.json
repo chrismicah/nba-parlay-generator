@@ -1,0 +1,15 @@
+{
+  "timestamp": "2025-08-18T22:41:51.000423",
+  "total_samples": 9738,
+  "training_samples": 7790,
+  "test_samples": 1948,
+  "accuracy": 0.8193018480492813,
+  "labels": [
+    "injury_news",
+    "lineup_news",
+    "general_commentary",
+    "irrelevant"
+  ],
+  "epochs": 1,
+  "batch_size": 4
+}

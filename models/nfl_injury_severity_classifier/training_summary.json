@@ -1,0 +1,15 @@
+{
+  "timestamp": "2025-08-18T23:09:12.194750",
+  "total_samples": 433,
+  "training_samples": 346,
+  "test_samples": 87,
+  "accuracy": 0.9195402298850575,
+  "labels": [
+    "unconfirmed",
+    "out_for_season",
+    "day_to_day",
+    "minor"
+  ],
+  "epochs": 2,
+  "batch_size": 4
+}

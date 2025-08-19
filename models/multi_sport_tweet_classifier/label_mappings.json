@@ -1,0 +1,20 @@
+{
+  "labels": [
+    "injury_news",
+    "lineup_news",
+    "general_commentary",
+    "irrelevant"
+  ],
+  "label_to_id": {
+    "injury_news": 0,
+    "lineup_news": 1,
+    "general_commentary": 2,
+    "irrelevant": 3
+  },
+  "id_to_label": {
+    "0": "injury_news",
+    "1": "lineup_news",
+    "2": "general_commentary",
+    "3": "irrelevant"
+  }
+}
