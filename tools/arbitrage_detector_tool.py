@@ -1,13 +1,19 @@
 #!/usr/bin/env python3
 """
-Advanced ArbitrageDetectorTool with Execution-Aware Modeling - JIRA-023B
+Advanced ArbitrageDetectorTool with NFL Support - JIRA-NFL-008
 
-Surfaces guaranteed profit opportunities robustly by incorporating real-world 
-execution risk factors like hedge funds use: market microstructure, latency, 
-slippage, unavailable legs, and false positive suppression.
+Extended arbitrage detection for NFL markets with three-way outcomes, wider spreads,
+and sport-specific optimizations. Surfaces guaranteed profit opportunities robustly 
+by incorporating real-world execution risk factors like hedge funds use.
+
+New NFL Features:
+- Three-way arbitrage detection (Win/Tie/Loss)
+- NFL-specific spread adjustments for wider lines
+- Enhanced team and market normalization
+- Sport-aware logging and risk assessment
 
 Goes beyond theoretical arbitrage by modeling risk-adjusted edge and signal 
-decay in live markets.
+decay in live markets across multiple sports.
 """
 
 import logging
@@ -21,6 +27,14 @@ from datetime import datetime, timezone, timedelta
 from collections import defaultdict
 import statistics
 from pathlib import Path
+
+# Import market normalizer for team/market name standardization
+try:
+    from tools.market_normalizer import MarketNormalizer, Sport
+    HAS_MARKET_NORMALIZER = True
+except ImportError:
+    HAS_MARKET_NORMALIZER = False
+    logging.warning("MarketNormalizer not available - team name normalization disabled")
 
 # Import dependencies
 try:
@@ -115,7 +129,7 @@ class ArbitrageOpportunity:
 
 class ArbitrageDetectorTool:
     """
-    Advanced arbitrage detector with execution-aware modeling.
+    Advanced arbitrage detector with execution-aware modeling and multi-sport support.
     
     Incorporates real-world factors that hedge funds consider:
     - Bid-ask spreads and market microstructure
@@ -123,6 +137,12 @@ class ArbitrageDetectorTool:
     - Signal decay due to latency
     - Stake limits and liquidity constraints
     - False positive suppression
+    
+    NEW in JIRA-NFL-008:
+    - NFL three-way arbitrage detection (Win/Tie/Loss)
+    - Sport-specific spread adjustments
+    - Team and market name normalization
+    - Enhanced logging with sport categorization
     """
     
     def __init__(self,
@@ -133,7 +153,7 @@ class ArbitrageDetectorTool:
                  execution_window: float = 300.0,  # 5 minutes execution window
                  db_path: str = "data/parlays.sqlite"):  # SQLite database path
         """
-        Initialize the advanced arbitrage detector.
+        Initialize the advanced arbitrage detector with multi-sport support.
         
         Args:
             min_profit_threshold: Minimum risk-adjusted profit margin
@@ -156,6 +176,10 @@ class ArbitrageDetectorTool:
         # Initialize external tools
         self.odds_fetcher = OddsFetcherTool() if HAS_ODDS_FETCHER else None
         self.latency_monitor = OddsLatencyMonitor() if HAS_LATENCY_MONITOR else None
+        self.market_normalizer = MarketNormalizer() if HAS_MARKET_NORMALIZER else None
+        
+        # Sport-specific parameters
+        self.sport_configs = self._initialize_sport_configurations()
         
         # Tracking and statistics
         self.opportunities_detected = []
@@ -163,6 +187,8 @@ class ArbitrageDetectorTool:
         self.stale_signals_rejected = 0
         
         logger.info(f"ArbitrageDetectorTool initialized - Min edge: {min_profit_threshold:.2%}")
+        if self.market_normalizer:
+            logger.info("Market normalizer enabled for team/market name standardization")
     
     def _initialize_book_configurations(self) -> Dict[str, BookConfiguration]:
         """Initialize default configurations for major sportsbooks."""
@@ -226,6 +252,25 @@ class ArbitrageDetectorTool:
         
         return configs
     
+    def _initialize_sport_configurations(self) -> Dict[str, Dict[str, Any]]:
+        """Initialize sport-specific configuration parameters."""
+        return {
+            "nba": {
+                "spread_range": (-15.0, 15.0),  # Typical NBA spread range
+                "spread_increment": 0.5,         # NBA spreads in 0.5 increments
+                "slippage_multiplier": 1.0,      # Base slippage
+                "three_way_available": False,    # NBA doesn't have ties
+                "typical_total_range": (200, 250), # NBA total points range
+            },
+            "nfl": {
+                "spread_range": (-21.0, 21.0),  # Wider NFL spread range
+                "spread_increment": 0.5,         # NFL spreads in 0.5 increments  
+                "slippage_multiplier": 1.2,      # 20% higher slippage for NFL
+                "three_way_available": True,     # NFL can have ties
+                "typical_total_range": (35, 60), # NFL total points range
+            }
+        }
+    
     def odds_to_implied_probability(self, odds: float) -> float:
         """Convert American odds to implied probability."""
         if odds > 0:
@@ -243,22 +288,28 @@ class ArbitrageDetectorTool:
     def adjust_for_spread_and_slippage(self, 
                                      odds: float, 
                                      book_name: str,
-                                     stake_size: float = 1000.0) -> float:
+                                     stake_size: float = 1000.0,
+                                     sport: str = "nba") -> float:
         """
-        Adjust odds for bid-ask spread, slippage, and market impact.
+        Adjust odds for bid-ask spread, slippage, and market impact with sport-specific factors.
         
         This is where the execution-aware modeling happens - we deflate
         the odds to account for real-world execution costs.
+        
+        NEW in JIRA-NFL-008: Sport-specific adjustments for NFL wider spreads
+        and increased volatility.
         
         Args:
             odds: Original odds
             book_name: Sportsbook name for configuration lookup
             stake_size: Bet size for market impact calculation
+            sport: Sport type ("nba" or "nfl") for sport-specific adjustments
             
         Returns:
             Adjusted odds accounting for execution costs
         """
         config = self.book_configs.get(book_name.lower(), BookConfiguration(book_name))
+        sport_config = self.sport_configs.get(sport.lower(), self.sport_configs["nba"])
         
         # Convert to decimal odds for easier calculation
         if odds > 0:
@@ -270,14 +321,21 @@ class ArbitrageDetectorTool:
         spread_impact = config.bid_ask_spread / 2
         adjusted_odds = decimal_odds * (1 - spread_impact)
         
-        # 2. Slippage adjustment based on book configuration
-        slippage_impact = config.slippage_factor
+        # 2. Slippage adjustment based on book configuration and sport
+        base_slippage = config.slippage_factor
+        sport_slippage_multiplier = sport_config["slippage_multiplier"]
+        slippage_impact = base_slippage * sport_slippage_multiplier
         adjusted_odds *= (1 - slippage_impact)
         
-        # 3. Market impact for large stakes
+        # 3. Market impact for large stakes (sport-specific scaling)
         if stake_size > config.market_impact_threshold:
             impact_multiplier = min(stake_size / config.market_impact_threshold, 3.0)
-            market_impact = config.slippage_factor * impact_multiplier * 0.5
+            
+            # NFL has wider spreads and more volatility, increase market impact
+            if sport.lower() == "nfl":
+                impact_multiplier *= 1.1
+            
+            market_impact = base_slippage * impact_multiplier * 0.5
             adjusted_odds *= (1 - market_impact)
         
         # 4. Liquidity tier adjustment
@@ -285,6 +343,11 @@ class ArbitrageDetectorTool:
             adjusted_odds *= 0.995  # 0.5% additional penalty
         elif config.liquidity_tier == "low":
             adjusted_odds *= 0.990  # 1.0% additional penalty
+        
+        # 5. Sport-specific volatility adjustment
+        if sport.lower() == "nfl":
+            # NFL games have higher variance, additional conservative adjustment
+            adjusted_odds *= 0.998  # 0.2% additional penalty for NFL volatility
         
         # Convert back to American odds
         if adjusted_odds >= 2.0:
@@ -294,15 +357,17 @@ class ArbitrageDetectorTool:
     
     def calculate_profit_margin_and_stake_ratios(self, 
                                                odds_list: List[Tuple[float, str]],
-                                               total_stake: float = 1000.0) -> Tuple[float, Dict[str, float], List[float]]:
+                                               total_stake: float = 1000.0,
+                                               sport: str = "nba") -> Tuple[float, Dict[str, float], List[float]]:
         """
-        Calculate profit margin and optimal stake ratios for arbitrage.
+        Calculate profit margin and optimal stake ratios for arbitrage with sport-specific adjustments.
         
-        Uses Kelly-like optimization but accounts for execution constraints.
+        Uses Kelly-like optimization but accounts for execution constraints and sport characteristics.
         
         Args:
             odds_list: List of (odds, book_name) tuples
             total_stake: Total amount to stake across all legs
+            sport: Sport type for sport-specific adjustments
             
         Returns:
             Tuple of (profit_margin, stake_ratios, individual_stakes)
@@ -310,9 +375,9 @@ class ArbitrageDetectorTool:
         adjusted_odds = []
         book_names = []
         
-        # Adjust all odds for execution costs
+        # Adjust all odds for execution costs with sport-specific factors
         for odds, book_name in odds_list:
-            adj_odds = self.adjust_for_spread_and_slippage(odds, book_name, total_stake / len(odds_list))
+            adj_odds = self.adjust_for_spread_and_slippage(odds, book_name, total_stake / len(odds_list), sport)
             adjusted_odds.append(adj_odds)
             book_names.append(book_name)
         
@@ -344,16 +409,24 @@ class ArbitrageDetectorTool:
                                 book_a: str,
                                 odds_b: float, 
                                 book_b: str,
-                                slippage_buffer: Optional[float] = None) -> Optional[ArbitrageOpportunity]:
+                                sport: str = "nba",
+                                slippage_buffer: Optional[float] = None,
+                                team_a: Optional[str] = None,
+                                team_b: Optional[str] = None,
+                                market_type: str = "ML") -> Optional[ArbitrageOpportunity]:
         """
-        Detect two-way arbitrage with execution-aware modeling.
+        Detect two-way arbitrage with execution-aware modeling and multi-sport support.
         
         Args:
             odds_a: Odds from first book
             book_a: First book name
             odds_b: Odds from second book  
             book_b: Second book name
+            sport: Sport type ("nba" or "nfl")
             slippage_buffer: Optional custom slippage buffer
+            team_a: Optional team name for first leg
+            team_b: Optional team name for second leg
+            market_type: Market type (e.g., "ML", "PS", "OU")
             
         Returns:
             ArbitrageOpportunity if valid arbitrage found, None otherwise
@@ -363,25 +436,35 @@ class ArbitrageDetectorTool:
         
         current_time = datetime.now(timezone.utc)
         
-        # Calculate profit margin and stake ratios
+        # Calculate profit margin and stake ratios with sport-specific adjustments
         odds_list = [(odds_a, book_a), (odds_b, book_b)]
-        profit_margin, stake_ratios, individual_stakes = self.calculate_profit_margin_and_stake_ratios(odds_list)
+        profit_margin, stake_ratios, individual_stakes = self.calculate_profit_margin_and_stake_ratios(odds_list, sport=sport)
         
         # Check if meets minimum threshold
         if profit_margin < self.min_profit_threshold:
             return None
         
+        # Normalize team names if market normalizer available
+        normalized_team_a = team_a
+        normalized_team_b = team_b
+        if self.market_normalizer and team_a and team_b:
+            sport_enum = Sport.NFL if sport.lower() == "nfl" else Sport.NBA
+            normalized_team_a = self.market_normalizer.normalize_team_name(team_a, sport_enum) or team_a
+            normalized_team_b = self.market_normalizer.normalize_team_name(team_b, sport_enum) or team_b
+        
         # Create arbitrage legs
         legs = []
         total_stake = 1000.0  # Default stake for calculation
         
+        team_names = [normalized_team_a or f"Team_{sport.upper()}_1", normalized_team_b or f"Team_{sport.upper()}_2"]
+        
         for i, (odds, book) in enumerate(odds_list):
-            adjusted_odds = self.adjust_for_spread_and_slippage(odds, book, individual_stakes[i])
+            adjusted_odds = self.adjust_for_spread_and_slippage(odds, book, individual_stakes[i], sport)
             
             leg = ArbitrageLeg(
                 book=book,
-                market="ML",  # Assuming moneyline for simplicity
-                team=f"Team_{i+1}",
+                market=market_type,
+                team=team_names[i],
                 odds=odds,
                 adjusted_odds=adjusted_odds,
                 implied_probability=self.odds_to_implied_probability(odds),
@@ -419,100 +502,165 @@ class ArbitrageDetectorTool:
             false_positive_probability=false_positive_prob,
             confidence_level=confidence_level,
             detection_timestamp=current_time.isoformat(),
-            expires_at=(current_time + timedelta(seconds=self.execution_window)).isoformat()
+            expires_at=(current_time + timedelta(seconds=self.execution_window)).isoformat(),
+            market_type=market_type
         )
         
         self.opportunities_detected.append(opportunity)
         
-        # Log opportunity to database
-        self.log_arbitrage_opportunity(opportunity, sport="nba")  # Default to NBA, can be parameterized
+        # Log opportunity to database with sport parameter
+        self.log_arbitrage_opportunity(opportunity, sport=sport)
         
         return opportunity
     
     def detect_arbitrage_three_way(self, 
-                                 odds_list: List[Tuple[float, str]],
-                                 slippage_buffer: Optional[float] = None) -> Optional[ArbitrageOpportunity]:
+                                 odds_list: List[Dict],
+                                 sport: str,
+                                 slippage_buffer: float = 0.01,
+                                 game_id: Optional[str] = None,
+                                 team_home: Optional[str] = None,
+                                 team_away: Optional[str] = None) -> Optional[ArbitrageOpportunity]:
         """
-        Detect three-way arbitrage with execution-aware modeling.
+        Detect three-way arbitrage with execution-aware modeling for NFL markets.
+        
+        NEW implementation for JIRA-NFL-008: Handles win/tie/lose outcomes for NFL.
         
         Args:
-            odds_list: List of (odds, book_name) tuples for three outcomes
-            slippage_buffer: Optional custom slippage buffer
+            odds_list: List of odds dictionaries with 'odds' and 'book' keys
+            sport: Sport type ("nfl" required for three-way markets)
+            slippage_buffer: Slippage buffer (default 0.01 for 1%)
+            game_id: Optional game identifier
+            team_home: Optional home team name  
+            team_away: Optional away team name
             
         Returns:
             ArbitrageOpportunity if valid arbitrage found, None otherwise
         """
+        if sport.lower() != "nfl":
+            raise ValueError("Three-way arbitrage currently only supported for NFL")
+        
         if len(odds_list) != 3:
             raise ValueError("Three-way arbitrage requires exactly 3 odds")
         
-        if slippage_buffer is None:
-            slippage_buffer = self.default_slippage_buffer
+        # Validate that we have win/tie/lose outcomes
+        sport_config = self.sport_configs.get("nfl", {})
+        if not sport_config.get("three_way_available", False):
+            raise ValueError("Three-way markets not available for specified sport")
         
         current_time = datetime.now(timezone.utc)
         
-        # Calculate profit margin and stake ratios
-        profit_margin, stake_ratios, individual_stakes = self.calculate_profit_margin_and_stake_ratios(odds_list)
+        # Extract odds and books from the list
+        extracted_odds = []
+        for odds_dict in odds_list:
+            odds_value = odds_dict.get("odds") or odds_dict.get("adjusted_odds", 0)
+            book_name = odds_dict.get("book", "unknown")
+            extracted_odds.append((odds_value, book_name))
         
-        # Check if meets minimum threshold
-        if profit_margin < self.min_profit_threshold:
-            return None
-        
-        # Create arbitrage legs
-        legs = []
-        total_stake = 1000.0
-        
-        for i, (odds, book) in enumerate(odds_list):
-            adjusted_odds = self.adjust_for_spread_and_slippage(odds, book, individual_stakes[i])
+        # Handle win/tie/lose outcomes for NFL
+        if sport.lower() == "nfl":
+            # NFL three-way: Away Win / Tie / Home Win
+            # Calculate implied probabilities from adjusted odds
+            implied_probs = []
+            for odds_dict in odds_list:
+                adjusted_odds = odds_dict.get("adjusted_odds", odds_dict.get("odds", 0))
+                if adjusted_odds > 0:
+                    implied_prob = 100 / (adjusted_odds + 100)
+                else:
+                    implied_prob = abs(adjusted_odds) / (abs(adjusted_odds) + 100)
+                implied_probs.append(implied_prob)
             
-            leg = ArbitrageLeg(
-                book=book,
-                market="3-way",
-                team=f"Outcome_{i+1}",
-                odds=odds,
-                adjusted_odds=adjusted_odds,
-                implied_probability=self.odds_to_implied_probability(odds),
-                adjusted_implied_probability=self.odds_to_implied_probability(adjusted_odds),
-                stake_ratio=stake_ratios[book],
-                stake_amount=individual_stakes[i],
-                expected_return=individual_stakes[i] * (adjusted_odds / 100 + 1 if adjusted_odds > 0 else 100 / abs(adjusted_odds) + 1),
-                last_update=current_time.isoformat(),
-                latency_seconds=0.0
+            # Check if arbitrage exists
+            total_implied_prob = sum(implied_probs)
+            if total_implied_prob >= 1.0 - self.false_positive_epsilon:
+                return None  # Not an arbitrage
+            
+            # Calculate profit margin and stake ratios with NFL-specific adjustments
+            profit_margin, stake_ratios, individual_stakes = self.calculate_profit_margin_and_stake_ratios(
+                extracted_odds, sport="nfl"
             )
-            legs.append(leg)
+            
+            # Check if meets minimum threshold
+            if profit_margin < self.min_profit_threshold:
+                return None
+            
+            # Normalize team names if available
+            normalized_home = team_home
+            normalized_away = team_away
+            if self.market_normalizer and team_home and team_away:
+                normalized_home = self.market_normalizer.normalize_team_name(team_home, Sport.NFL) or team_home
+                normalized_away = self.market_normalizer.normalize_team_name(team_away, Sport.NFL) or team_away
+            
+            # Create arbitrage legs for NFL three-way
+            legs = []
+            total_stake = 1000.0
+            outcome_names = [
+                f"{normalized_away or 'Away'} Win",
+                "Tie/Draw", 
+                f"{normalized_home or 'Home'} Win"
+            ]
+            
+            for i, (odds_dict, outcome_name) in enumerate(zip(odds_list, outcome_names)):
+                odds = odds_dict.get("odds", 0)
+                book = odds_dict.get("book", "unknown")
+                adjusted_odds = self.adjust_for_spread_and_slippage(odds, book, individual_stakes[i], "nfl")
+                
+                leg = ArbitrageLeg(
+                    book=book,
+                    market="3W",  # Three-way market
+                    team=outcome_name,
+                    odds=odds,
+                    adjusted_odds=adjusted_odds,
+                    implied_probability=self.odds_to_implied_probability(odds),
+                    adjusted_implied_probability=self.odds_to_implied_probability(adjusted_odds),
+                    stake_ratio=stake_ratios.get(book, 0),
+                    stake_amount=individual_stakes[i],
+                    expected_return=individual_stakes[i] * (adjusted_odds / 100 + 1 if adjusted_odds > 0 else 100 / abs(adjusted_odds) + 1),
+                    last_update=current_time.isoformat(),
+                    latency_seconds=0.0
+                )
+                legs.append(leg)
+            
+            # Calculate risk metrics (three-way is inherently riskier)
+            execution_risk_score = self._calculate_execution_risk(legs)
+            execution_risk_score *= 1.15  # 15% penalty for three-way complexity
+            
+            sharpe_ratio = self._calculate_sharpe_ratio(profit_margin, execution_risk_score)
+            false_positive_prob = self._estimate_false_positive_probability(legs, profit_margin)
+            false_positive_prob *= 1.1  # Higher FP risk for three-way
+            
+            confidence_level = self._determine_confidence_level(profit_margin, execution_risk_score, false_positive_prob)
+            
+            opportunity = ArbitrageOpportunity(
+                arbitrage=True,
+                type="3-way",
+                profit_margin=profit_margin,
+                risk_adjusted_profit=profit_margin * (1 - execution_risk_score),
+                expected_edge=profit_margin * 0.70,  # More conservative for NFL 3-way
+                sharpe_ratio=sharpe_ratio,
+                total_stake=total_stake,
+                stake_ratios=stake_ratios,
+                adjusted_for_slippage=True,
+                max_latency_seconds=0.0,
+                execution_time_window=self.execution_window,
+                legs=legs,
+                execution_risk_score=execution_risk_score,
+                false_positive_probability=false_positive_prob,
+                confidence_level=confidence_level,
+                detection_timestamp=current_time.isoformat(),
+                expires_at=(current_time + timedelta(seconds=self.execution_window)).isoformat(),
+                game_id=game_id,
+                market_type="3W"
+            )
+            
+            self.opportunities_detected.append(opportunity)
+            
+            # Log NFL arbitrage opportunity
+            self.log_arbitrage_opportunity(opportunity, sport="nfl")
+            
+            return opportunity
         
-        # Calculate risk metrics
-        execution_risk_score = self._calculate_execution_risk(legs)
-        sharpe_ratio = self._calculate_sharpe_ratio(profit_margin, execution_risk_score)
-        false_positive_prob = self._estimate_false_positive_probability(legs, profit_margin)
-        
-        confidence_level = self._determine_confidence_level(profit_margin, execution_risk_score, false_positive_prob)
-        
-        opportunity = ArbitrageOpportunity(
-            arbitrage=True,
-            type="3-way",
-            profit_margin=profit_margin,
-            risk_adjusted_profit=profit_margin * (1 - execution_risk_score),
-            expected_edge=profit_margin * 0.75,  # More conservative for 3-way
-            sharpe_ratio=sharpe_ratio,
-            total_stake=total_stake,
-            stake_ratios=stake_ratios,
-            adjusted_for_slippage=True,
-            max_latency_seconds=0.0,
-            execution_time_window=self.execution_window,
-            legs=legs,
-            execution_risk_score=execution_risk_score,
-            false_positive_probability=false_positive_prob,
-            confidence_level=confidence_level,
-            detection_timestamp=current_time.isoformat(),
-            expires_at=(current_time + timedelta(seconds=self.execution_window)).isoformat()
-        )
-        
-        self.opportunities_detected.append(opportunity)
-        
-        # Log opportunity to database
-        self.log_arbitrage_opportunity(opportunity, sport="nba")  # Default to NBA, can be parameterized
-        
-        return opportunity
+        else:
+            raise ValueError(f"Three-way arbitrage not implemented for sport: {sport}")
     
     def _calculate_execution_risk(self, legs: List[ArbitrageLeg]) -> float:
         """
