@@ -1,0 +1,364 @@
+{
+  "sport": "NFL",
+  "version": "1.0.0",
+  "market_definitions": {
+    "moneyline": {
+      "group": "GAME_LINE",
+      "type": "MONEYLINE", 
+      "period": "FULL_GAME",
+      "description": "Team to win the game outright"
+    },
+    "spread": {
+      "group": "GAME_LINE",
+      "type": "SPREAD",
+      "period": "FULL_GAME", 
+      "description": "Point spread betting"
+    },
+    "total_points": {
+      "group": "GAME_LINE",
+      "type": "TOTAL_POINTS",
+      "period": "FULL_GAME",
+      "stat_unit": "points",
+      "description": "Over/Under total points scored"
+    },
+    "player_passing_yards": {
+      "group": "PLAYER_PROP",
+      "type": "PLAYER_PASSING_YARDS",
+      "period": "FULL_GAME",
+      "stat_unit": "yards",
+      "description": "Quarterback passing yards"
+    },
+    "player_rushing_yards": {
+      "group": "PLAYER_PROP", 
+      "type": "PLAYER_RUSHING_YARDS",
+      "period": "FULL_GAME",
+      "stat_unit": "yards",
+      "description": "Player rushing yards"
+    },
+    "player_receiving_yards": {
+      "group": "PLAYER_PROP",
+      "type": "PLAYER_RECEIVING_YARDS", 
+      "period": "FULL_GAME",
+      "stat_unit": "yards",
+      "description": "Player receiving yards"
+    },
+    "player_touchdowns": {
+      "group": "PLAYER_PROP",
+      "type": "PLAYER_TOUCHDOWNS",
+      "period": "FULL_GAME",
+      "stat_unit": "touchdowns",
+      "description": "Player total touchdowns"
+    },
+    "player_receptions": {
+      "group": "PLAYER_PROP",
+      "type": "PLAYER_RECEPTIONS",
+      "period": "FULL_GAME", 
+      "stat_unit": "receptions",
+      "description": "Player total receptions"
+    },
+    "player_passing_touchdowns": {
+      "group": "PLAYER_PROP",
+      "type": "PLAYER_PASSING_TOUCHDOWNS",
+      "period": "FULL_GAME",
+      "stat_unit": "touchdowns",
+      "description": "Quarterback passing touchdowns"
+    },
+    "player_interceptions": {
+      "group": "PLAYER_PROP",
+      "type": "PLAYER_INTERCEPTIONS",
+      "period": "FULL_GAME",
+      "stat_unit": "interceptions", 
+      "description": "Quarterback interceptions thrown"
+    },
+    "first_touchdown_scorer": {
+      "group": "PLAYER_PROP",
+      "type": "FIRST_TOUCHDOWN_SCORER",
+      "period": "FULL_GAME",
+      "description": "First player to score a touchdown"
+    },
+    "anytime_touchdown_scorer": {
+      "group": "PLAYER_PROP", 
+      "type": "ANYTIME_TOUCHDOWN_SCORER",
+      "period": "FULL_GAME",
+      "description": "Player to score a touchdown anytime"
+    },
+    "team_total_points": {
+      "group": "TEAM_PROP",
+      "type": "TEAM_TOTAL_POINTS",
+      "period": "FULL_GAME",
+      "stat_unit": "points",
+      "description": "Individual team total points"
+    },
+    "first_half_spread": {
+      "group": "PERIOD_LINE",
+      "type": "FIRST_HALF_SPREAD", 
+      "period": "FIRST_HALF",
+      "description": "First half point spread"
+    },
+    "first_half_total": {
+      "group": "PERIOD_LINE",
+      "type": "FIRST_HALF_TOTAL",
+      "period": "FIRST_HALF",
+      "stat_unit": "points",
+      "description": "First half total points"
+    }
+  },
+  "parlay_rules": [
+    {
+      "ruleId": "EXCLUSION_MONEYLINE_SPREAD_SAME_TEAM",
+      "description": "Disallow parlaying the Moneyline and Point Spread for the same team in the same game",
+      "type": "EXCLUSION",
+      "conditions": {
+        "all": [
+          { "market_key": "moneyline" },
+          { "market_key": "spread" }
+        ]
+      },
+      "constraints": {
+        "same_team": true,
+        "same_game": true
+      },
+      "action": "DISALLOW",
+      "severity": "HARD_BLOCK"
+    },
+    {
+      "ruleId": "EXCLUSION_OVER_UNDER_SAME_MARKET", 
+      "description": "Disallow parlaying Over and Under for the same market",
+      "type": "EXCLUSION",
+      "conditions": {
+        "any": [
+          { "market_group": "GAME_LINE", "selections": ["Over", "Under"] },
+          { "market_group": "PLAYER_PROP", "selections": ["Over", "Under"] },
+          { "market_group": "TEAM_PROP", "selections": ["Over", "Under"] }
+        ]
+      },
+      "constraints": {
+        "same_market": true,
+        "opposite_selections": true
+      },
+      "action": "DISALLOW",
+      "severity": "HARD_BLOCK"
+    },
+    {
+      "ruleId": "EXCLUSION_OPPOSITE_TEAM_OUTCOMES",
+      "description": "Disallow parlaying opposing team outcomes in the same game",
+      "type": "EXCLUSION", 
+      "conditions": {
+        "all": [
+          { "market_group": "GAME_LINE" }
+        ]
+      },
+      "constraints": {
+        "same_game": true,
+        "opposite_teams": true
+      },
+      "action": "DISALLOW",
+      "severity": "HARD_BLOCK"
+    },
+    {
+      "ruleId": "EXCLUSION_MULTIPLE_FIRST_TD_SCORERS",
+      "description": "Disallow multiple first touchdown scorer selections in the same game",
+      "type": "EXCLUSION",
+      "conditions": {
+        "all": [
+          { "market_key": "first_touchdown_scorer" }
+        ]
+      },
+      "constraints": {
+        "same_game": true,
+        "different_players": true
+      },
+      "action": "DISALLOW", 
+      "severity": "HARD_BLOCK"
+    },
+    {
+      "ruleId": "CORRELATION_QB_PASS_YARDS_WR_REC_YARDS",
+      "description": "High positive correlation between a QB's passing yards and a WR's receiving yards on the same team",
+      "type": "CORRELATION",
+      "conditions": {
+        "all": [
+          { "market_key": "player_passing_yards" },
+          { "market_key": "player_receiving_yards" }
+        ]
+      },
+      "constraints": {
+        "same_team": true,
+        "different_players": true,
+        "position_correlation": ["QB", "WR"]
+      },
+      "correlation_adjustment": {
+        "type": "POSITIVE",
+        "strength": "HIGH",
+        "multiplier": 0.85
+      },
+      "action": "ADJUST_ODDS",
+      "severity": "SOFT_BLOCK"
+    },
+    {
+      "ruleId": "CORRELATION_QB_PASS_TDS_TEAM_TOTAL",
+      "description": "Positive correlation between QB passing touchdowns and team total points",
+      "type": "CORRELATION",
+      "conditions": {
+        "all": [
+          { "market_key": "player_passing_touchdowns" },
+          { "market_key": "team_total_points" }
+        ]
+      },
+      "constraints": {
+        "same_team": true
+      },
+      "correlation_adjustment": {
+        "type": "POSITIVE",
+        "strength": "MEDIUM", 
+        "multiplier": 0.90
+      },
+      "action": "ADJUST_ODDS",
+      "severity": "SOFT_BLOCK"
+    },
+    {
+      "ruleId": "CORRELATION_RB_RUSH_YARDS_TEAM_MONEYLINE",
+      "description": "Positive correlation between RB rushing yards and team moneyline",
+      "type": "CORRELATION",
+      "conditions": {
+        "all": [
+          { "market_key": "player_rushing_yards" },
+          { "market_key": "moneyline" }
+        ]
+      },
+      "constraints": {
+        "same_team": true,
+        "position_correlation": ["RB"]
+      },
+      "correlation_adjustment": {
+        "type": "POSITIVE",
+        "strength": "MEDIUM",
+        "multiplier": 0.92
+      },
+      "action": "ADJUST_ODDS",
+      "severity": "WARNING"
+    },
+    {
+      "ruleId": "CORRELATION_ANYTIME_TD_TEAM_TOTAL",
+      "description": "Positive correlation between anytime touchdown scorer and team total points",
+      "type": "CORRELATION",
+      "conditions": {
+        "all": [
+          { "market_key": "anytime_touchdown_scorer" },
+          { "market_key": "team_total_points" }
+        ]
+      },
+      "constraints": {
+        "same_team": true
+      },
+      "correlation_adjustment": {
+        "type": "POSITIVE",
+        "strength": "LOW",
+        "multiplier": 0.95
+      },
+      "action": "ADJUST_ODDS",
+      "severity": "WARNING"
+    },
+    {
+      "ruleId": "CORRELATION_GAME_TOTAL_MULTIPLE_OVERS",
+      "description": "Positive correlation between game total over and multiple player prop overs",
+      "type": "CORRELATION", 
+      "conditions": {
+        "all": [
+          { "market_key": "total_points", "selection": "Over" },
+          { "market_group": "PLAYER_PROP", "selection": "Over", "min_count": 2 }
+        ]
+      },
+      "constraints": {
+        "same_game": true
+      },
+      "correlation_adjustment": {
+        "type": "POSITIVE",
+        "strength": "MEDIUM",
+        "multiplier": 0.88
+      },
+      "action": "ADJUST_ODDS",
+      "severity": "SOFT_BLOCK"
+    },
+    {
+      "ruleId": "CORRELATION_DEFENSE_PROPS_OPPONENT_UNDERS",
+      "description": "Negative correlation between defensive performance and opponent offensive props",
+      "type": "CORRELATION",
+      "conditions": {
+        "all": [
+          { "market_key": "player_interceptions", "selection": "Over" },
+          { "market_key": "player_passing_yards", "selection": "Over" }
+        ]
+      },
+      "constraints": {
+        "opposing_teams": true
+      },
+      "correlation_adjustment": {
+        "type": "NEGATIVE", 
+        "strength": "MEDIUM",
+        "multiplier": 0.90
+      },
+      "action": "ADJUST_ODDS",
+      "severity": "WARNING"
+    }
+  ],
+  "sportsbook_rules": {
+    "DRAFTKINGS": {
+      "max_legs": 20,
+      "min_odds_per_leg": 1.10,
+      "prohibited_combinations": [],
+      "sgp_settlement": "grade_remaining_legs",
+      "supports_sgp": true
+    },
+    "FANDUEL": {
+      "max_legs": 25, 
+      "min_odds_per_leg": 1.12,
+      "prohibited_combinations": [
+        ["player_passing_yards", "player_interceptions"]
+      ],
+      "sgp_settlement": "recalculate_on_void", 
+      "supports_sgp": true
+    },
+    "ESPN_BET": {
+      "max_legs": 20,
+      "min_odds_per_leg": 1.20,
+      "prohibited_combinations": [
+        ["moneyline", "spread"],
+        ["player_props", "alt_lines"]
+      ],
+      "sgp_settlement": "recalculate_on_void",
+      "supports_sgp": true
+    },
+    "BET365": {
+      "max_legs": 25,
+      "min_odds_per_leg": 1.15,
+      "prohibited_combinations": [
+        ["total_points", "player_props"]
+      ],
+      "sgp_settlement": "void_entire_parlay_on_push",
+      "supports_sgp": false
+    },
+    "POINTSBET": {
+      "max_legs": 15,
+      "min_odds_per_leg": 1.25, 
+      "prohibited_combinations": [
+        ["first_half_spread", "first_half_total"]
+      ],
+      "avoid_push_prone_props": true,
+      "supports_sgp": true
+    }
+  },
+  "violation_tags": {
+    "LOGICAL_CONTRADICTION": {
+      "description": "Selections that cannot both occur",
+      "examples": ["Over/Under same market", "Opposing team wins"]
+    },
+    "PRICING_MODEL_VIOLATION": {
+      "description": "Combination affects pricing model accuracy", 
+      "examples": ["Correlated player props", "QB/WR same team"]
+    },
+    "RELATED_CONTINGENCY": {
+      "description": "Events with conditional relationship",
+      "examples": ["Team win + player performance", "Game total + individual stats"]
+    }
+  }
+}

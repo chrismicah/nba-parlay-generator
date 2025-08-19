@@ -1,0 +1,337 @@
+{
+  "sport": "NBA",
+  "version": "1.0.0",
+  "market_definitions": {
+    "moneyline": {
+      "group": "GAME_LINE",
+      "type": "MONEYLINE",
+      "period": "FULL_GAME", 
+      "description": "Team to win the game outright"
+    },
+    "h2h": {
+      "group": "GAME_LINE",
+      "type": "H2H",
+      "period": "FULL_GAME",
+      "description": "Head-to-head team matchup (same as moneyline)"
+    },
+    "spreads": {
+      "group": "GAME_LINE",
+      "type": "SPREAD",
+      "period": "FULL_GAME",
+      "description": "Point spread betting"
+    },
+    "totals": {
+      "group": "GAME_LINE", 
+      "type": "TOTAL_POINTS",
+      "period": "FULL_GAME",
+      "stat_unit": "points",
+      "description": "Over/Under total points scored"
+    },
+    "player_points_over": {
+      "group": "PLAYER_PROP",
+      "type": "PLAYER_POINTS_OVER",
+      "period": "FULL_GAME",
+      "stat_unit": "points",
+      "description": "Player points over line"
+    },
+    "player_points_under": {
+      "group": "PLAYER_PROP",
+      "type": "PLAYER_POINTS_UNDER",
+      "period": "FULL_GAME",
+      "stat_unit": "points",
+      "description": "Player points under line"
+    },
+    "player_rebounds_over": {
+      "group": "PLAYER_PROP",
+      "type": "PLAYER_REBOUNDS_OVER",
+      "period": "FULL_GAME",
+      "stat_unit": "rebounds",
+      "description": "Player rebounds over line"
+    },
+    "player_rebounds_under": {
+      "group": "PLAYER_PROP",
+      "type": "PLAYER_REBOUNDS_UNDER", 
+      "period": "FULL_GAME",
+      "stat_unit": "rebounds",
+      "description": "Player rebounds under line"
+    },
+    "player_assists_over": {
+      "group": "PLAYER_PROP",
+      "type": "PLAYER_ASSISTS_OVER",
+      "period": "FULL_GAME",
+      "stat_unit": "assists",
+      "description": "Player assists over line"
+    },
+    "player_assists_under": {
+      "group": "PLAYER_PROP",
+      "type": "PLAYER_ASSISTS_UNDER",
+      "period": "FULL_GAME", 
+      "stat_unit": "assists",
+      "description": "Player assists under line"
+    },
+    "team_total_over": {
+      "group": "TEAM_PROP",
+      "type": "TEAM_TOTAL_OVER",
+      "period": "FULL_GAME",
+      "stat_unit": "points",
+      "description": "Team total points over line"
+    },
+    "team_total_under": {
+      "group": "TEAM_PROP",
+      "type": "TEAM_TOTAL_UNDER",
+      "period": "FULL_GAME",
+      "stat_unit": "points",
+      "description": "Team total points under line"
+    },
+    "first_quarter_spread": {
+      "group": "PERIOD_LINE",
+      "type": "FIRST_QUARTER_SPREAD",
+      "period": "FIRST_QUARTER",
+      "description": "First quarter point spread"
+    },
+    "first_quarter_total": {
+      "group": "PERIOD_LINE",
+      "type": "FIRST_QUARTER_TOTAL",
+      "period": "FIRST_QUARTER",
+      "stat_unit": "points",
+      "description": "First quarter total points"
+    }
+  },
+  "parlay_rules": [
+    {
+      "ruleId": "EXCLUSION_PLAYER_OVER_UNDER_SAME_STAT",
+      "description": "Disallow parlaying over and under for the same player stat",
+      "type": "EXCLUSION",
+      "conditions": {
+        "any": [
+          { "market_keys": ["player_points_over", "player_points_under"] },
+          { "market_keys": ["player_rebounds_over", "player_rebounds_under"] },
+          { "market_keys": ["player_assists_over", "player_assists_under"] }
+        ]
+      },
+      "constraints": {
+        "same_player": true,
+        "same_stat": true
+      },
+      "action": "DISALLOW",
+      "severity": "HARD_BLOCK"
+    },
+    {
+      "ruleId": "EXCLUSION_TEAM_TOTAL_OVER_UNDER",
+      "description": "Disallow parlaying team total over and under",
+      "type": "EXCLUSION",
+      "conditions": {
+        "all": [
+          { "market_keys": ["team_total_over", "team_total_under"] }
+        ]
+      },
+      "constraints": {
+        "same_team": true
+      },
+      "action": "DISALLOW", 
+      "severity": "HARD_BLOCK"
+    },
+    {
+      "ruleId": "EXCLUSION_GAME_TOTAL_OVER_UNDER",
+      "description": "Disallow parlaying game total over and under",
+      "type": "EXCLUSION",
+      "conditions": {
+        "all": [
+          { "market_key": "totals", "selections": ["Over", "Under"] }
+        ]
+      },
+      "constraints": {
+        "same_game": true
+      },
+      "action": "DISALLOW",
+      "severity": "HARD_BLOCK"
+    },
+    {
+      "ruleId": "EXCLUSION_OPPOSITE_TEAM_OUTCOMES",
+      "description": "Disallow parlaying opposing team outcomes in the same game",
+      "type": "EXCLUSION",
+      "conditions": {
+        "any": [
+          { "market_keys": ["moneyline", "h2h"] },
+          { "market_key": "spreads" }
+        ]
+      },
+      "constraints": {
+        "same_game": true,
+        "opposite_teams": true
+      },
+      "action": "DISALLOW",
+      "severity": "HARD_BLOCK"
+    },
+    {
+      "ruleId": "CORRELATION_TEAM_ML_SPREAD",
+      "description": "Strong positive correlation between team moneyline and spread",
+      "type": "CORRELATION",
+      "conditions": {
+        "all": [
+          { "market_keys": ["moneyline", "h2h"] },
+          { "market_key": "spreads" }
+        ]
+      },
+      "constraints": {
+        "same_team": true,
+        "same_game": true
+      },
+      "correlation_adjustment": {
+        "type": "POSITIVE",
+        "strength": "HIGH",
+        "multiplier": 0.80
+      },
+      "action": "ADJUST_ODDS",
+      "severity": "SOFT_BLOCK"
+    },
+    {
+      "ruleId": "CORRELATION_PLAYER_PERFORMANCE_TEAM_OUTCOME",
+      "description": "Positive correlation between star player performance and team winning",
+      "type": "CORRELATION",
+      "conditions": {
+        "all": [
+          { "market_group": "PLAYER_PROP", "selection": "Over" },
+          { "market_keys": ["moneyline", "h2h"] }
+        ]
+      },
+      "constraints": {
+        "same_team": true,
+        "same_game": true,
+        "star_player": true
+      },
+      "correlation_adjustment": {
+        "type": "POSITIVE", 
+        "strength": "MEDIUM",
+        "multiplier": 0.85
+      },
+      "action": "ADJUST_ODDS",
+      "severity": "SOFT_BLOCK"
+    },
+    {
+      "ruleId": "CORRELATION_PLAYER_STATS_TEAM_TOTAL",
+      "description": "Positive correlation between player stat overs and team total over",
+      "type": "CORRELATION",
+      "conditions": {
+        "all": [
+          { "market_group": "PLAYER_PROP", "selection": "Over" },
+          { "market_key": "team_total_over" }
+        ]
+      },
+      "constraints": {
+        "same_team": true,
+        "same_game": true
+      },
+      "correlation_adjustment": {
+        "type": "POSITIVE",
+        "strength": "MEDIUM",
+        "multiplier": 0.88
+      },
+      "action": "ADJUST_ODDS",
+      "severity": "WARNING"
+    },
+    {
+      "ruleId": "CORRELATION_MULTIPLE_PLAYERS_SAME_TEAM",
+      "description": "Soft correlation between multiple players from the same team",
+      "type": "CORRELATION",
+      "conditions": {
+        "all": [
+          { "market_group": "PLAYER_PROP", "min_count": 2 }
+        ]
+      },
+      "constraints": {
+        "same_team": true,
+        "same_game": true,
+        "different_players": true
+      },
+      "correlation_adjustment": {
+        "type": "POSITIVE",
+        "strength": "LOW",
+        "multiplier": 0.93
+      },
+      "action": "ADJUST_ODDS",
+      "severity": "WARNING"
+    },
+    {
+      "ruleId": "CORRELATION_GAME_PACE_TOTAL_POINTS",
+      "description": "Correlation between high-scoring games and player prop overs",
+      "type": "CORRELATION",
+      "conditions": {
+        "all": [
+          { "market_key": "totals", "selection": "Over" },
+          { "market_group": "PLAYER_PROP", "selection": "Over", "min_count": 2 }
+        ]
+      },
+      "constraints": {
+        "same_game": true
+      },
+      "correlation_adjustment": {
+        "type": "POSITIVE",
+        "strength": "MEDIUM",
+        "multiplier": 0.87
+      },
+      "action": "ADJUST_ODDS",
+      "severity": "SOFT_BLOCK"
+    }
+  ],
+  "sportsbook_rules": {
+    "DRAFTKINGS": {
+      "max_legs": 20,
+      "min_odds_per_leg": 1.10,
+      "prohibited_combinations": [],
+      "sgp_settlement": "grade_remaining_legs",
+      "supports_sgp": true
+    },
+    "FANDUEL": {
+      "max_legs": 25,
+      "min_odds_per_leg": 1.12,
+      "prohibited_combinations": [
+        ["player_assists_over", "player_assists_under"]
+      ],
+      "sgp_settlement": "recalculate_on_void",
+      "supports_sgp": true
+    },
+    "ESPN_BET": {
+      "max_legs": 20,
+      "min_odds_per_leg": 1.20,
+      "prohibited_combinations": [
+        ["moneyline", "spreads"],
+        ["player_props", "alt_lines"]
+      ],
+      "sgp_settlement": "recalculate_on_void", 
+      "supports_sgp": true
+    },
+    "BET365": {
+      "max_legs": 25,
+      "min_odds_per_leg": 1.15,
+      "prohibited_combinations": [
+        ["totals", "player_props"]
+      ],
+      "sgp_settlement": "void_entire_parlay_on_push",
+      "supports_sgp": false
+    },
+    "POINTSBET": {
+      "max_legs": 15,
+      "min_odds_per_leg": 1.25,
+      "prohibited_combinations": [
+        ["first_quarter_spread", "first_quarter_total"]
+      ],
+      "avoid_push_prone_props": true,
+      "supports_sgp": true
+    }
+  },
+  "violation_tags": {
+    "LOGICAL_CONTRADICTION": {
+      "description": "Selections that cannot both occur",
+      "examples": ["Over/Under same player stat", "Opposing team wins"]
+    },
+    "PRICING_MODEL_VIOLATION": {
+      "description": "Combination affects pricing model accuracy",
+      "examples": ["ML + Spread same team", "Player performance + team outcome"]
+    },
+    "RELATED_CONTINGENCY": {
+      "description": "Events with conditional relationship", 
+      "examples": ["Team win + player performance", "Game total + individual stats"]
+    }
+  }
+}
