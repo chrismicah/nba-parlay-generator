@@ -5,8 +5,42 @@ import argparse
 from pathlib import Path
 from typing import List, Dict, Any, Optional, Iterable, Tuple
 from datetime import datetime, timezone, timedelta
+import asyncio
 
 from dotenv import load_dotenv
+
+# Predefined account lists for sports
+NFL_HANDLES = [
+    "AdamSchefter",     # ESPN Senior NFL Insider 
+    "RapSheet",         # Ian Rapoport - NFL Network
+    "MikeGarafolo",     # NFL Network
+    "CameronWolfe",     # NFL Network
+    "NFLInjuryNws",     # NFL Injury News
+    "TomPelissero",     # NFL Network
+    "JayGlazer",        # Fox Sports NFL
+    "ProFootballDoc",   # Dr. David Chao - injury analysis
+    "FieldYates"        # ESPN NFL Insider
+]
+
+NBA_HANDLES = [
+    "ShamsCharania",    # The Athletic NBA insider
+    "TheSteinLine",     # Marc Stein - Substack/Independent
+    "ChrisBHaynes",     # TNT/Bleacher Report
+    "Underdog__NBA",    # Underdog Fantasy NBA
+    "NBABet",           # NBA betting insights
+    "Rotoworld_BK",     # Rotoworld basketball
+    "MarcJSpears",      # ESPN senior writer
+    "NBAInjuryR3p0rt",  # NBA Injury Report
+    "FantasyLabsNBA",   # FantasyLabs NBA
+    "WindhorstESPN"     # Brian Windhorst - ESPN
+]
+
+# Sport-specific prompt templates
+SPORT_PROMPTS = {
+    "nfl": "Show recent tweets related to NFL injuries, inactives, injury reports, or roster moves.",
+    "nba": "Show recent tweets related to NBA injuries, lineups, or player availability updates.",
+    "general": "Show recent tweets related to sports injuries or lineup updates."
+}
 
 
 def _get_api_key() -> str:
@@ -18,6 +52,17 @@ def _get_api_key() -> str:
     return value
 
 
+def get_sport_handles(sport: str) -> List[str]:
+    """Get predefined handles for a specific sport."""
+    sport_lower = sport.lower()
+    if sport_lower == "nfl":
+        return NFL_HANDLES
+    elif sport_lower == "nba":
+        return NBA_HANDLES
+    else:
+        return NFL_HANDLES + NBA_HANDLES  # Return all for general use
+
+
 def fetch_tweets_from_handle(
     client: Any,
     handle: str,
@@ -25,6 +70,7 @@ def fetch_tweets_from_handle(
     min_views: int = 5000,
     from_date: Optional[str] = None,
     to_date: Optional[str] = None,
+    sport: str = "general",
 ) -> Dict[str, Any]:
     # Lazy imports to avoid hard dependency if xai-sdk is not installed yet
     from xai_sdk.chat import user
@@ -46,7 +92,9 @@ def fetch_tweets_from_handle(
         ),
     )
 
-    chat.append(user(f"Show recent tweets from @{handle} related to NBA injuries or lineups."))
+    # Use sport-specific prompt
+    prompt = SPORT_PROMPTS.get(sport.lower(), SPORT_PROMPTS["general"])
+    chat.append(user(f"Show recent tweets from @{handle}. {prompt}"))
     response = chat.sample()
 
     # Normalize output to JSON-serializable primitives
@@ -100,6 +148,7 @@ def fetch_tweets_batch(
     from_date: Optional[str] = None,
     to_date: Optional[str] = None,
     max_search_results: int = 50,
+    sport: str = "general",
 ) -> List[Dict[str, Any]]:
     """Fetch raw tweets for up to 10 handles at once. Returns list of tweet dicts.
 
@@ -133,8 +182,11 @@ def fetch_tweets_batch(
         ),
     )
 
+    # Use sport-specific prompt
+    sport_prompt = SPORT_PROMPTS.get(sport.lower(), SPORT_PROMPTS["general"])
     instruction = (
-        "Return JSON only. No prose. Format as an array of objects. Each object must have "
+        f"Return JSON only. No prose. {sport_prompt} "
+        "Format as an array of objects. Each object must have "
         "keys: author, timestamp, text, url, likes, views."
     )
     chat.append(user(instruction))
@@ -193,23 +245,90 @@ def save_tweets(rows: List[Dict[str, Any]], output_file: Path, append: bool = Fa
             f.write("\n")
 
 
+async def fetch_injury_updates(
+    sport: str, 
+    handles: Optional[List[str]] = None, 
+    min_likes: int = 5, 
+    min_views: int = 2000,
+    from_date: Optional[str] = None,
+    to_date: Optional[str] = None,
+    max_search_results: int = 25
+) -> Dict[str, Any]:
+    """
+    App-friendly function to fetch real-time injury updates for a specific sport.
+    
+    Args:
+        sport: "nba" or "nfl"
+        handles: Optional list of X handles to override defaults
+        min_likes: Minimum likes for X posts
+        min_views: Minimum views for X posts
+        from_date: Optional from date (YYYY-MM-DD or ISO format)
+        to_date: Optional to date (YYYY-MM-DD or ISO format)
+        max_search_results: Maximum results per API call
+        
+    Returns:
+        Dict with 'tweets', 'sport', 'handles_used', 'timestamp'
+    """
+    # Use predefined handles if none provided
+    if handles is None:
+        handles = get_sport_handles(sport)
+    
+    # Get API key
+    api_key = _get_api_key()
+    
+    # Import and initialize client
+    try:
+        from xai_sdk import Client
+    except ImportError:
+        raise ImportError("xai-sdk is not installed. Run: pip install xai-sdk")
+    
+    client = Client(api_key=api_key)
+    
+    # Set default date range if not provided
+    if from_date is None and to_date is None:
+        to_dt = datetime.now(timezone.utc)
+        from_dt = to_dt - timedelta(hours=2)  # Last 2 hours for real-time monitoring
+        from_date = from_dt.isoformat()
+        to_date = to_dt.isoformat()
+    
+    # Fetch tweets
+    tweets = fetch_tweets_batch(
+        client=client,
+        handles=handles,
+        min_likes=min_likes,
+        min_views=min_views,
+        from_date=from_date,
+        to_date=to_date,
+        max_search_results=max_search_results,
+        sport=sport
+    )
+    
+    return {
+        "tweets": tweets,
+        "sport": sport,
+        "handles_used": handles,
+        "timestamp": datetime.now(timezone.utc).isoformat(),
+        "count": len(tweets),
+        "from_date": from_date,
+        "to_date": to_date
+    }
+
+
 def main() -> None:
     load_dotenv()
 
     parser = argparse.ArgumentParser(description="Fetch tweets via xAI Grok and save as JSONL/CSV")
     parser.add_argument(
+        "--sport",
+        choices=["nfl", "nba", "general"],
+        default="nba",
+        help="Sport to monitor (nfl, nba, or general for both)"
+    )
+    parser.add_argument(
         "--handles",
         nargs="*",
-        default=[
-            "ShamsCharania",
-            "wojespn",
-            "Underdog__NBA",
-            "NBABet",
-            "Rotoworld_BK",
-            "BobbyMarks42",
-            "MarcJSpears",
-        ],
-        help="List of X handles (without @)",
+        default=None,
+        help="List of X handles (without @). If not provided, uses predefined handles for the sport.",
     )
     parser.add_argument("--min-likes", type=int, default=10)
     parser.add_argument("--min-views", type=int, default=5000)
@@ -228,6 +347,11 @@ def main() -> None:
     parser.add_argument("--max-windows", type=int, default=52, help="Safety cap for number of windows to scan")
     parser.add_argument("--max-search-results", type=int, default=50)
     args = parser.parse_args()
+
+    # Use predefined handles if none provided
+    if args.handles is None:
+        args.handles = get_sport_handles(args.sport)
+        print(f"Using predefined {args.sport.upper()} handles: {', '.join('@' + h for h in args.handles)}")
 
     # Require API key
     api_key = _get_api_key()
@@ -274,6 +398,7 @@ def main() -> None:
                     from_date=from_str,
                     to_date=to_str,
                     max_search_results=min(25, args.max_search_results),
+                    sport=args.sport,
                 )
                 for t in tweets:
                     k = _key(t)

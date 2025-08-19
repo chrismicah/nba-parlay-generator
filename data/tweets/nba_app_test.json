@@ -1,0 +1,29 @@
+{
+  "tweets": [
+    {
+      "author": "Shams Charania",
+      "timestamp": "2025-08-19T15:07:52.000Z",
+      "text": "After 11 seasons, John Wall says he has retired from basketball. Wall, a five-time NBA All-Star out of Kentucky, played for the Washington Wizards, Los Angeles Clippers and Houston Rockets.",
+      "url": "",
+      "likes": 19648,
+      "views": 940868
+    }
+  ],
+  "sport": "nba",
+  "handles_used": [
+    "ShamsCharania",
+    "TheSteinLine",
+    "ChrisBHaynes",
+    "Underdog__NBA",
+    "NBABet",
+    "Rotoworld_BK",
+    "MarcJSpears",
+    "NBAInjuryR3p0rt",
+    "FantasyLabsNBA",
+    "WindhorstESPN"
+  ],
+  "timestamp": "2025-08-19T16:14:08.584249+00:00",
+  "count": 1,
+  "from_date": "2025-08-19T14:13:22.761716+00:00",
+  "to_date": "2025-08-19T16:13:22.761716+00:00"
+}
