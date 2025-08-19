@@ -32,8 +32,10 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--until", help="Filter bets created_at < until (UTC ISO 8601)")
     
     # Grouping and output options
-    parser.add_argument("--group-by", choices=["bet_type", "day", "bookmaker", "game_id"], 
+    parser.add_argument("--group-by", choices=["bet_type", "day", "bookmaker", "game_id", "sport"], 
                        default="bet_type", help="Group results by (default: bet_type)")
+    parser.add_argument("--sport", choices=["nba", "nfl", "all"], default="all",
+                       help="Filter by sport (default: all)")
     parser.add_argument("--export-csv", help="Export results to CSV file")
     parser.add_argument("--export-json", help="Export results to JSON file")
     parser.add_argument("--include-open", action="store_true", 
@@ -47,8 +49,8 @@ def parse_args() -> argparse.Namespace:
     return args
 
 
-def load_rows(db_path: str, since: Optional[str] = None, until: Optional[str] = None) -> List[sqlite3.Row]:
-    """Load bet rows from database with optional time filters."""
+def load_rows(db_path: str, since: Optional[str] = None, until: Optional[str] = None, sport: str = "all") -> List[sqlite3.Row]:
+    """Load bet rows from database with optional time and sport filters."""
     try:
         # Try read-only connection first
         conn = sqlite3.connect(f"file:{db_path}?mode=ro", uri=True)
@@ -58,11 +60,12 @@ def load_rows(db_path: str, since: Optional[str] = None, until: Optional[str] = 
     
     conn.row_factory = sqlite3.Row
     
-    # Check if CLV columns exist
+    # Check if CLV and sport columns exist
     cursor = conn.cursor()
     cursor.execute("PRAGMA table_info(bets)")
     columns = {row[1] for row in cursor.fetchall()}
     has_clv = 'odds_at_alert' in columns and 'closing_line_odds' in columns and 'clv_percentage' in columns
+    has_sport = 'sport' in columns
     
     # Build query
     query = """
@@ -72,6 +75,9 @@ def load_rows(db_path: str, since: Optional[str] = None, until: Optional[str] = 
     
     if has_clv:
         query += ", odds_at_alert, closing_line_odds, clv_percentage"
+    
+    if has_sport:
+        query += ", sport"
     
     query += " FROM bets WHERE 1=1"
     params = []
@@ -83,6 +89,11 @@ def load_rows(db_path: str, since: Optional[str] = None, until: Optional[str] = 
     if until:
         query += " AND created_at < ?"
         params.append(until)
+    
+    # Add sport filter if specified and sport column exists
+    if sport != "all" and has_sport:
+        query += " AND sport = ?"
+        params.append(sport)
     
     query += " ORDER BY created_at DESC"
     
@@ -174,6 +185,12 @@ def rollup_metrics(rows: List[sqlite3.Row], group_by: str, include_open: bool) -
             group_key = infer_bookmaker(row['leg_description']) or "unknown"
         elif group_by == "game_id":
             group_key = row['game_id']
+        elif group_by == "sport":
+            # Use sport column if available, otherwise default to 'nba'
+            if hasattr(row, 'keys') and 'sport' in row.keys():
+                group_key = row['sport'] or 'nba'
+            else:
+                group_key = 'nba'  # Default assumption for legacy data
         else:
             group_key = "unknown"
         
@@ -185,7 +202,7 @@ def rollup_metrics(rows: List[sqlite3.Row], group_by: str, include_open: bool) -
             logger.warning(f"Zero or missing stake for bet_id {row['bet_id']}")
             continue
         
-        if odds <= 0:
+        if odds == 0:
             logger.warning(f"Zero or missing odds for bet_id {row['bet_id']}")
             continue
         
@@ -296,12 +313,15 @@ def emit_console_report(overall: Dict[str, Any], groups: Dict[str, Any],
     print(f"Generated: {datetime.now(timezone.utc).isoformat()}")
     print(f"Database: {args.db}")
     
-    if args.since or args.until:
-        filters = []
-        if args.since:
-            filters.append(f"since: {args.since}")
-        if args.until:
-            filters.append(f"until: {args.until}")
+    filters = []
+    if args.since:
+        filters.append(f"since: {args.since}")
+    if args.until:
+        filters.append(f"until: {args.until}")
+    if args.sport != "all":
+        filters.append(f"sport: {args.sport}")
+    
+    if filters:
         print(f"Filters: {', '.join(filters)}")
     
     print(f"Grouped by: {args.group_by}")
@@ -443,7 +463,7 @@ def main() -> int:
     
     try:
         # Load data
-        rows = load_rows(args.db, args.since, args.until)
+        rows = load_rows(args.db, args.since, args.until, args.sport)
         
         if not rows:
             print("No bets found matching the specified criteria")

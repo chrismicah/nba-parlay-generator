@@ -81,13 +81,15 @@ class BetsLogger:
                 updated_at TEXT NOT NULL,
                 odds_at_alert REAL,
                 closing_line_odds REAL,
-                clv_percentage REAL
+                clv_percentage REAL,
+                sport TEXT DEFAULT 'nba'
             )
         """)
         
         # Create indexes
         cursor.execute("CREATE INDEX IF NOT EXISTS idx_bets_parlay_id ON bets(parlay_id)")
         cursor.execute("CREATE INDEX IF NOT EXISTS idx_bets_game_id ON bets(game_id)")
+        cursor.execute("CREATE INDEX IF NOT EXISTS idx_bets_sport ON bets(sport)")
         
         # Migrate existing schema if needed
         self._migrate_schema()
@@ -96,7 +98,7 @@ class BetsLogger:
         logger.info("Database schema ensured")
     
     def _migrate_schema(self) -> None:
-        """Migrate existing schema to add CLV columns."""
+        """Migrate existing schema to add CLV and sport columns."""
         cursor = self.connection.cursor()
         
         # Check if CLV columns exist
@@ -114,14 +116,29 @@ class BetsLogger:
             # Backfill odds_at_alert from odds
             cursor.execute("UPDATE bets SET odds_at_alert = odds WHERE odds_at_alert IS NULL")
             
-            logger.info("Schema migration completed")
+            logger.info("CLV columns migration completed")
+        
+        # Check if sport column exists
+        if 'sport' not in columns:
+            logger.info("Adding sport column to existing schema")
+            
+            # Add sport column
+            cursor.execute("ALTER TABLE bets ADD COLUMN sport TEXT DEFAULT 'nba'")
+            
+            # Create sport index
+            cursor.execute("CREATE INDEX IF NOT EXISTS idx_bets_sport ON bets(sport)")
+            
+            # Backfill sport column for existing records
+            cursor.execute("UPDATE bets SET sport = 'nba' WHERE sport IS NULL")
+            
+            logger.info("Sport column migration completed")
     
     def _get_utc_timestamp(self) -> str:
         """Get current UTC timestamp in ISO format."""
         return datetime.now(timezone.utc).isoformat()
     
     def log_parlay_leg(self, parlay_id: str, game_id: str, leg_description: str, 
-                      odds: float, stake: float, predicted_outcome: str) -> int:
+                      odds: float, stake: float, predicted_outcome: str, sport: str = "nba") -> int:
         """
         Log a single parlay leg.
         
@@ -132,6 +149,7 @@ class BetsLogger:
             odds: Decimal odds for this leg
             stake: Amount wagered on this leg
             predicted_outcome: Human-readable prediction
+            sport: Sport type ('nba' or 'nfl', defaults to 'nba')
             
         Returns:
             bet_id of the inserted row
@@ -145,10 +163,10 @@ class BetsLogger:
         cursor.execute("""
             INSERT INTO bets (
                 game_id, parlay_id, leg_description, odds, stake, 
-                predicted_outcome, created_at, updated_at, odds_at_alert
-            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+                predicted_outcome, sport, created_at, updated_at, odds_at_alert
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         """, (game_id, parlay_id, leg_description, odds, stake, 
-              predicted_outcome, timestamp, timestamp, odds))
+              predicted_outcome, sport, timestamp, timestamp, odds))
         
         bet_id = cursor.lastrowid
         self.connection.commit()
@@ -156,7 +174,7 @@ class BetsLogger:
         logger.debug(f"Logged parlay leg: bet_id={bet_id}, parlay_id={parlay_id}, game_id={game_id}")
         return bet_id
     
-    def log_parlay(self, parlay_id: str, game_id: str, legs: List[Dict]) -> List[int]:
+    def log_parlay(self, parlay_id: str, game_id: str, legs: List[Dict], sport: str = "nba") -> List[int]:
         """
         Log multiple legs of a parlay in bulk.
         
@@ -164,6 +182,7 @@ class BetsLogger:
             parlay_id: Unique identifier for the parlay
             game_id: Game identifier
             legs: List of leg dictionaries with keys: leg_description, odds, stake, predicted_outcome
+            sport: Sport type ('nba' or 'nfl', defaults to 'nba')
             
         Returns:
             List of bet_ids for the inserted rows
@@ -180,10 +199,10 @@ class BetsLogger:
             cursor.execute("""
                 INSERT INTO bets (
                     game_id, parlay_id, leg_description, odds, stake, 
-                    predicted_outcome, created_at, updated_at, odds_at_alert
-                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+                    predicted_outcome, sport, created_at, updated_at, odds_at_alert
+                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
             """, (game_id, parlay_id, leg['leg_description'], leg['odds'], 
-                  leg['stake'], leg['predicted_outcome'], timestamp, timestamp, leg['odds']))
+                  leg['stake'], leg['predicted_outcome'], sport, timestamp, timestamp, leg['odds']))
             
             bet_ids.append(cursor.lastrowid)
         
@@ -193,13 +212,14 @@ class BetsLogger:
         return bet_ids
     
     def fetch_open_bets(self, game_id: Optional[str] = None, 
-                       parlay_id: Optional[str] = None) -> List[sqlite3.Row]:
+                       parlay_id: Optional[str] = None, sport: Optional[str] = None) -> List[sqlite3.Row]:
         """
         Fetch unsettled bets (where is_win IS NULL).
         
         Args:
             game_id: Optional filter by game_id
             parlay_id: Optional filter by parlay_id
+            sport: Optional filter by sport ('nba' or 'nfl')
             
         Returns:
             List of unsettled bet rows
@@ -217,6 +237,10 @@ class BetsLogger:
         if parlay_id:
             query += " AND parlay_id = ?"
             params.append(parlay_id)
+        
+        if sport:
+            query += " AND sport = ?"
+            params.append(sport)
         
         query += " ORDER BY created_at DESC"
         
@@ -384,3 +408,69 @@ class BetsLogger:
         rows = cursor.fetchall()
         logger.debug(f"Fetched {len(rows)} bets missing CLV")
         return rows
+    
+    def fetch_bets_by_sport(self, sport: str, limit: Optional[int] = None) -> List[sqlite3.Row]:
+        """
+        Fetch bets filtered by sport.
+        
+        Args:
+            sport: Sport to filter by ('nba' or 'nfl')
+            limit: Optional limit on number of results
+            
+        Returns:
+            List of bet rows for the specified sport
+        """
+        if not self.connection:
+            raise RuntimeError("Database connection not established")
+        
+        query = "SELECT * FROM bets WHERE sport = ? ORDER BY created_at DESC"
+        params = [sport]
+        
+        if limit:
+            query += " LIMIT ?"
+            params.append(limit)
+        
+        cursor = self.connection.cursor()
+        cursor.execute(query, params)
+        
+        rows = cursor.fetchall()
+        logger.debug(f"Fetched {len(rows)} bets for sport {sport}")
+        return rows
+    
+    def get_sports_summary(self) -> Dict[str, Dict[str, int]]:
+        """
+        Get summary statistics by sport.
+        
+        Returns:
+            Dictionary with sport-specific statistics
+        """
+        if not self.connection:
+            raise RuntimeError("Database connection not established")
+        
+        cursor = self.connection.cursor()
+        
+        # Get total bets by sport
+        cursor.execute("""
+            SELECT 
+                sport,
+                COUNT(*) as total_bets,
+                COUNT(CASE WHEN is_win = 1 THEN 1 END) as wins,
+                COUNT(CASE WHEN is_win = 0 THEN 1 END) as losses,
+                COUNT(CASE WHEN is_win IS NULL THEN 1 END) as pending
+            FROM bets 
+            GROUP BY sport
+        """)
+        
+        results = {}
+        for row in cursor.fetchall():
+            sport = row[0] or 'unknown'
+            results[sport] = {
+                'total_bets': row[1],
+                'wins': row[2],
+                'losses': row[3],
+                'pending': row[4],
+                'win_rate': row[2] / (row[2] + row[3]) if (row[2] + row[3]) > 0 else 0.0
+            }
+        
+        logger.debug(f"Sports summary: {results}")
+        return results

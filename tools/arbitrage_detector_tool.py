@@ -13,11 +13,14 @@ decay in live markets.
 import logging
 import time
 import math
+import sqlite3
+import json
 from typing import Dict, List, Optional, Tuple, Any, Union
 from dataclasses import dataclass, field, asdict
 from datetime import datetime, timezone, timedelta
 from collections import defaultdict
 import statistics
+from pathlib import Path
 
 # Import dependencies
 try:
@@ -127,7 +130,8 @@ class ArbitrageDetectorTool:
                  max_latency_threshold: float = 60.0,  # 60 seconds max staleness
                  default_slippage_buffer: float = 0.01,  # 1% default slippage
                  false_positive_epsilon: float = 0.001,  # Epsilon for FP suppression
-                 execution_window: float = 300.0):  # 5 minutes execution window
+                 execution_window: float = 300.0,  # 5 minutes execution window
+                 db_path: str = "data/parlays.sqlite"):  # SQLite database path
         """
         Initialize the advanced arbitrage detector.
         
@@ -137,12 +141,14 @@ class ArbitrageDetectorTool:
             default_slippage_buffer: Default slippage assumption
             false_positive_epsilon: Epsilon for implied probability sum check
             execution_window: Maximum time to execute all legs
+            db_path: Path to SQLite database for logging opportunities
         """
         self.min_profit_threshold = min_profit_threshold
         self.max_latency_threshold = max_latency_threshold
         self.default_slippage_buffer = default_slippage_buffer
         self.false_positive_epsilon = false_positive_epsilon
         self.execution_window = execution_window
+        self.db_path = Path(db_path)
         
         # Initialize book configurations
         self.book_configs = self._initialize_book_configurations()
@@ -417,6 +423,10 @@ class ArbitrageDetectorTool:
         )
         
         self.opportunities_detected.append(opportunity)
+        
+        # Log opportunity to database
+        self.log_arbitrage_opportunity(opportunity, sport="nba")  # Default to NBA, can be parameterized
+        
         return opportunity
     
     def detect_arbitrage_three_way(self, 
@@ -498,6 +508,10 @@ class ArbitrageDetectorTool:
         )
         
         self.opportunities_detected.append(opportunity)
+        
+        # Log opportunity to database
+        self.log_arbitrage_opportunity(opportunity, sport="nba")  # Default to NBA, can be parameterized
+        
         return opportunity
     
     def _calculate_execution_risk(self, legs: List[ArbitrageLeg]) -> float:
@@ -704,6 +718,78 @@ class ArbitrageDetectorTool:
                 return False
         
         return True
+    
+    def log_arbitrage_opportunity(self, opportunity: ArbitrageOpportunity, sport: str = "nba") -> Optional[int]:
+        """
+        Log arbitrage opportunity to SQLite database.
+        
+        Args:
+            opportunity: The arbitrage opportunity to log
+            sport: Sport type ('nba' or 'nfl', defaults to 'nba')
+            
+        Returns:
+            ID of the inserted record, or None if logging failed
+        """
+        try:
+            # Ensure database directory exists
+            self.db_path.parent.mkdir(parents=True, exist_ok=True)
+            
+            # Connect to database
+            conn = sqlite3.connect(str(self.db_path))
+            cursor = conn.cursor()
+            
+            # Get current timestamp
+            current_time = datetime.now(timezone.utc).isoformat()
+            
+            # Prepare data for insertion
+            sportsbooks_involved = json.dumps([leg.book for leg in opportunity.legs])
+            bets_required = json.dumps([{
+                'book': leg.book,
+                'market': leg.market,
+                'team': leg.team,
+                'odds': leg.odds,
+                'adjusted_odds': leg.adjusted_odds,
+                'stake_amount': leg.stake_amount,
+                'stake_ratio': leg.stake_ratio
+            } for leg in opportunity.legs])
+            
+            # Insert into arbitrage_opportunities table
+            cursor.execute("""
+                INSERT INTO arbitrage_opportunities (
+                    game_id, market_type, sport, detection_timestamp, 
+                    profit_percentage, guaranteed_profit, total_investment, 
+                    risk_level, sportsbooks_involved, bets_required, 
+                    expires_at, is_active, created_at, updated_at
+                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            """, (
+                opportunity.game_id or "unknown",
+                opportunity.market_type or opportunity.type,
+                sport,
+                opportunity.detection_timestamp,
+                opportunity.profit_margin,
+                opportunity.profit_margin * opportunity.total_stake,  # guaranteed_profit
+                opportunity.total_stake,
+                opportunity.confidence_level,  # Using confidence as risk level
+                sportsbooks_involved,
+                bets_required,
+                opportunity.expires_at,
+                1,  # is_active = True
+                current_time,
+                current_time
+            ))
+            
+            opportunity_id = cursor.lastrowid
+            conn.commit()
+            conn.close()
+            
+            logger.info(f"Logged arbitrage opportunity to database: ID {opportunity_id}")
+            return opportunity_id
+            
+        except Exception as e:
+            logger.error(f"Failed to log arbitrage opportunity to database: {e}")
+            if 'conn' in locals():
+                conn.close()
+            return None
     
     def get_execution_summary(self) -> Dict[str, Any]:
         """Get summary of detector performance and statistics."""
