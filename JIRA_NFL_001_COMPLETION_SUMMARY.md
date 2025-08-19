@@ -4,7 +4,7 @@
 
 **Date:** January 15, 2025  
 **Status:** COMPLETED  
-**API Key:** ef4a1082cfd017155a366da6f03e538b
+**API Key:** Configured via environment variable
 
 ---
 
@@ -27,9 +27,9 @@
   - Player name normalization for both sports
   - Sport-specific normalization in `normalize_game()` and `normalize_stats()`
 
-### 3. ✅ Added API_SPORTS_KEY Environment Variable
+### 3. ✅ Added API Football Environment Variable
 - **File:** `config.py`
-- **Added:** `API_SPORTS_KEY = os.getenv("API_SPORTS_KEY", "ef4a1082cfd017155a366da6f03e538b")`
+- **Added:** `API_SPORTS_KEY = os.getenv("api-football")`
 - **Usage:** NFL fetcher uses this key for API-NFL requests
 
 ### 4. ✅ Implemented Enhanced DataSourceManager
@@ -88,7 +88,7 @@ DataFetcherTool(sport="nba")  # Unchanged
 
 #### 1. **Primary: API-NFL**
 - **URL:** `https://v1.american-football.api-sports.io`
-- **Key:** `ef4a1082cfd017155a366da6f03e538b`
+- **Key:** Set via `api-football` environment variable
 - **Endpoints:**
   - `/games` - Game schedules
   - `/players/statistics` - Player stats
@@ -220,7 +220,7 @@ normalized = normalizer.normalize_game(game, "nba")
 
 ## 🚀 Deployment Notes
 
-1. **Environment Variables:** API_SPORTS_KEY configured in config.py
+1. **Environment Variables:** api-football configured in config.py
 2. **Redis Optional:** System works without Redis, with warnings
 3. **NBA Unchanged:** All existing NBA workflows continue working
 4. **Testing:** Use `validate_nfl_implementation.py` for verification
