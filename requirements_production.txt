@@ -1,0 +1,41 @@
+# Production requirements for NFL Parlay Strategist Agent
+# Based on requirements.txt with production-specific additions
+
+# Core dependencies (from requirements.txt)
+fastapi==0.109.2
+uvicorn==0.27.1
+python-dotenv==1.0.1
+requests==2.31.0
+pytest==8.0.0
+pydantic==2.11.7
+pandas>=2.0.0
+
+# Production-specific additions for JIRA-NFL-009
+apscheduler>=3.10.0  # NFL game scheduling
+redis>=4.5.0         # Production caching
+celery>=5.3.0        # Background task processing
+
+# Enhanced monitoring and logging
+structlog>=23.1.0    # Structured logging
+prometheus-client>=0.17.0  # Metrics collection
+sentry-sdk>=1.32.0   # Error tracking
+
+# API and data handling
+aiohttp>=3.8.0
+httpx>=0.24.0        # Async HTTP client
+backoff>=2.2.0       # Retry logic for API calls
+
+# Optional ML dependencies (commented for minimal deployment)
+# langchain==0.3.27
+# sentence-transformers==3.0.1
+# torch>=2.0.0
+# transformers>=4.30.0
+
+# Testing and validation
+pytest-asyncio>=0.21.0
+pytest-mock>=3.10.0
+pytest-cov>=4.0.0
+
+# Production deployment
+gunicorn>=21.2.0     # WSGI server
+supervisor>=4.2.0    # Process management

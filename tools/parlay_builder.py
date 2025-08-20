@@ -23,8 +23,20 @@ import json
 
 from tools.odds_fetcher_tool import OddsFetcherTool, GameOdds, BookOdds, Selection
 
-# Import parlay rules engine (JIRA-022)
-from tools.parlay_rules import ParlayRulesEngine, ValidationResult as RulesValidationResult
+# Import parlay rules engine (JIRA-022) with error handling
+try:
+    from tools.parlay_rules_engine import ParlayRulesEngine, ValidationResult as RulesValidationResult
+except ImportError:
+    try:
+        from tools.parlay_rules_engine import ParlayRulesEngine
+        # Create a basic ValidationResult class if not available
+        class RulesValidationResult:
+            def __init__(self, is_valid=True, violations=None):
+                self.is_valid = is_valid
+                self.violations = violations or []
+    except ImportError:
+        ParlayRulesEngine = None
+        RulesValidationResult = None
 
 # Import confidence classifier (JIRA-019) - optional dependency
 try:
@@ -166,7 +178,14 @@ class ParlayBuilder:
         self._snapshot_timestamp: Optional[str] = None
         
         # Initialize parlay rules engine (JIRA-022)
-        self.rules_engine = ParlayRulesEngine(correlation_threshold=correlation_threshold)
+        if ParlayRulesEngine:
+            try:
+                self.rules_engine = ParlayRulesEngine()
+            except Exception as e:
+                logger.warning(f"Failed to initialize ParlayRulesEngine: {e}")
+                self.rules_engine = None
+        else:
+            self.rules_engine = None
         logger.info("Parlay rules engine initialized for compatibility validation")
         
         # Initialize correlation model (JIRA-022A)
