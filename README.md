@@ -1,27 +1,99 @@
-# NBA Parlay Generator
+# NBA/NFL Parlay System 🏀🏈
 
-A comprehensive NBA betting analysis and parlay generation system with multi-sportsbook validation capabilities.
+A comprehensive containerized sports betting analysis and parlay generation system supporting both NBA and NFL with ML prediction layer, expert knowledge base, and automated scheduling.
 
-## 🏀 Features
+## 🎯 Features
 
-- **Parlay Generation**: AI-powered parlay suggestions based on historical data and odds analysis
-- **Multi-Sportsbook Validation**: Automated betslip testing across FanDuel, DraftKings, and Bet365
-- **Injury Analysis**: Real-time injury severity classification using BioBERT
-- **Odds Monitoring**: Live odds fetching and closing line value (CLV) tracking
-- **Data Collection**: Automated scraping from multiple NBA news sources
-- **Performance Tracking**: Comprehensive ROI and performance analytics
+- **Multi-Sport Support**: Full NBA and NFL parlay generation
+- **ML Prediction Layer**: Advanced machine learning models for both sports
+- **Expert Knowledge Base**: Integration with Ed Miller and Wayne Winston sports betting books
+- **Automated Scheduling**: APScheduler for daily game triggers (NFL: Thu/Sun/Mon, NBA: Daily)
+- **Container-Ready**: Full Docker containerization with Qdrant and Redis support
+- **REST API**: FastAPI endpoints for parlay generation and system monitoring
+- **Real-time Monitoring**: Health checks, performance metrics, and job status tracking
+- **Production Ready**: Scalable architecture ready for cloud deployment
 
-## 🚀 Quick Start
+## 🐳 Docker Quick Start (Recommended)
 
-### 1. Installation
+### 1. Docker Compose Setup
 
 ```bash
 # Clone the repository
 git clone <repository-url>
-cd nba-parlay-generator
+cd nba_parlay_project
+
+# Create environment file
+cp .env.example .env
+# Edit .env with your API keys and configuration
+
+# Build and start all services
+docker-compose build
+docker-compose up
+
+# View logs
+docker-compose logs -f
+
+# Stop services
+docker-compose down
+```
+
+### 2. Health Check & Testing
+
+```bash
+# Check system health
+curl http://localhost:8000/health
+
+# Generate NFL parlay
+curl -X POST http://localhost:8000/generate-nfl-parlay \
+  -H "Content-Type: application/json" \
+  -d '{"target_legs": 3, "min_total_odds": 5.0}'
+
+# Generate NBA parlay  
+curl -X POST http://localhost:8000/generate-nba-parlay \
+  -H "Content-Type: application/json" \
+  -d '{"target_legs": 3, "min_total_odds": 5.0}'
+
+# Search knowledge base
+curl "http://localhost:8000/knowledge-base/search?query=value betting&top_k=3"
+```
+
+### 3. Production Environment Variables
+
+```bash
+# Sports Configuration
+ENABLE_NFL=true
+ENABLE_NBA=true
+PRE_GAME_HOURS=3
+
+# External Services
+REDIS_URL=redis://redis:6379/0
+QDRANT_URL=http://qdrant:6333
+
+# API Keys (required)
+THE_ODDS_API_KEY=your_odds_api_key
+BALLDONTLIE_API_KEY=your_balldontlie_key
+API_SPORTS_KEY=your_api_football_key
+```
+
+## 🔧 Manual Installation (Development)
+
+### 1. Prerequisites
+
+```bash
+# Install Python 3.10+
+python --version  # Should be 3.10 or higher
+
+# Clone the repository
+git clone <repository-url>
+cd nba_parlay_project
+
+# Create virtual environment
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
 
 # Install dependencies
 pip install -r requirements.txt
+pip install -r requirements_production.txt
 
 # Install Playwright browsers (for betslip simulator)
 playwright install
@@ -168,10 +240,69 @@ python simulations/baseline_simulation.py \
     --odds-json data/odds_snapshot.json
 ```
 
+## 🏗️ Container Architecture
+
+The system is fully containerized with the following services:
+
+### Docker Services
+
+```yaml
+# docker-compose.yml services
+web:           # FastAPI + APScheduler + ML Layer
+  - NBA/NFL parlay generation endpoints
+  - Automated scheduling triggers
+  - Health monitoring and metrics
+  - ML model inference
+
+qdrant:        # Vector Database (Optional)
+  - Knowledge base embeddings
+  - Semantic search capabilities
+  - Expert content indexing
+
+redis:         # Caching Layer (Optional)  
+  - API response caching
+  - Session management
+  - Background task queuing
+```
+
+### Container Features
+
+- **Volume Mounts**: Models, data chunks, and logs are persisted
+- **Environment Configuration**: Sports toggles, API keys, and service URLs
+- **Health Checks**: Automated monitoring for all services
+- **Scalability**: Ready for horizontal scaling and cloud deployment
+- **Security**: No hardcoded credentials, environment-based configuration
+
+### Exposed Endpoints
+
+| Endpoint | Method | Description |
+|----------|--------|-------------|
+| `/` | GET | System status and component health |
+| `/health` | GET | Detailed health check for monitoring |
+| `/system-health` | GET | Container-specific health metrics |
+| `/generate-nfl-parlay` | POST | Generate NFL parlay recommendation |
+| `/generate-nba-parlay` | POST | Generate NBA parlay recommendation |
+| `/knowledge-base/search` | GET | Search expert knowledge base |
+| `/stats` | GET | System statistics and performance |
+
+### Scheduler Configuration
+
+```yaml
+NFL Schedule:
+  days: [thursday, sunday, monday]
+  times: [13:00, 16:25, 20:20]  # Eastern Time
+  season: [August - February]
+
+NBA Schedule:  
+  days: [tuesday, wednesday, thursday, friday, saturday, sunday]
+  times: [19:00, 20:00, 20:30, 21:00, 22:00]  # Eastern Time
+  season: [October - June]
+```
+
 ## 📁 Project Structure
 
 ```
-nba-parlay-generator/
+nba_parlay_project/
 ├── app/                    # Main application
 ├── scripts/               # Utility scripts
 │   ├── betslip_simulator.py    # Multi-sportsbook validation

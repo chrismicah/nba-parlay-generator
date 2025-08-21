@@ -29,7 +29,8 @@ sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
 # Import our agents and systems
 from agents.nfl_parlay_strategist_agent import NFLParlayStrategistAgent
-from agents.nfl_scheduler_integration import NFLSchedulerIntegration
+from agents.multi_sport_scheduler_integration import MultiSportSchedulerIntegration
+from tools.enhanced_parlay_strategist_agent import FewShotEnhancedParlayStrategistAgent
 from tools.knowledge_base_rag import SportsKnowledgeRAG
 
 # Configure logging
@@ -55,8 +56,9 @@ class ProductionParlaySystem:
     def __init__(self):
         """Initialize the production system."""
         self.nfl_agent: Optional[NFLParlayStrategistAgent] = None
+        self.nba_agent: Optional[FewShotEnhancedParlayStrategistAgent] = None
         self.knowledge_base: Optional[SportsKnowledgeRAG] = None
-        self.scheduler_integration: Optional[NFLSchedulerIntegration] = None
+        self.scheduler_integration: Optional[MultiSportSchedulerIntegration] = None
         self.app: Optional[FastAPI] = None
         self.system_start_time = datetime.now(timezone.utc)
         
@@ -83,19 +85,24 @@ class ProductionParlaySystem:
             self.knowledge_base = SportsKnowledgeRAG()
             logger.info(f"✅ Knowledge base ready: {len(self.knowledge_base.sports_betting_chunks)} chunks")
             
-            # 2. Initialize NFL Agent
-            logger.info("🏈 Initializing NFL Parlay Agent...")
-            self.nfl_agent = NFLParlayStrategistAgent()
-            logger.info(f"✅ NFL agent ready: {self.nfl_agent.agent_id}")
-            
-            # 3. Initialize Scheduler Integration
-            logger.info("📅 Setting up automated scheduling...")
+            # 2. Initialize Multi-Sport Scheduler Integration
+            logger.info("📅 Setting up multi-sport automated scheduling...")
             try:
-                self.scheduler_integration = NFLSchedulerIntegration()
-                await self.scheduler_integration.initialize_nfl_agent()
-                self.scheduler_integration.register_nfl_triggers()
+                self.scheduler_integration = MultiSportSchedulerIntegration()
+                await self.scheduler_integration.initialize_agents()
+                
+                # Get agent references
+                self.nfl_agent = self.scheduler_integration.nfl_agent
+                self.nba_agent = self.scheduler_integration.nba_agent
+                
+                if self.nfl_agent:
+                    logger.info(f"✅ NFL agent ready: {self.nfl_agent.agent_id}")
+                if self.nba_agent:
+                    logger.info(f"✅ NBA agent ready: {self.nba_agent.agent_id}")
+                
+                self.scheduler_integration.register_all_triggers()
                 self.scheduler_integration.start_scheduler()
-                logger.info("✅ APScheduler running with NFL triggers")
+                logger.info("✅ APScheduler running with multi-sport triggers")
             except ImportError:
                 logger.warning("⚠️ APScheduler not available - manual generation only")
                 self.scheduler_integration = None
@@ -130,6 +137,7 @@ class ProductionParlaySystem:
                 "uptime_seconds": int(uptime.total_seconds()),
                 "components": {
                     "nfl_agent": "ready" if self.nfl_agent else "unavailable",
+                    "nba_agent": "ready" if self.nba_agent else "unavailable",
                     "knowledge_base": "ready" if self.knowledge_base else "unavailable",
                     "scheduler": "running" if self.scheduler_integration else "unavailable"
                 },
