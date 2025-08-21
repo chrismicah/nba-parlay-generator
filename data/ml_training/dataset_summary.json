@@ -1,0 +1,7 @@
+{
+  "nba_dataset": "data/ml_training/nba_parlay_training_data.csv",
+  "nfl_dataset": "data/ml_training/nfl_parlay_training_data.csv",
+  "nba_examples": 10000,
+  "nfl_examples": 8000,
+  "total_examples": 18000
+}
