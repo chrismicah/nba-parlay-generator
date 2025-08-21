@@ -87,7 +87,7 @@ class SportFactory:
                 "advanced_stats": "basketball_reference"
             },
             schedule_triggers={
-                "days": ["tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"],
+                "days": ["tue", "wed", "thu", "fri", "sat", "sun"],
                 "game_times": ["19:00", "20:00", "20:30", "21:00", "22:00"],
                 "season_months": [10, 11, 12, 1, 2, 3, 4, 5, 6]  # Oct-June
             },
@@ -103,7 +103,7 @@ class SportFactory:
                 "advanced_stats": "pro_football_reference"
             },
             schedule_triggers={
-                "days": ["thursday", "sunday", "monday"],
+                "days": ["thu", "sun", "mon"],
                 "game_times": ["13:00", "16:25", "20:20"],  # 1pm, 4:25pm, 8:20pm ET
                 "season_months": [8, 9, 10, 11, 12, 1, 2]  # Aug-Feb (including playoffs)
             },

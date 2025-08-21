@@ -13,7 +13,7 @@ except ImportError:
             return func  # Just return the function unchanged
         return decorator
 from tools.api_fetcher import ApiFetcher
-from config import BALLDONTLIE_API_KEY
+from config import BALLDONTLIE_API_KEY, API_SPORTS_KEY
 from nba_api.stats.endpoints import playergamelog, leaguedashteamstats, playergamelogs
 
 try:
@@ -188,7 +188,7 @@ class NBADataFetcher:
 
 class NFLDataFetcher:
     def __init__(self):
-        self.api_key = os.getenv("API_SPORTS_KEY")
+        self.api_key = API_SPORTS_KEY or os.getenv("api-football")
 
     async def get_game_schedule(self, date: str):
         """Fetch NFL game schedule using API-NFL with ESPN fallback"""
