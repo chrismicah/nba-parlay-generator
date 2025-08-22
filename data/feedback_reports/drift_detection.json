@@ -1,0 +1,62 @@
+[
+  {
+    "timestamp": "2025-08-21T23:28:54.018659",
+    "sport": "nba",
+    "drift_detected": false,
+    "drift_score": 0.0925,
+    "drift_magnitude": "low",
+    "drift_features": [],
+    "retrained": false,
+    "performance_improvement": {}
+  },
+  {
+    "timestamp": "2025-08-21T23:29:47.176096",
+    "sport": "nba",
+    "drift_detected": false,
+    "drift_score": 0.0925,
+    "drift_magnitude": "low",
+    "drift_features": [],
+    "retrained": false,
+    "performance_improvement": {}
+  },
+  {
+    "timestamp": "2025-08-21T23:30:58.765901",
+    "sport": "nba",
+    "drift_detected": false,
+    "drift_score": 0.0925,
+    "drift_magnitude": "low",
+    "drift_features": [],
+    "retrained": false,
+    "performance_improvement": {}
+  },
+  {
+    "timestamp": "2025-08-21T23:30:59.052817",
+    "sport": "nfl",
+    "drift_detected": false,
+    "drift_score": 0.0925,
+    "drift_magnitude": "low",
+    "drift_features": [],
+    "retrained": false,
+    "performance_improvement": {}
+  },
+  {
+    "timestamp": "2025-08-21T23:30:59.095853",
+    "sport": "nba",
+    "drift_detected": false,
+    "drift_score": 0.0925,
+    "drift_magnitude": "low",
+    "drift_features": [],
+    "retrained": false,
+    "performance_improvement": {}
+  },
+  {
+    "timestamp": "2025-08-21T23:30:59.132893",
+    "sport": "nfl",
+    "drift_detected": false,
+    "drift_score": 0.0925,
+    "drift_magnitude": "low",
+    "drift_features": [],
+    "retrained": false,
+    "performance_improvement": {}
+  }
+]

@@ -1,0 +1,148 @@
+{
+  "report_metadata": {
+    "generated_at": "2025-08-21T23:30:59.085589",
+    "report_date": "2025-08-21",
+    "sport_filter": null,
+    "lookback_days": 7,
+    "version": "1.0"
+  },
+  "performance_summary": {
+    "error": "no such column: result"
+  },
+  "cost_analysis": {
+    "period": "Last 7 days",
+    "total_cost_usd": 0.075,
+    "total_calls": 7,
+    "avg_cost_per_day": 0.010714285714285714,
+    "service_breakdown": [
+      {
+        "service": "xai_grok",
+        "total_calls": 2,
+        "successful_calls": 2,
+        "success_rate": 1.0,
+        "total_cost_usd": 0.04,
+        "avg_cost_per_call": 0.02,
+        "total_data_kb": 13,
+        "daily_limit": 8.0,
+        "limit_utilization": 0.005
+      },
+      {
+        "service": "the_odds_api",
+        "total_calls": 3,
+        "successful_calls": 2,
+        "success_rate": 0.6666666666666666,
+        "total_cost_usd": 0.025,
+        "avg_cost_per_call": 0.008333333333333333,
+        "total_data_kb": 40,
+        "daily_limit": 5.0,
+        "limit_utilization": 0.005
+      },
+      {
+        "service": "api_football",
+        "total_calls": 2,
+        "successful_calls": 2,
+        "success_rate": 1.0,
+        "total_cost_usd": 0.01,
+        "avg_cost_per_call": 0.005,
+        "total_data_kb": 60,
+        "daily_limit": 3.0,
+        "limit_utilization": 0.0033333333333333335
+      }
+    ],
+    "daily_costs": {
+      "2025-08-21": 0.075
+    },
+    "todays_costs": {
+      "by_service": {
+        "api_football": 0.01,
+        "the_odds_api": 0.025,
+        "xai_grok": 0.04
+      },
+      "total": 0.07500000000000001,
+      "remaining_budget": 24.925
+    },
+    "limits": {
+      "the_odds_api": 5.0,
+      "api_football": 3.0,
+      "xai_grok": 8.0,
+      "firecrawl": 2.0,
+      "balldontlie": 0.0,
+      "openai_gpt": 10.0,
+      "anthropic_claude": 10.0,
+      "total": 25.0
+    },
+    "budget_analysis": {
+      "daily_budget_utilization": 0.0030000000000000005,
+      "remaining_budget": 24.925,
+      "budget_status": "OK",
+      "projected_monthly_cost": 0.32142857142857145
+    },
+    "cost_trends": {
+      "trend_direction": "INSUFFICIENT_DATA",
+      "trend_magnitude": 0
+    },
+    "analysis_timestamp": "2025-08-21T23:30:59.086334"
+  },
+  "feedback_loop_results": {
+    "enabled": true,
+    "executed": true,
+    "estimated_cost": 2.625,
+    "results_by_sport": {
+      "nba": {
+        "success": true,
+        "timestamp": "2025-08-21T23:30:59.123857",
+        "drift_detected": false,
+        "drift_magnitude": "low",
+        "retrained": false,
+        "outcome_samples": 50,
+        "api_cost_used": 0.0,
+        "mlflow_run_id": "e338c2d34e8f4a62a36d87b0acdf87c7"
+      },
+      "nfl": {
+        "success": true,
+        "timestamp": "2025-08-21T23:30:59.162452",
+        "drift_detected": false,
+        "drift_magnitude": "low",
+        "retrained": false,
+        "outcome_samples": 50,
+        "api_cost_used": 0.0,
+        "mlflow_run_id": "e57df995d8604cf1883659a0433ee20c"
+      }
+    },
+    "execution_timestamp": "2025-08-21T23:30:59.162508"
+  },
+  "insights_and_alerts": {
+    "performance_insights": [],
+    "cost_insights": [],
+    "model_insights": [],
+    "alerts": [
+      "\u26a0\ufe0f Low win rate: 0.0%"
+    ],
+    "positive_trends": [
+      "API costs within budget"
+    ],
+    "areas_for_improvement": [
+      "Win rate accuracy"
+    ],
+    "summary": {
+      "overall_health": "WARNING",
+      "alert_count": 1,
+      "positive_trends_count": 1,
+      "action_required": true
+    }
+  },
+  "recommendations": [
+    {
+      "category": "maintenance",
+      "priority": "low",
+      "title": "Continue Monitoring",
+      "description": "System performing well - maintain current approach",
+      "actions": [
+        "Monitor daily reports",
+        "Track performance trends",
+        "Prepare for upcoming sports seasons",
+        "Consider expanding to new markets"
+      ]
+    }
+  ]
+}
