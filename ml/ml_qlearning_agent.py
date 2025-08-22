@@ -55,10 +55,10 @@ Experience = namedtuple('Experience', ['state', 'action', 'reward', 'next_state'
 @dataclass
 class QLearningConfig:
     """Configuration for Q-Learning agent."""
-    # Environment settings
-    max_parlay_legs: int = 5
+    # Environment settings (reduced for stability)
+    max_parlay_legs: int = 4
     min_parlay_legs: int = 2
-    max_candidate_legs: int = 20
+    max_candidate_legs: int = 10  # Reduced from 20
     state_dim: int = 15  # Features per leg + parlay state
     
     # DQN hyperparameters
@@ -70,14 +70,14 @@ class QLearningConfig:
     epsilon_decay: float = 0.995
     target_update_freq: int = 100  # Episodes
     
-    # Network architecture
-    hidden_dim: int = 256
+    # Network architecture (reduced for stability)
+    hidden_dim: int = 128  # Reduced from 256
     dropout_rate: float = 0.2
     
-    # Training settings
-    num_episodes: int = 2000
-    memory_size: int = 10000
-    min_memory_size: int = 1000
+    # Training settings (reduced for faster training)
+    num_episodes: int = 1000  # Reduced from 2000
+    memory_size: int = 5000   # Reduced from 10000
+    min_memory_size: int = 500  # Reduced from 1000
     
     # Evaluation settings
     eval_episodes: int = 1000
