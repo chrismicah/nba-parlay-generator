@@ -43,6 +43,14 @@ try:
 except ImportError:
     OddsFetcherTool = GameOdds = BookOdds = Selection = None
 
+# Import RAG hybrid model (ML-RAG-HYBRID-001)
+try:
+    from ml.ml_rag_hybrid import RAGHybridModel, HybridPrediction, TrainingConfig
+    HAS_RAG_HYBRID = True
+except ImportError:
+    HAS_RAG_HYBRID = False
+    RAGHybridModel = HybridPrediction = TrainingConfig = None
+
 try:
     from tools.market_normalizer import MarketNormalizer, Sport
 except ImportError:
@@ -147,6 +155,37 @@ class NFLParlayStrategistAgent(FewShotEnhancedParlayStrategistAgent):
         else:
             logger.warning("SportsKnowledgeRAG not available - parlay generation without book insights")
         
+        # Initialize RAG Hybrid Model for enhanced predictions (ML-RAG-HYBRID-001)
+        self.rag_hybrid_model = None
+        self.hybrid_predictions_enabled = False
+        if HAS_RAG_HYBRID and self.rag_enabled:
+            try:
+                # Try to load pre-trained model
+                hybrid_config = TrainingConfig(save_model_path="models/rag_hybrid_nfl")
+                self.rag_hybrid_model = RAGHybridModel(hybrid_config, stats_dim=8)  # 8 NFL stats
+                
+                # Try to load saved model
+                import torch
+                from pathlib import Path
+                model_path = Path(hybrid_config.save_model_path) / "hybrid_model.pt"
+                
+                if model_path.exists():
+                    checkpoint = torch.load(model_path, map_location=torch.device("cpu"), weights_only=False)
+                    self.rag_hybrid_model.load_state_dict(checkpoint['model_state_dict'])
+                    self.rag_hybrid_model.is_trained = True
+                    self.hybrid_predictions_enabled = True
+                    logger.info("RAG Hybrid Model loaded for enhanced NFL predictions")
+                else:
+                    logger.info("RAG Hybrid Model initialized but not trained - train with ml_rag_hybrid.py")
+                    
+            except Exception as e:
+                logger.warning(f"Could not initialize RAG Hybrid Model: {e}")
+                self.rag_hybrid_model = None
+        elif HAS_RAG_HYBRID:
+            logger.info("RAG Hybrid Model available but requires knowledge base")
+        else:
+            logger.info("RAG Hybrid Model not available - install transformers for hybrid predictions")
+        
         # NFL-specific team mappings
         self.nfl_teams = [
             'Chiefs', 'Bills', 'Patriots', 'Dolphins', 'Ravens', 'Steelers',
@@ -238,9 +277,15 @@ class NFLParlayStrategistAgent(FewShotEnhancedParlayStrategistAgent):
             if self.rag_enabled:
                 await self._enhance_with_knowledge_base(nfl_recommendation)
             
+            # Enhance with RAG Hybrid Model predictions (ML-RAG-HYBRID-001)
+            if self.hybrid_predictions_enabled:
+                await self._enhance_with_hybrid_predictions(nfl_recommendation)
+            
             logger.info(f"Generated NFL parlay recommendation with confidence {nfl_recommendation.reasoning.confidence_score:.3f}")
             if self.rag_enabled:
                 logger.info(f"Enhanced with {len(nfl_recommendation.knowledge_insights)} knowledge base insights")
+            if self.hybrid_predictions_enabled:
+                logger.info("Enhanced with RAG hybrid model predictions")
             
             return nfl_recommendation
             
@@ -378,6 +423,172 @@ class NFLParlayStrategistAgent(FewShotEnhancedParlayStrategistAgent):
             nfl_contexts.append(context)
         
         recommendation.nfl_context = nfl_contexts
+    
+    async def _enhance_with_hybrid_predictions(self, recommendation: NFLParlayRecommendation) -> None:
+        """
+        Enhance recommendation with RAG hybrid model predictions.
+        
+        This method integrates tabular NFL statistics with narrative text from the
+        knowledge base to provide more accurate probability predictions for each leg.
+        """
+        if not self.rag_hybrid_model or not self.hybrid_predictions_enabled:
+            logger.warning("RAG hybrid model not available for prediction enhancement")
+            return
+        
+        try:
+            hybrid_predictions = []
+            enhanced_reasoning_factors = []
+            
+            for i, leg in enumerate(recommendation.legs):
+                # Extract NFL statistics for this leg
+                stats_dict = self._extract_nfl_stats_for_leg(leg)
+                
+                # Generate RAG narrative for this leg
+                rag_text = await self._generate_rag_narrative_for_leg(leg, recommendation)
+                
+                # Get hybrid prediction
+                hybrid_prediction = self.rag_hybrid_model.predict_single(stats_dict, rag_text)
+                hybrid_predictions.append(hybrid_prediction)
+                
+                # Create enhanced reasoning factor
+                hybrid_factor = ReasoningFactor(
+                    factor_type="hybrid_ml_prediction",
+                    description=f"Hybrid ML analysis for {leg.get('selection_name', 'leg')}",
+                    confidence=hybrid_prediction.confidence,
+                    impact="positive" if hybrid_prediction.probability > 0.6 else "negative" if hybrid_prediction.probability < 0.4 else "neutral",
+                    weight=hybrid_prediction.confidence
+                )
+                enhanced_reasoning_factors.append(hybrid_factor)
+                
+                # Update leg with hybrid prediction
+                leg['hybrid_probability'] = hybrid_prediction.probability
+                leg['hybrid_confidence'] = hybrid_prediction.confidence
+                leg['text_contribution'] = hybrid_prediction.text_contribution
+                leg['stats_contribution'] = hybrid_prediction.stats_contribution
+                
+                logger.debug(f"Hybrid prediction for {leg.get('selection_name', 'leg')}: "
+                           f"{hybrid_prediction.probability:.1%} (confidence: {hybrid_prediction.confidence:.1%})")
+            
+            # Add hybrid predictions to recommendation
+            recommendation.hybrid_predictions = hybrid_predictions
+            
+            # Update overall reasoning with hybrid insights
+            recommendation.reasoning.reasoning_factors.extend(enhanced_reasoning_factors)
+            
+            # Update confidence score based on hybrid predictions
+            import numpy as np
+            avg_hybrid_confidence = np.mean([p.confidence for p in hybrid_predictions])
+            recommendation.reasoning.confidence_score = (
+                recommendation.reasoning.confidence_score * 0.7 + avg_hybrid_confidence * 0.3
+            )
+            
+            # Add hybrid analysis to reasoning text
+            self._add_hybrid_analysis_to_reasoning(recommendation, hybrid_predictions)
+            
+            logger.info(f"Enhanced recommendation with {len(hybrid_predictions)} hybrid predictions")
+            
+        except Exception as e:
+            logger.error(f"Error enhancing with hybrid predictions: {e}")
+    
+    def _extract_nfl_stats_for_leg(self, leg: Dict[str, Any]) -> Dict[str, float]:
+        """Extract NFL statistics for a parlay leg."""
+        # Default NFL stats (would be populated from real data sources)
+        stats = {
+            'passing_yards': 0.0,
+            'rushing_yards': 0.0,
+            'receiving_yards': 0.0,
+            'touchdowns': 0.0,
+            'targets': 0.0,
+            'opponent_def_rating': 100.0,
+            'weather_score': 3.0,  # 1-5 scale
+            'home_away': 1.0 if leg.get('home_away', 'home') == 'home' else 0.0
+        }
+        
+        # Extract from leg data if available
+        market_type = leg.get('market_type', '').lower()
+        line_value = leg.get('line', 0.0)
+        
+        if 'passing' in market_type:
+            stats['passing_yards'] = line_value
+        elif 'rushing' in market_type:
+            stats['rushing_yards'] = line_value
+        elif 'receiving' in market_type:
+            stats['receiving_yards'] = line_value
+            stats['targets'] = line_value * 1.5  # Estimate targets from receiving line
+        elif 'touchdown' in market_type or 'td' in market_type:
+            stats['touchdowns'] = line_value
+        
+        return stats
+    
+    async def _generate_rag_narrative_for_leg(self, leg: Dict[str, Any], 
+                                            recommendation: NFLParlayRecommendation) -> str:
+        """Generate RAG narrative text for a specific leg using knowledge base."""
+        if not self.knowledge_base:
+            return f"Standard analysis for {leg.get('selection_name', 'this leg')} without detailed context."
+        
+        try:
+            # Create query for knowledge base
+            player_name = leg.get('player_name', leg.get('selection_name', ''))
+            market_type = leg.get('market_type', '')
+            
+            query = f"NFL {player_name} {market_type} performance analysis matchup"
+            
+            # Get relevant knowledge base insights
+            relevant_docs = await self.knowledge_base.search(query, top_k=2)
+            
+            # Combine into narrative
+            narrative = f"NFL analysis for {player_name} {market_type}. "
+            
+            if relevant_docs:
+                # Add knowledge base insights
+                for doc in relevant_docs:
+                    narrative += f"{doc['content'][:150]}... "
+            
+            # Add market-specific context
+            if 'passing' in market_type.lower():
+                narrative += "Passing game analysis considering QB mobility and receiver matchups. "
+            elif 'rushing' in market_type.lower():
+                narrative += "Running game evaluation including offensive line and defensive front. "
+            elif 'receiving' in market_type.lower():
+                narrative += "Receiving analysis focusing on target share and coverage matchups. "
+            
+            return narrative[:400]  # Limit length
+            
+        except Exception as e:
+            logger.warning(f"Error generating RAG narrative: {e}")
+            return f"Standard analysis for {leg.get('selection_name', 'this leg')} with limited context."
+    
+    def _add_hybrid_analysis_to_reasoning(self, recommendation: NFLParlayRecommendation, 
+                                        hybrid_predictions: List[HybridPrediction]) -> None:
+        """Add hybrid model analysis to the reasoning text."""
+        try:
+            import numpy as np
+            
+            hybrid_section = "\n\n" + "="*50 + "\n"
+            hybrid_section += "🤖 HYBRID ML ANALYSIS (Statistics + Narrative)\n"
+            hybrid_section += "="*50 + "\n\n"
+            
+            for i, (leg, prediction) in enumerate(zip(recommendation.legs, hybrid_predictions)):
+                leg_name = leg.get('selection_name', f'Leg {i+1}')
+                
+                hybrid_section += f"📊 {leg_name}:\n"
+                hybrid_section += f"  • ML Probability: {prediction.probability:.1%}\n"
+                hybrid_section += f"  • Confidence Level: {prediction.confidence:.1%}\n"
+                hybrid_section += f"  • Statistical Weight: {prediction.stats_contribution:.1%}\n"
+                hybrid_section += f"  • Narrative Weight: {prediction.text_contribution:.1%}\n\n"
+            
+            # Add overall hybrid assessment
+            avg_probability = np.mean([p.probability for p in hybrid_predictions])
+            
+            hybrid_section += f"🎯 Overall Hybrid Assessment:\n"
+            hybrid_section += f"  • Average ML Probability: {avg_probability:.1%}\n"
+            hybrid_section += f"  • Model Recommendation: {'FAVORABLE' if avg_probability > 0.55 else 'UNFAVORABLE' if avg_probability < 0.45 else 'NEUTRAL'}\n"
+            
+            # Append to existing reasoning
+            recommendation.reasoning.reasoning_text += hybrid_section
+            
+        except Exception as e:
+            logger.warning(f"Error adding hybrid analysis to reasoning: {e}")
     
     async def _detect_nfl_arbitrage_opportunities(self, 
                                                 recommendation: NFLParlayRecommendation) -> List[Dict[str, Any]]:
