@@ -89,9 +89,9 @@ async def startup_event():
         
         # Initialize NBA agent  
         if os.getenv("ENABLE_NBA", "true").lower() == "true":
-            logger.info("🏀 Initializing NBA agent...")
-            nba_agent = FewShotEnhancedParlayStrategistAgent()
-            logger.info("✅ NBA agent ready")
+            logger.info("🏀 Initializing NBA agent with prop trainer...")
+            nba_agent = FewShotEnhancedParlayStrategistAgent(sport="nba")
+            logger.info("✅ NBA agent ready with ML-enhanced scoring")
         
         logger.info("🎯 All FastAPI services initialized")
         

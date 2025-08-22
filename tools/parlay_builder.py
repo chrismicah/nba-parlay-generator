@@ -63,6 +63,14 @@ except ImportError:
     HAS_PROP_TRAINER = False
     logger.warning("Prop trainer not available.")
 
+# Import parlay optimizer (ML-OPTIMIZER-001)
+try:
+    from ml.ml_parlay_optimizer import ParlayOptimizer, OptimizedParlay
+    HAS_PARLAY_OPTIMIZER = True
+except ImportError:
+    HAS_PARLAY_OPTIMIZER = False
+    logger.warning("Parlay optimizer not available. Install PuLP for optimization features.")
+
 # Set up logging
 logger = logging.getLogger(__name__)
 
@@ -251,6 +259,21 @@ class ParlayBuilder:
             except Exception as e:
                 logger.warning(f"Failed to initialize prop trainers: {e}")
                 self.prop_trainers = {}
+        
+        # Initialize parlay optimizer (ML-OPTIMIZER-001)
+        self.parlay_optimizer = None
+        if HAS_PARLAY_OPTIMIZER:
+            try:
+                self.parlay_optimizer = ParlayOptimizer(
+                    max_legs=5,
+                    max_correlation_threshold=0.3,
+                    min_ev_threshold=0.02
+                )
+                logger.info("Parlay optimizer initialized for LP-based optimization")
+            except Exception as e:
+                logger.warning(f"Failed to initialize parlay optimizer: {e}")
+        else:
+            logger.info("Parlay optimizer not available - install PuLP for optimization features")
         
         logger.info(f"ParlayBuilder initialized for sport: {sport_key}")
     
@@ -984,6 +1007,223 @@ class ParlayBuilder:
                 return (100 / abs(odds_int)) + 1
         except:
             return 2.0  # Default odds
+    
+    def optimize_parlays(self, candidate_legs: List[Dict[str, Any]], 
+                        num_solutions: int = 3, 
+                        max_legs: int = None,
+                        max_correlation: float = None) -> List[Dict[str, Any]]:
+        """
+        Optimize parlay construction using linear programming.
+        
+        This method uses the integrated ParlayOptimizer to find optimal combinations
+        of legs that maximize Expected Value while respecting correlation constraints.
+        
+        Args:
+            candidate_legs: List of leg dictionaries with required fields
+            num_solutions: Number of optimized solutions to return
+            max_legs: Override default max legs per parlay
+            max_correlation: Override default max correlation threshold
+            
+        Returns:
+            List of optimized parlay dictionaries
+        """
+        if not self.parlay_optimizer:
+            logger.warning("Parlay optimizer not available - install PuLP for optimization")
+            return []
+        
+        if not candidate_legs:
+            logger.warning("No candidate legs provided for optimization")
+            return []
+        
+        try:
+            # Update optimizer parameters if provided
+            if max_legs is not None:
+                self.parlay_optimizer.max_legs = max_legs
+            if max_correlation is not None:
+                self.parlay_optimizer.max_correlation_threshold = max_correlation
+            
+            # Enhance candidate legs with prop predictions if available
+            enhanced_legs = self._enhance_legs_with_predictions(candidate_legs)
+            
+            # Run optimization
+            logger.info(f"Running LP optimization on {len(enhanced_legs)} candidate legs")
+            optimized_parlays = self.parlay_optimizer.optimize_parlays(
+                enhanced_legs, num_solutions
+            )
+            
+            # Convert to dictionary format for API compatibility
+            result_parlays = []
+            for parlay in optimized_parlays:
+                parlay_dict = parlay.to_dict()
+                
+                # Add ParlayBuilder-specific enhancements
+                parlay_dict['builder_validation'] = self._validate_optimized_parlay(parlay)
+                parlay_dict['market_availability'] = self._check_market_availability(parlay.legs)
+                
+                result_parlays.append(parlay_dict)
+            
+            logger.info(f"Generated {len(result_parlays)} optimized parlays with LP")
+            return result_parlays
+            
+        except Exception as e:
+            logger.error(f"Parlay optimization failed: {e}")
+            return []
+    
+    def _enhance_legs_with_predictions(self, candidate_legs: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+        """Enhance candidate legs with ML predictions if prop trainers available."""
+        enhanced_legs = []
+        
+        for leg in candidate_legs:
+            enhanced_leg = leg.copy()
+            
+            # Add ML prediction if not present and prop trainer available
+            if 'predicted_prob' not in enhanced_leg:
+                sport = enhanced_leg.get('sport', 'nba').lower()
+                if sport in self.prop_trainers:
+                    try:
+                        # Extract features and predict
+                        features = self._extract_prop_features_from_leg(enhanced_leg, sport)
+                        predicted_prob = self.prop_trainers[sport].predict(features)
+                        enhanced_leg['predicted_prob'] = predicted_prob
+                        
+                        logger.debug(f"Enhanced {leg.get('leg_id', 'unknown')} with ML prediction: {predicted_prob:.3f}")
+                        
+                    except Exception as e:
+                        logger.warning(f"Failed to enhance leg with ML prediction: {e}")
+                        enhanced_leg['predicted_prob'] = 0.5  # Default 50%
+                else:
+                    enhanced_leg['predicted_prob'] = 0.5  # Default 50%
+            
+            # Ensure all required fields are present
+            enhanced_leg.setdefault('sport', 'nba')
+            enhanced_leg.setdefault('market_type', 'points')
+            enhanced_leg.setdefault('player_name', 'Unknown Player')
+            enhanced_leg.setdefault('line_value', 0.0)
+            enhanced_leg.setdefault('game_id', 'unknown_game')
+            enhanced_leg.setdefault('bookmaker', 'draftkings')
+            
+            enhanced_legs.append(enhanced_leg)
+        
+        return enhanced_legs
+    
+    def _extract_prop_features_from_leg(self, leg: Dict[str, Any], sport: str) -> Dict[str, Any]:
+        """Extract features from leg dictionary for prop prediction."""
+        features = {}
+        
+        # Get common features
+        market_type = leg.get('market_type', '').lower()
+        line_value = leg.get('line_value', 0)
+        
+        if sport == 'nba':
+            # NBA-specific feature extraction
+            features.update({
+                'points_scored': line_value if 'points' in market_type else 20.0,
+                'rebounds': line_value if 'rebound' in market_type else 5.0,
+                'assists': line_value if 'assist' in market_type else 3.0,
+                'opponent_def_rating': leg.get('opponent_def_rating', 110.0),
+                'minutes_played': leg.get('projected_minutes', 30.0),
+                'field_goal_attempts': leg.get('projected_fga', 15.0),
+                'three_point_attempts': line_value if 'three' in market_type else 5.0,
+                'free_throw_attempts': leg.get('projected_fta', 3.0),
+                'turnovers': leg.get('projected_turnovers', 2.0),
+                'home_away': leg.get('home_away', 'home'),
+                'days_rest': leg.get('days_rest', 1),
+                'season_avg_points': leg.get('season_avg_points', line_value if 'points' in market_type else 20.0),
+                'last_5_avg_points': leg.get('last_5_avg_points', line_value if 'points' in market_type else 20.0),
+                'opponent_points_allowed': leg.get('opponent_points_allowed', 110.0),
+                'pace': leg.get('pace', 100.0),
+                'usage_rate': leg.get('usage_rate', 25.0)
+            })
+        
+        else:  # NFL
+            # NFL-specific feature extraction
+            features.update({
+                'passing_yards': line_value if 'passing' in market_type else 0.0,
+                'rushing_yards': line_value if 'rushing' in market_type else 0.0,
+                'receiving_yards': line_value if 'receiving' in market_type else 0.0,
+                'passing_touchdowns': line_value if 'td' in market_type and 'passing' in market_type else 0.0,
+                'rushing_touchdowns': line_value if 'td' in market_type and 'rushing' in market_type else 0.0,
+                'receptions': line_value if 'reception' in market_type else 0.0,
+                'targets': leg.get('projected_targets', 0.0),
+                'opponent_def_rating': leg.get('opponent_def_rating', 100.0),
+                'weather_conditions': leg.get('weather', 'clear'),
+                'dome_game': leg.get('dome_game', 0),
+                'position': leg.get('position', 'RB'),
+                'home_away': leg.get('home_away', 'home'),
+                'division_game': leg.get('division_game', 0),
+                'season_avg_yards': leg.get('season_avg_yards', line_value),
+                'last_4_avg_yards': leg.get('last_4_avg_yards', line_value),
+                'opponent_yards_allowed': leg.get('opponent_yards_allowed', 350.0),
+                'snap_count': leg.get('projected_snaps', 50),
+                'red_zone_targets': leg.get('projected_rz_targets', 1)
+            })
+        
+        return features
+    
+    def _validate_optimized_parlay(self, parlay) -> Dict[str, Any]:
+        """Validate optimized parlay using existing rules engine."""
+        if not self.rules_engine:
+            return {"valid": True, "warnings": ["Rules engine not available"]}
+        
+        try:
+            # Convert OptimizedParlay legs to format expected by rules engine
+            leg_dicts = []
+            for leg in parlay.legs:
+                leg_dict = {
+                    'game_id': leg.game_id,
+                    'market_type': leg.market_type,
+                    'selection_name': f"{leg.player_name} {leg.market_type}",
+                    'bookmaker': leg.bookmaker,
+                    'odds_decimal': leg.odds,
+                    'line': leg.line_value
+                }
+                leg_dicts.append(leg_dict)
+            
+            # Validate using rules engine (determine sport from first leg)
+            sport = parlay.legs[0].sport if parlay.legs else 'nba'
+            is_valid, rejection_reason = self.rules_engine.is_parlay_valid(leg_dicts, sport)
+            
+            return {
+                "valid": is_valid,
+                "rejection_reason": rejection_reason if not is_valid else None,
+                "warnings": []
+            }
+            
+        except Exception as e:
+            logger.warning(f"Parlay validation failed: {e}")
+            return {"valid": False, "warnings": [f"Validation error: {e}"]}
+    
+    def _check_market_availability(self, legs: List) -> Dict[str, Any]:
+        """Check if markets for optimized legs are currently available."""
+        try:
+            if not self._current_market_snapshot:
+                self._get_fresh_market_snapshot()
+            
+            available_markets = set()
+            for game in self._current_market_snapshot or []:
+                for book in game.books:
+                    available_markets.add(f"{game.sport_key}_{book.market}")
+            
+            leg_availability = {}
+            unavailable_count = 0
+            
+            for leg in legs:
+                market_key = f"{leg.sport}_{leg.market_type}"
+                is_available = market_key in available_markets
+                leg_availability[leg.leg_id] = is_available
+                if not is_available:
+                    unavailable_count += 1
+            
+            return {
+                "all_available": unavailable_count == 0,
+                "unavailable_count": unavailable_count,
+                "leg_availability": leg_availability,
+                "warning": f"{unavailable_count} legs may not be available" if unavailable_count > 0 else None
+            }
+            
+        except Exception as e:
+            logger.warning(f"Market availability check failed: {e}")
+            return {"all_available": False, "warning": "Could not verify market availability"}
 
 
 def create_sample_legs() -> List[ParlayLeg]:

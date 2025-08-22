@@ -22,3 +22,4 @@ xai-sdk>=0.2.0
 nba-api>=1.10.0
 pytest-asyncio>=0.21.0
 aiohttp>=3.8.0
+pulp>=2.7.0

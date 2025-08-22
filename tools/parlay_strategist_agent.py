@@ -31,6 +31,14 @@ except ImportError:
     HAS_INJURY_CLASSIFIER = False
     BioBERTInjuryClassifier = None
 
+# Import prop trainer for EV-based ranking (ML-PROP-001)
+try:
+    from ml.ml_prop_trainer import HistoricalPropTrainer
+    HAS_PROP_TRAINER = True
+except ImportError:
+    HAS_PROP_TRAINER = False
+    HistoricalPropTrainer = None
+
 # Set up logging
 logger = logging.getLogger(__name__)
 
@@ -71,15 +79,17 @@ class EnhancedParlayStrategistAgent:
     for each parlay recommendation to enable confidence classification.
     """
     
-    def __init__(self, use_injury_classifier: bool = True):
+    def __init__(self, use_injury_classifier: bool = True, sport: str = "nba"):
         """
         Initialize the enhanced strategist agent.
         
         Args:
             use_injury_classifier: Whether to use BioBERT injury analysis
+            sport: Sport for prop trainer ("nba" or "nfl")
         """
         self.agent_id = "enhanced_parlay_strategist_v1.0"
         self.use_injury_classifier = use_injury_classifier
+        self.sport = sport.lower()
         
         # Initialize injury classifier if requested
         self.injury_classifier = None
@@ -91,6 +101,20 @@ class EnhancedParlayStrategistAgent:
                 logger.warning(f"Could not initialize injury classifier: {e}")
         elif self.use_injury_classifier:
             logger.warning("Injury classifier requested but not available")
+        
+        # Initialize prop trainer for EV-based selection (ML-PROP-001)
+        self.prop_trainer = None
+        if HAS_PROP_TRAINER and self.sport in ['nba', 'nfl']:
+            try:
+                self.prop_trainer = HistoricalPropTrainer(self.sport)
+                self.prop_trainer.load_model()
+                logger.info(f"{self.sport.upper()} prop trainer initialized for EV-based leg selection")
+            except Exception as e:
+                logger.warning(f"Could not initialize {self.sport.upper()} prop trainer: {e}")
+        elif HAS_PROP_TRAINER:
+            logger.warning(f"Prop trainer available but unsupported sport: {self.sport}")
+        else:
+            logger.info("Prop trainer not available - using traditional opportunity scoring")
         
         # Common NBA teams for analysis
         self.nba_teams = [
@@ -290,7 +314,7 @@ class EnhancedParlayStrategistAgent:
     
     def _select_best_opportunities(self, game_analyses: List[Dict[str, Any]], 
                                  target_legs: int) -> List[Dict[str, Any]]:
-        """Select the best opportunities for the parlay."""
+        """Select the best opportunities for the parlay using ML-enhanced scoring."""
         all_opportunities = []
         
         for analysis in game_analyses:
@@ -301,12 +325,39 @@ class EnhancedParlayStrategistAgent:
                 enhanced_opportunity['line_movement'] = analysis['line_movement'] 
                 enhanced_opportunity['public_betting_info'] = analysis['public_betting_info']
                 
-                # Calculate opportunity score
+                # Calculate traditional opportunity score
                 enhanced_opportunity['opportunity_score'] = self._calculate_opportunity_score(enhanced_opportunity)
+                
+                # Add ML-based EV score if prop trainer available
+                if self.prop_trainer:
+                    try:
+                        ml_ev_score = self._calculate_prop_ev_score(enhanced_opportunity)
+                        enhanced_opportunity['prop_ev_score'] = ml_ev_score
+                        # Weighted combination: 70% traditional + 30% ML EV
+                        enhanced_opportunity['combined_score'] = (
+                            0.7 * enhanced_opportunity['opportunity_score'] + 
+                            0.3 * ml_ev_score
+                        )
+                        logger.debug(f"Enhanced {opportunity['selection_name']} with ML EV: {ml_ev_score:.3f}")
+                    except Exception as e:
+                        logger.warning(f"Failed to calculate prop EV for {opportunity['selection_name']}: {e}")
+                        enhanced_opportunity['prop_ev_score'] = 0.5
+                        enhanced_opportunity['combined_score'] = enhanced_opportunity['opportunity_score']
+                else:
+                    enhanced_opportunity['prop_ev_score'] = enhanced_opportunity['opportunity_score'] 
+                    enhanced_opportunity['combined_score'] = enhanced_opportunity['opportunity_score']
+                
                 all_opportunities.append(enhanced_opportunity)
         
-        # Sort by opportunity score and select top N
-        all_opportunities.sort(key=lambda x: x['opportunity_score'], reverse=True)
+        # Sort by combined score (ML-enhanced when available)
+        sort_key = 'combined_score' if self.prop_trainer else 'opportunity_score'
+        all_opportunities.sort(key=lambda x: x[sort_key], reverse=True)
+        
+        # Log scoring method used
+        if self.prop_trainer:
+            logger.info(f"Using ML-enhanced opportunity selection for {self.sport.upper()}")
+        else:
+            logger.info("Using traditional opportunity scoring (no ML model)")
         
         # Ensure we don't select multiple legs from same game
         selected = []
@@ -320,6 +371,98 @@ class EnhancedParlayStrategistAgent:
                 used_games.add(opp['game_id'])
         
         return selected
+    
+    def _calculate_prop_ev_score(self, opportunity: Dict[str, Any]) -> float:
+        """
+        Calculate ML-based Expected Value score using prop trainer.
+        
+        Returns normalized score between 0.0 and 1.0 for combination with traditional scoring.
+        """
+        if not self.prop_trainer:
+            return 0.5
+        
+        try:
+            # Extract features for prop prediction based on sport
+            features = self._extract_prop_features_from_opportunity(opportunity)
+            
+            # Get hit probability from ML model
+            hit_probability = self.prop_trainer.predict(features)
+            
+            # Calculate Expected Value
+            odds_decimal = opportunity.get('odds_decimal', 2.0)
+            payout = odds_decimal - 1
+            expected_value = (hit_probability * payout) - ((1 - hit_probability) * 1)
+            
+            # Normalize EV to 0-1 range for scoring combination
+            # EV > 0 is positive value, scale to 0.5-1.0
+            # EV < 0 is negative value, scale to 0.0-0.5
+            if expected_value >= 0:
+                normalized_score = 0.5 + (min(expected_value, 1.0) * 0.5)
+            else:
+                normalized_score = max(0.0, 0.5 + (expected_value * 0.5))
+            
+            logger.debug(f"ML EV calculation: P={hit_probability:.3f}, EV={expected_value:.3f}, Score={normalized_score:.3f}")
+            
+            return normalized_score
+            
+        except Exception as e:
+            logger.warning(f"Error in prop EV calculation: {e}")
+            return 0.5
+    
+    def _extract_prop_features_from_opportunity(self, opportunity: Dict[str, Any]) -> Dict[str, Any]:
+        """Extract features from opportunity data for prop prediction."""
+        features = {}
+        
+        # Get common features
+        market_type = opportunity.get('market_type', '').lower()
+        odds_decimal = opportunity.get('odds_decimal', 2.0)
+        line_value = opportunity.get('line', 0)
+        
+        if self.sport == 'nba':
+            # NBA-specific feature extraction
+            features.update({
+                'points_scored': line_value if 'points' in market_type else 20.0,
+                'rebounds': line_value if 'rebound' in market_type else 5.0,
+                'assists': line_value if 'assist' in market_type else 3.0,
+                'opponent_def_rating': 110.0,  # Default
+                'minutes_played': 30.0,
+                'field_goal_attempts': 15.0,
+                'three_point_attempts': 5.0,
+                'free_throw_attempts': 3.0,
+                'turnovers': 2.0,
+                'home_away': 'home',  # Default
+                'days_rest': 1,
+                'season_avg_points': line_value if 'points' in market_type else 20.0,
+                'last_5_avg_points': line_value if 'points' in market_type else 20.0,
+                'opponent_points_allowed': 110.0,
+                'pace': 100.0,
+                'usage_rate': 25.0
+            })
+        
+        else:  # NFL
+            # NFL-specific feature extraction
+            features.update({
+                'passing_yards': line_value if 'passing' in market_type else 0.0,
+                'rushing_yards': line_value if 'rushing' in market_type else 0.0,
+                'receiving_yards': line_value if 'receiving' in market_type else 0.0,
+                'passing_touchdowns': line_value if 'td' in market_type and 'passing' in market_type else 0.0,
+                'rushing_touchdowns': line_value if 'td' in market_type and 'rushing' in market_type else 0.0,
+                'receptions': line_value if 'reception' in market_type else 0.0,
+                'targets': 0.0,
+                'opponent_def_rating': 100.0,
+                'weather_conditions': 'clear',
+                'dome_game': 0,
+                'position': 'RB',  # Default
+                'home_away': 'home',
+                'division_game': 0,
+                'season_avg_yards': line_value,
+                'last_4_avg_yards': line_value,
+                'opponent_yards_allowed': 350.0,
+                'snap_count': 50,
+                'red_zone_targets': 1
+            })
+        
+        return features
     
     def _generate_comprehensive_reasoning(self, opportunities: List[Dict[str, Any]]) -> ParlayReasoning:
         """Generate comprehensive textual reasoning for the parlay."""

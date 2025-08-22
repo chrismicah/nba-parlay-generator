@@ -52,15 +52,17 @@ class FewShotEnhancedParlayStrategistAgent(EnhancedParlayStrategistAgent):
     """
     
     def __init__(self, use_injury_classifier: bool = True, 
-                 few_shot_examples_path: str = "data/few_shot_parlay_examples.json"):
+                 few_shot_examples_path: str = "data/few_shot_parlay_examples.json",
+                 sport: str = "nba"):
         """
         Initialize the few-shot enhanced strategist agent.
         
         Args:
             use_injury_classifier: Whether to use BioBERT injury analysis
             few_shot_examples_path: Path to few-shot examples JSON file
+            sport: Sport for prop trainer ("nba" or "nfl")
         """
-        super().__init__(use_injury_classifier)
+        super().__init__(use_injury_classifier, sport)
         
         self.agent_id = "few_shot_enhanced_parlay_strategist_v1.0"
         self.few_shot_examples_path = Path(few_shot_examples_path)

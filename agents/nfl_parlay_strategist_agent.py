@@ -106,10 +106,11 @@ class NFLParlayStrategistAgent(FewShotEnhancedParlayStrategistAgent):
         if sport.lower() != "nfl":
             raise ValueError("NFLParlayStrategistAgent only supports NFL")
         
-        # Initialize base agent with NFL few-shot examples
+        # Initialize base agent with NFL few-shot examples and prop trainer
         super().__init__(
             use_injury_classifier=True,
-            few_shot_examples_path="data/nfl_few_shot_parlay_examples.json"
+            few_shot_examples_path="data/nfl_few_shot_parlay_examples.json",
+            sport="nfl"
         )
         
         self.sport = sport.lower()
