@@ -55,6 +55,14 @@ except ImportError:
     HAS_CORRELATION_MODEL = False
     logger.warning("Correlation model not available. Install PyTorch Geometric for correlation detection.")
 
+# Import prop trainer (ML-PROP-001)
+try:
+    from ml.ml_prop_trainer import HistoricalPropTrainer
+    HAS_PROP_TRAINER = True
+except ImportError:
+    HAS_PROP_TRAINER = False
+    logger.warning("Prop trainer not available.")
+
 # Set up logging
 logger = logging.getLogger(__name__)
 
@@ -208,6 +216,41 @@ class ParlayBuilder:
                 logger.info("Confidence classifier and strategist initialized")
             except Exception as e:
                 logger.warning(f"Could not initialize confidence classifier: {e}")
+        
+        # Initialize prop trainers for EV-based ranking (ML-PROP-001)
+        self.prop_trainers = {}
+        if HAS_PROP_TRAINER:
+            try:
+                # Determine sport from sport_key
+                if "basketball" in sport_key.lower() or "nba" in sport_key.lower():
+                    self.prop_trainers['nba'] = HistoricalPropTrainer("nba")
+                    try:
+                        self.prop_trainers['nba'].load_model()
+                        logger.info("NBA prop trainer loaded for EV-based ranking")
+                    except FileNotFoundError:
+                        logger.info("NBA prop model not found - train with ml_prop_trainer.py first")
+                        
+                elif "football" in sport_key.lower() or "nfl" in sport_key.lower():
+                    self.prop_trainers['nfl'] = HistoricalPropTrainer("nfl")
+                    try:
+                        self.prop_trainers['nfl'].load_model()
+                        logger.info("NFL prop trainer loaded for EV-based ranking")
+                    except FileNotFoundError:
+                        logger.info("NFL prop model not found - train with ml_prop_trainer.py first")
+                        
+                else:
+                    # Load both for multi-sport support
+                    for sport in ['nba', 'nfl']:
+                        self.prop_trainers[sport] = HistoricalPropTrainer(sport)
+                        try:
+                            self.prop_trainers[sport].load_model()
+                            logger.info(f"{sport.upper()} prop trainer loaded")
+                        except FileNotFoundError:
+                            logger.info(f"{sport.upper()} prop model not found - train first")
+                            
+            except Exception as e:
+                logger.warning(f"Failed to initialize prop trainers: {e}")
+                self.prop_trainers = {}
         
         logger.info(f"ParlayBuilder initialized for sport: {sport_key}")
     
@@ -797,6 +840,150 @@ class ParlayBuilder:
             "market_types": list(market_counts.keys()),
             "market_counts": market_counts
         }
+    
+    def rank_legs_by_prop_ev(self, potential_legs: List[Dict[str, Any]], 
+                           top_k: int = 10) -> List[Tuple[Dict[str, Any], float, float]]:
+        """
+        Rank parlay legs by Expected Value using trained prop prediction models.
+        
+        This method uses sport-specific HistoricalPropTrainer models to predict
+        the probability of each leg hitting, then calculates Expected Value
+        based on the bookmaker odds vs. predicted probability.
+        
+        Args:
+            potential_legs: List of leg dictionaries with features
+            top_k: Number of top legs to return
+            
+        Returns:
+            List of tuples: (leg_dict, predicted_probability, expected_value)
+            Sorted by Expected Value (highest first)
+        """
+        if not self.prop_trainers:
+            logger.warning("No prop trainers available for EV ranking")
+            return [(leg, 0.5, 0.0) for leg in potential_legs[:top_k]]
+        
+        ranked_legs = []
+        
+        for leg in potential_legs:
+            try:
+                # Determine sport from leg data
+                sport = self._determine_leg_sport(leg)
+                
+                if sport not in self.prop_trainers:
+                    logger.warning(f"No trainer available for sport: {sport}")
+                    continue
+                
+                # Extract features for prediction
+                features = self._extract_prop_features(leg, sport)
+                
+                # Get prediction probability
+                hit_probability = self.prop_trainers[sport].predict(features)
+                
+                # Calculate Expected Value
+                odds = leg.get('odds', 2.0)
+                if isinstance(odds, str):
+                    # Handle American odds format
+                    odds = self._convert_american_to_decimal(odds)
+                
+                # EV = (Probability of Win * Payout) - (Probability of Loss * Stake)
+                payout = odds - 1  # Profit on $1 bet
+                expected_value = (hit_probability * payout) - ((1 - hit_probability) * 1)
+                
+                ranked_legs.append((leg, hit_probability, expected_value))
+                
+            except Exception as e:
+                logger.warning(f"Error calculating EV for leg {leg.get('selection', 'unknown')}: {e}")
+                ranked_legs.append((leg, 0.5, 0.0))
+        
+        # Sort by Expected Value (descending)
+        ranked_legs.sort(key=lambda x: x[2], reverse=True)
+        
+        logger.info(f"Ranked {len(ranked_legs)} legs by prop EV, returning top {top_k}")
+        
+        return ranked_legs[:top_k]
+    
+    def _determine_leg_sport(self, leg: Dict[str, Any]) -> str:
+        """Determine sport from leg data."""
+        # Try to infer from sport_key or game info
+        if 'sport_key' in leg:
+            if 'basketball' in leg['sport_key'].lower() or 'nba' in leg['sport_key'].lower():
+                return 'nba'
+            elif 'football' in leg['sport_key'].lower() or 'nfl' in leg['sport_key'].lower():
+                return 'nfl'
+        
+        # Try to infer from game or team names
+        game = leg.get('game', '').lower()
+        if any(team in game for team in ['lakers', 'celtics', 'warriors', 'bulls', 'knicks']):
+            return 'nba'
+        elif any(team in game for team in ['chiefs', 'cowboys', 'patriots', 'packers', 'steelers']):
+            return 'nfl'
+        
+        # Default based on sport_key of ParlayBuilder
+        if 'basketball' in self.sport_key.lower() or 'nba' in self.sport_key.lower():
+            return 'nba'
+        else:
+            return 'nfl'
+    
+    def _extract_prop_features(self, leg: Dict[str, Any], sport: str) -> Dict[str, Any]:
+        """Extract features from leg data for prop prediction."""
+        features = {}
+        
+        if sport == 'nba':
+            # NBA-specific feature extraction
+            features.update({
+                'points_scored': leg.get('projected_points', 20.0),
+                'rebounds': leg.get('projected_rebounds', 5.0),
+                'assists': leg.get('projected_assists', 3.0),
+                'opponent_def_rating': leg.get('opponent_def_rating', 110.0),
+                'minutes_played': leg.get('projected_minutes', 30.0),
+                'field_goal_attempts': leg.get('projected_fga', 15.0),
+                'three_point_attempts': leg.get('projected_3pa', 5.0),
+                'free_throw_attempts': leg.get('projected_fta', 3.0),
+                'turnovers': leg.get('projected_turnovers', 2.0),
+                'home_away': leg.get('home_away', 'home'),
+                'days_rest': leg.get('days_rest', 1),
+                'season_avg_points': leg.get('season_avg_points', 20.0),
+                'last_5_avg_points': leg.get('last_5_avg_points', 20.0),
+                'opponent_points_allowed': leg.get('opponent_points_allowed', 110.0),
+                'pace': leg.get('pace', 100.0),
+                'usage_rate': leg.get('usage_rate', 25.0)
+            })
+        
+        else:  # NFL
+            # NFL-specific feature extraction
+            features.update({
+                'passing_yards': leg.get('projected_passing_yards', 0.0),
+                'rushing_yards': leg.get('projected_rushing_yards', 0.0),
+                'receiving_yards': leg.get('projected_receiving_yards', 0.0),
+                'passing_touchdowns': leg.get('projected_passing_tds', 0.0),
+                'rushing_touchdowns': leg.get('projected_rushing_tds', 0.0),
+                'receptions': leg.get('projected_receptions', 0.0),
+                'targets': leg.get('projected_targets', 0.0),
+                'opponent_def_rating': leg.get('opponent_def_rating', 100.0),
+                'weather_conditions': leg.get('weather', 'clear'),
+                'dome_game': leg.get('dome_game', 0),
+                'position': leg.get('position', 'RB'),
+                'home_away': leg.get('home_away', 'home'),
+                'division_game': leg.get('division_game', 0),
+                'season_avg_yards': leg.get('season_avg_yards', 50.0),
+                'last_4_avg_yards': leg.get('last_4_avg_yards', 50.0),
+                'opponent_yards_allowed': leg.get('opponent_yards_allowed', 350.0),
+                'snap_count': leg.get('projected_snaps', 50),
+                'red_zone_targets': leg.get('projected_rz_targets', 1)
+            })
+        
+        return features
+    
+    def _convert_american_to_decimal(self, american_odds: str) -> float:
+        """Convert American odds format to decimal."""
+        try:
+            odds_int = int(american_odds.replace('+', ''))
+            if odds_int > 0:
+                return (odds_int / 100) + 1
+            else:
+                return (100 / abs(odds_int)) + 1
+        except:
+            return 2.0  # Default odds
 
 
 def create_sample_legs() -> List[ParlayLeg]:
