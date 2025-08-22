@@ -30,3 +30,5 @@ scipy>=1.10.0
 mlflow>=3.0.0
 schedule>=1.2.0
 scipy>=1.10.0
+gymnasium>=1.0.0
+torch>=2.0.0

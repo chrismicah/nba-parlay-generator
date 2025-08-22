@@ -69,6 +69,14 @@ try:
     HAS_PARLAY_OPTIMIZER = True
 except ImportError:
     HAS_PARLAY_OPTIMIZER = False
+
+# Import Q-Learning agent (ML-QLEARNING-001) - experimental
+try:
+    from ml.ml_qlearning_agent import QLearningParlayAgent, QLearningConfig
+    HAS_QLEARNING_AGENT = True
+except ImportError:
+    HAS_QLEARNING_AGENT = False
+    QLearningParlayAgent = QLearningConfig = None
     logger.warning("Parlay optimizer not available. Install PuLP for optimization features.")
 
 # Set up logging
@@ -274,6 +282,26 @@ class ParlayBuilder:
                 logger.warning(f"Failed to initialize parlay optimizer: {e}")
         else:
             logger.info("Parlay optimizer not available - install PuLP for optimization features")
+        
+        # Initialize Q-Learning agent (ML-QLEARNING-001) - experimental
+        self.qlearning_agent = None
+        self.qlearning_enabled = False
+        if HAS_QLEARNING_AGENT:
+            try:
+                config = QLearningConfig()
+                self.qlearning_agent = QLearningParlayAgent(config)
+                
+                # Try to load pre-trained model
+                if self.qlearning_agent.load_model():
+                    self.qlearning_enabled = True
+                    logger.info("Q-Learning parlay agent loaded successfully")
+                else:
+                    logger.info("Q-Learning agent initialized but not trained - train with ml_qlearning_agent.py")
+                    
+            except Exception as e:
+                logger.warning(f"Failed to initialize Q-Learning agent: {e}")
+        else:
+            logger.info("Q-Learning agent not available - install gymnasium and torch for RL features")
         
         logger.info(f"ParlayBuilder initialized for sport: {sport_key}")
     
@@ -672,6 +700,157 @@ class ParlayBuilder:
             current_odds=selection.price_decimal,
             current_line=selection.line
         )
+    
+    def build_qlearning_parlay(self, candidate_legs: List[Dict[str, Any]], 
+                              max_legs: int = 5, 
+                              experimental: bool = False) -> Optional[List[Dict[str, Any]]]:
+        """
+        Build parlay using Q-Learning reinforcement learning agent.
+        
+        This experimental method uses a trained Deep Q-Network to select optimal
+        parlay combinations based on Expected Value, correlation patterns, and
+        learned strategies from historical data simulation.
+        
+        Args:
+            candidate_legs: List of candidate leg dictionaries with odds, EV, etc.
+            max_legs: Maximum number of legs in parlay (default: 5)
+            experimental: Flag to enable experimental Q-Learning features
+            
+        Returns:
+            List of selected leg dictionaries or None if agent unavailable
+        """
+        if not experimental:
+            logger.info("Q-Learning parlay building requires experimental=True flag")
+            return None
+        
+        if not self.qlearning_enabled or not self.qlearning_agent:
+            logger.warning("Q-Learning agent not available or not trained")
+            return None
+        
+        if not candidate_legs:
+            logger.warning("No candidate legs provided for Q-Learning agent")
+            return []
+        
+        try:
+            logger.info(f"🤖 Building Q-Learning parlay from {len(candidate_legs)} candidates...")
+            
+            # Ensure candidate legs have required fields
+            enriched_legs = []
+            for i, leg in enumerate(candidate_legs):
+                enriched_leg = {
+                    'leg_id': leg.get('leg_id', f'qlearning_leg_{i}'),
+                    'odds': leg.get('odds', 0.0),
+                    'expected_value': leg.get('expected_value', 0.0),
+                    'market_type': leg.get('market_type', 'unknown'),
+                    'player_name': leg.get('player_name', ''),
+                    'sport': leg.get('sport', 'nba'),
+                    'selection_name': leg.get('selection_name', ''),
+                    'game_id': leg.get('game_id', ''),
+                    'sportsbook': leg.get('sportsbook', self.default_sportsbook)
+                }
+                enriched_legs.append(enriched_leg)
+            
+            # Use Q-Learning agent to infer optimal parlay
+            selected_legs = self.qlearning_agent.infer_parlay(enriched_legs, max_legs)
+            
+            if selected_legs:
+                logger.info(f"✅ Q-Learning agent selected {len(selected_legs)} legs")
+                
+                # Log selection reasoning
+                total_ev = sum(leg.get('expected_value', 0) for leg in selected_legs)
+                avg_odds = sum(leg.get('odds', 0) for leg in selected_legs) / len(selected_legs)
+                
+                logger.info(f"  • Total Expected Value: {total_ev:.3f}")
+                logger.info(f"  • Average Odds: {avg_odds:.1f}")
+                logger.info(f"  • Selected markets: {[leg.get('market_type') for leg in selected_legs]}")
+                
+                return selected_legs
+            else:
+                logger.warning("Q-Learning agent returned no selections")
+                return []
+                
+        except Exception as e:
+            logger.error(f"Error in Q-Learning parlay building: {e}")
+            return None
+    
+    def compare_parlay_strategies(self, candidate_legs: List[Dict[str, Any]], 
+                                max_legs: int = 5) -> Dict[str, Any]:
+        """
+        Compare different parlay building strategies including Q-Learning.
+        
+        Args:
+            candidate_legs: Candidate legs for comparison
+            max_legs: Maximum legs per parlay
+            
+        Returns:
+            Dictionary with strategy comparison results
+        """
+        strategies = {}
+        
+        # Strategy 1: Q-Learning (if available)
+        if self.qlearning_enabled:
+            try:
+                qlearning_parlay = self.build_qlearning_parlay(
+                    candidate_legs, max_legs, experimental=True
+                )
+                if qlearning_parlay:
+                    strategies['qlearning'] = {
+                        'legs': qlearning_parlay,
+                        'count': len(qlearning_parlay),
+                        'total_ev': sum(leg.get('expected_value', 0) for leg in qlearning_parlay),
+                        'method': 'Reinforcement Learning (DQN)'
+                    }
+            except Exception as e:
+                logger.warning(f"Q-Learning strategy failed: {e}")
+        
+        # Strategy 2: Optimizer (if available)
+        if self.parlay_optimizer:
+            try:
+                optimizer_parlays = self.optimize_parlays(candidate_legs, 1, max_legs)
+                if optimizer_parlays:
+                    strategies['optimizer'] = {
+                        'legs': optimizer_parlays[0].get('legs', []),
+                        'count': len(optimizer_parlays[0].get('legs', [])),
+                        'total_ev': optimizer_parlays[0].get('total_ev', 0),
+                        'method': 'Linear Programming Optimization'
+                    }
+            except Exception as e:
+                logger.warning(f"Optimizer strategy failed: {e}")
+        
+        # Strategy 3: Random baseline
+        import random
+        random_selection = random.sample(
+            candidate_legs, 
+            min(random.randint(2, max_legs), len(candidate_legs))
+        )
+        strategies['random'] = {
+            'legs': random_selection,
+            'count': len(random_selection),
+            'total_ev': sum(leg.get('expected_value', 0) for leg in random_selection),
+            'method': 'Random Selection'
+        }
+        
+        # Strategy 4: Highest EV selection
+        sorted_by_ev = sorted(candidate_legs, 
+                             key=lambda x: x.get('expected_value', 0), 
+                             reverse=True)
+        ev_selection = sorted_by_ev[:min(max_legs, len(sorted_by_ev))]
+        strategies['highest_ev'] = {
+            'legs': ev_selection,
+            'count': len(ev_selection),
+            'total_ev': sum(leg.get('expected_value', 0) for leg in ev_selection),
+            'method': 'Highest Expected Value'
+        }
+        
+        return {
+            'strategies': strategies,
+            'comparison_summary': {
+                'best_ev_strategy': max(strategies.keys(), 
+                                       key=lambda k: strategies[k]['total_ev']),
+                'strategy_count': len(strategies),
+                'qlearning_available': self.qlearning_enabled
+            }
+        }
     
     def build_validated_parlay(self, potential_legs: List[ParlayLeg],
                              min_legs: int = 2,
