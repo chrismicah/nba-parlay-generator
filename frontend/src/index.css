@@ -1,0 +1,209 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* SportsBetting AI Platform Design System */
+
+@layer base {
+  :root {
+    /* Core Background Colors */
+    --background: 222 84% 4.9%;
+    --foreground: 210 40% 98%;
+    
+    /* Surface Colors */
+    --card: 217 33% 8%;
+    --card-foreground: 210 40% 98%;
+    
+    --popover: 217 33% 8%;
+    --popover-foreground: 210 40% 98%;
+    
+    /* Brand Colors */
+    --primary: 142 69% 58%;  /* Neon green for +EV */
+    --primary-foreground: 222 84% 4.9%;
+    
+    --secondary: 217 33% 12%;
+    --secondary-foreground: 210 40% 98%;
+    
+    /* Utility Colors */
+    --muted: 217 33% 12%;
+    --muted-foreground: 215 20% 65%;
+    
+    --accent: 142 69% 58%;
+    --accent-foreground: 222 84% 4.9%;
+    
+    /* Status Colors */
+    --success: 142 69% 58%;  /* Green for positive EV */
+    --success-foreground: 222 84% 4.9%;
+    
+    --warning: 45 93% 58%;   /* Yellow for warnings */
+    --warning-foreground: 222 84% 4.9%;
+    
+    --destructive: 0 72% 51%; /* Red for negative outcomes */
+    --destructive-foreground: 210 40% 98%;
+    
+    /* Interactive Elements */
+    --border: 217 33% 12%;
+    --input: 217 33% 12%;
+    --ring: 142 69% 58%;
+    
+    /* Layout */
+    --radius: 0.75rem;
+    
+    /* Sidebar */
+    --sidebar-background: 217 33% 6%;
+    --sidebar-foreground: 210 40% 98%;
+    --sidebar-primary: 142 69% 58%;
+    --sidebar-primary-foreground: 222 84% 4.9%;
+    --sidebar-accent: 217 33% 12%;
+    --sidebar-accent-foreground: 210 40% 98%;
+    --sidebar-border: 217 33% 12%;
+    --sidebar-ring: 142 69% 58%;
+    
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(142 69% 58%), hsl(167 85% 45%));
+    --gradient-danger: linear-gradient(135deg, hsl(0 72% 51%), hsl(15 85% 50%));
+    --gradient-surface: linear-gradient(135deg, hsl(217 33% 8%), hsl(217 33% 12%));
+    --gradient-hero: linear-gradient(135deg, hsl(222 84% 4.9%), hsl(217 33% 8%));
+    
+    /* Shadows & Effects */
+    --shadow-success: 0 10px 30px -10px hsl(142 69% 58% / 0.3);
+    --shadow-danger: 0 10px 30px -10px hsl(0 72% 51% / 0.3);
+    --shadow-elevated: 0 20px 40px -12px hsl(222 84% 4.9% / 0.8);
+    
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+  
+  .light {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    
+    --primary: 142 69% 48%;
+    --primary-foreground: 210 40% 98%;
+    
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    
+    --success: 142 69% 48%;
+    --success-foreground: 210 40% 98%;
+    
+    --warning: 45 93% 48%;
+    --warning-foreground: 210 40% 98%;
+    
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 142 69% 48%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+}
+
+@layer components {
+  /* Hero Effects */
+  .hero-gradient {
+    background: var(--gradient-hero);
+  }
+  
+  .success-gradient {
+    background: var(--gradient-primary);
+  }
+  
+  .danger-gradient {
+    background: var(--gradient-danger);
+  }
+  
+  /* Glow Effects */
+  .success-glow {
+    box-shadow: var(--shadow-success);
+  }
+  
+  .danger-glow {
+    box-shadow: var(--shadow-danger);
+  }
+  
+  .elevated-shadow {
+    box-shadow: var(--shadow-elevated);
+  }
+  
+  /* Animations */
+  .smooth-transition {
+    transition: var(--transition-smooth);
+  }
+  
+  .bounce-transition {
+    transition: var(--transition-bounce);
+  }
+  
+  /* Data Table Hover Effects */
+  .data-row {
+    @apply smooth-transition hover:bg-secondary/50 cursor-pointer;
+  }
+  
+  .positive-ev {
+    @apply text-success border-l-4 border-success/50 bg-success/5;
+  }
+  
+  .negative-ev {
+    @apply text-destructive border-l-4 border-destructive/50 bg-destructive/5;
+  }
+  
+  /* Stat Cards */
+  .stat-card {
+    @apply p-6 rounded-lg border bg-card/50 backdrop-blur-sm smooth-transition hover:bg-card/80;
+  }
+  
+  .stat-card-success {
+    @apply stat-card border-success/20 hover:border-success/40 success-glow;
+  }
+  
+  .stat-card-danger {
+    @apply stat-card border-destructive/20 hover:border-destructive/40 danger-glow;
+  }
+  
+  /* Navigation Active States */
+  .nav-link-active {
+    @apply bg-primary/10 text-primary border-primary/20;
+  }
+  
+  /* Form Elements */
+  .form-input {
+    @apply bg-secondary/50 border-border/50 focus:border-primary/50 focus:ring-primary/20;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
