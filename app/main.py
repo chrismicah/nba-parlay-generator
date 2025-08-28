@@ -18,14 +18,13 @@ from pydantic import BaseModel
 # Add project root to path for imports
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-# Import our agents and systems
+# Import our unified agent system
 try:
-    from agents.nfl_parlay_strategist_agent import NFLParlayStrategistAgent
-    from tools.enhanced_parlay_strategist_agent import FewShotEnhancedParlayStrategistAgent
+    from tools.unified_parlay_strategist_agent import UnifiedParlayStrategistAgent, create_unified_agent
     from tools.knowledge_base_rag import SportsKnowledgeRAG
     HAS_AGENTS = True
 except ImportError as e:
-    logging.warning(f"Could not import agents: {e}")
+    logging.warning(f"Could not import unified agents: {e}")
     HAS_AGENTS = False
 
 # Configure logging
@@ -57,9 +56,9 @@ app = FastAPI(
     redoc_url="/redoc"
 )
 
-# Global agents (initialized on startup)
-nfl_agent: Optional[NFLParlayStrategistAgent] = None
-nba_agent: Optional[FewShotEnhancedParlayStrategistAgent] = None
+# Global unified agents (initialized on startup)
+nfl_agent: Optional[UnifiedParlayStrategistAgent] = None
+nba_agent: Optional[UnifiedParlayStrategistAgent] = None
 knowledge_base: Optional[SportsKnowledgeRAG] = None
 app_start_time = datetime.now(timezone.utc)
 
@@ -81,17 +80,17 @@ async def startup_event():
         knowledge_base = SportsKnowledgeRAG()
         logger.info("✅ Knowledge base loaded")
         
-        # Initialize NFL agent
+        # Initialize NFL unified agent
         if os.getenv("ENABLE_NFL", "true").lower() == "true":
-            logger.info("🏈 Initializing NFL agent...")
-            nfl_agent = NFLParlayStrategistAgent()
-            logger.info("✅ NFL agent ready")
+            logger.info("🏈 Initializing unified NFL agent...")
+            nfl_agent = create_unified_agent("NFL", knowledge_base)
+            logger.info("✅ Unified NFL agent ready")
         
-        # Initialize NBA agent  
+        # Initialize NBA unified agent  
         if os.getenv("ENABLE_NBA", "true").lower() == "true":
-            logger.info("🏀 Initializing NBA agent with prop trainer...")
-            nba_agent = FewShotEnhancedParlayStrategistAgent(sport="nba")
-            logger.info("✅ NBA agent ready with ML-enhanced scoring")
+            logger.info("🏀 Initializing unified NBA agent...")
+            nba_agent = create_unified_agent("NBA", knowledge_base)
+            logger.info("✅ Unified NBA agent ready")
         
         logger.info("🎯 All FastAPI services initialized")
         
@@ -167,7 +166,7 @@ async def generate_nfl_parlay(request: ParlayRequest):
     try:
         logger.info(f"Generating NFL parlay: {request.target_legs} legs, min odds {request.min_total_odds}")
         
-        recommendation = await nfl_agent.generate_nfl_parlay_recommendation(
+        recommendation = await nfl_agent.generate_parlay_recommendation(
             target_legs=request.target_legs,
             min_total_odds=request.min_total_odds,
             include_arbitrage=request.include_arbitrage
@@ -181,15 +180,14 @@ async def generate_nfl_parlay(request: ParlayRequest):
             "sport": "NFL",
             "parlay": {
                 "legs": recommendation.legs,
-                "confidence": recommendation.reasoning.confidence_score,
-                "expected_value": getattr(recommendation, 'expected_value', None),
-                "kelly_percentage": getattr(recommendation, 'kelly_percentage', None),
-                "knowledge_insights": getattr(recommendation, 'knowledge_insights', []),
-                "expert_guidance": getattr(recommendation, 'expert_guidance', []),
-                "reasoning": recommendation.reasoning.reasoning_text
+                "confidence": recommendation.confidence,
+                "expected_value": recommendation.expected_value,
+                "kelly_percentage": recommendation.kelly_percentage,
+                "knowledge_insights": recommendation.knowledge_insights,
+                "reasoning": recommendation.reasoning
             },
-            "generated_at": datetime.now(timezone.utc).isoformat(),
-            "agent_version": recommendation.reasoning.strategist_version
+            "generated_at": recommendation.generated_at,
+            "agent_version": recommendation.agent_version
         }
         
     except Exception as e:
@@ -209,67 +207,29 @@ async def generate_nba_parlay(request: ParlayRequest):
     try:
         logger.info(f"Generating NBA parlay: {request.target_legs} legs, min odds {request.min_total_odds}")
         
-        # For NBA, we'll use mock games for now and the enhanced strategist
-        mock_games = []  # This would be populated with real NBA game data
-        
-        recommendation = nba_agent.generate_parlay_with_reasoning(
-            current_games=mock_games,
+        # Use the unified agent method
+        recommendation = await nba_agent.generate_parlay_recommendation(
             target_legs=request.target_legs,
             min_total_odds=request.min_total_odds,
-            use_few_shot=True
+            include_arbitrage=request.include_arbitrage
         )
         
         if not recommendation:
-            # Generate a sample NBA parlay for demo purposes
-            sample_nba_parlay = {
-                "legs": [
-                    {
-                        "game": "Lakers vs Warriors",
-                        "market": "Spread",
-                        "selection": "Lakers -3.5",
-                        "odds": 1.90,
-                        "book": "FanDuel"
-                    },
-                    {
-                        "game": "Celtics vs Heat", 
-                        "market": "Over/Under",
-                        "selection": "Over 215.5",
-                        "odds": 1.95,
-                        "book": "DraftKings"
-                    },
-                    {
-                        "game": "Nuggets vs Suns",
-                        "market": "Moneyline", 
-                        "selection": "Nuggets ML",
-                        "odds": 2.10,
-                        "book": "BetMGM"
-                    }
-                ],
-                "confidence": 0.75,
-                "reasoning": "Strong NBA parlay with good value across spread, total, and moneyline markets"
-            }
-            
-            return {
-                "success": True,
-                "sport": "NBA", 
-                "parlay": sample_nba_parlay,
-                "generated_at": datetime.now(timezone.utc).isoformat(),
-                "agent_version": "nba_enhanced_v1.0",
-                "note": "Sample NBA parlay - connect to live data for real recommendations"
-            }
+            return {"success": False, "sport": "NBA", "message": "No viable NBA parlay found"}
         
         return {
             "success": True,
             "sport": "NBA",
             "parlay": {
                 "legs": recommendation.legs,
-                "confidence": recommendation.reasoning.confidence_score,
+                "confidence": recommendation.confidence,
                 "expected_value": recommendation.expected_value,
                 "kelly_percentage": recommendation.kelly_percentage,
-                "reasoning": recommendation.reasoning.reasoning_text
+                "knowledge_insights": recommendation.knowledge_insights,
+                "reasoning": recommendation.reasoning
             },
-            "generated_at": datetime.now(timezone.utc).isoformat(),
-            "agent_version": recommendation.reasoning.strategist_version
+            "generated_at": recommendation.generated_at,
+            "agent_version": recommendation.agent_version
         }
         
     except Exception as e:

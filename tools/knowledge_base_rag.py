@@ -178,7 +178,8 @@ class SportsKnowledgeRAG:
     def search_knowledge(self, 
                         query: str, 
                         top_k: int = 5,
-                        min_relevance: float = 0.3) -> RAGResult:
+                        min_relevance: float = 0.3,
+                        sport_filter: Optional[str] = None) -> RAGResult:
         """
         Search the knowledge base for relevant sports betting insights.
         
@@ -186,6 +187,7 @@ class SportsKnowledgeRAG:
             query: Search query (e.g., "value betting in NFL", "parlay correlation risk")
             top_k: Number of top results to return
             min_relevance: Minimum relevance score threshold
+            sport_filter: Optional sport filter ("NFL", "NBA", etc.)
             
         Returns:
             RAGResult with relevant chunks and insights
@@ -194,9 +196,9 @@ class SportsKnowledgeRAG:
         start_time = time.time()
         
         if self.use_qdrant and self.qdrant_client:
-            results = self._search_with_qdrant(query, top_k)
+            results = self._search_with_qdrant(query, top_k, sport_filter)
         else:
-            results = self._search_with_similarity(query, top_k, min_relevance)
+            results = self._search_with_similarity(query, top_k, min_relevance, sport_filter)
         
         search_time_ms = (time.time() - start_time) * 1000
         
@@ -211,7 +213,7 @@ class SportsKnowledgeRAG:
             insights=insights
         )
     
-    def _search_with_qdrant(self, query: str, top_k: int) -> List[KnowledgeChunk]:
+    def _search_with_qdrant(self, query: str, top_k: int, sport_filter: Optional[str] = None) -> List[KnowledgeChunk]:
         """Search using Qdrant vector database."""
         if not self.embedding_model:
             return []
@@ -240,7 +242,41 @@ class SportsKnowledgeRAG:
             logger.error(f"Qdrant search error: {e}")
             return []
     
-    def _search_with_similarity(self, query: str, top_k: int, min_relevance: float) -> List[KnowledgeChunk]:
+    def _filter_chunks_by_sport(self, chunks: List[KnowledgeChunk], sport_filter: Optional[str]) -> List[KnowledgeChunk]:
+        """Filter knowledge chunks by sport relevance."""
+        if not sport_filter:
+            return chunks
+        
+        sport_keywords = {
+            'NFL': ['football', 'nfl', 'quarterback', 'touchdown', 'yard', 'rushing', 'passing', 'down', 'field goal'],
+            'NBA': ['basketball', 'nba', 'points', 'rebounds', 'assists', 'three-point', 'player', 'court', 'shot']
+        }
+        
+        relevant_keywords = sport_keywords.get(sport_filter.upper(), [])
+        if not relevant_keywords:
+            return chunks
+        
+        filtered_chunks = []
+        for chunk in chunks:
+            content_lower = chunk.content.lower()
+            
+            # Check for sport-specific keywords
+            has_sport_keywords = any(keyword in content_lower for keyword in relevant_keywords)
+            
+            # Check if it's explicitly about another sport
+            other_sports = [s for s in sport_keywords.keys() if s != sport_filter.upper()]
+            has_other_sport = any(
+                any(keyword in content_lower for keyword in sport_keywords[other_sport])
+                for other_sport in other_sports
+            )
+            
+            # Include if it has sport keywords or if it's general (no specific sport keywords)
+            if has_sport_keywords or not has_other_sport:
+                filtered_chunks.append(chunk)
+        
+        return filtered_chunks
+    
+    def _search_with_similarity(self, query: str, top_k: int, min_relevance: float, sport_filter: Optional[str] = None) -> List[KnowledgeChunk]:
         """Search using basic similarity scoring."""
         if not self.embedding_model:
             return self._search_with_keywords(query, top_k)
@@ -266,7 +302,10 @@ class SportsKnowledgeRAG:
                     chunk.relevance_score = similarities[idx]
                     results.append(chunk)
             
-            return results
+            # Apply sport filtering
+            filtered_results = self._filter_chunks_by_sport(results, sport_filter)
+            
+            return filtered_results
             
         except Exception as e:
             logger.error(f"Similarity search error: {e}")
