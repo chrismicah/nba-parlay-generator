@@ -4,11 +4,19 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Landing from "./pages/Landing";
+import LandingRefactored from "./pages/LandingRefactored";
+import LandingFixed from "./pages/LandingFixed";
+import LandingMinimal from "./pages/LandingMinimal";
+import LandingUltraSimple from "./pages/LandingUltraSimple";
 import Dashboard from "./pages/Dashboard";
+import DashboardRefactored from "./pages/DashboardRefactored";
 import NBA from "./pages/NBA";
+import NBARefactored from "./pages/NBARefactored";
 import NFL from "./pages/NFL";
+import NFLRefactored from "./pages/NFLRefactored";
 import Analytics from "./pages/Analytics";
 import Knowledge from "./pages/Knowledge";
+import KnowledgeRefactored from "./pages/KnowledgeRefactored";
 import Settings from "./pages/Settings";
 import Navigation from "./components/Navigation";
 import NotFound from "./pages/NotFound";
@@ -23,9 +31,15 @@ const App = () => (
         <BrowserRouter>
           <div className="min-h-screen bg-background">
             <Routes>
-              <Route path="/" element={<Landing />} />
+              <Route path="/" element={<LandingUltraSimple />} />
+              <Route path="/landing-old" element={<Landing />} />
+              <Route path="/landing-new" element={<LandingRefactored />} />
               <Route 
                 path="/dashboard" 
+                element={<DashboardRefactored />}
+              />
+              <Route 
+                path="/dashboard-old" 
                 element={
                   <div className="flex">
                     <Navigation />
@@ -35,6 +49,10 @@ const App = () => (
               />
               <Route 
                 path="/nba" 
+                element={<NBARefactored />}
+              />
+              <Route 
+                path="/nba-old" 
                 element={
                   <div className="flex">
                     <Navigation />
@@ -44,6 +62,10 @@ const App = () => (
               />
               <Route 
                 path="/nfl" 
+                element={<NFLRefactored />}
+              />
+              <Route 
+                path="/nfl-old" 
                 element={
                   <div className="flex">
                     <Navigation />
@@ -62,6 +84,10 @@ const App = () => (
               />
               <Route 
                 path="/knowledge" 
+                element={<KnowledgeRefactored />}
+              />
+              <Route 
+                path="/knowledge-old" 
                 element={
                   <div className="flex">
                     <Navigation />

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -6,7 +6,10 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { toast } from "@/components/ui/use-toast";
 import ParlaySlip from "@/components/ParlaySlip";
+import { apiService } from "../services/api";
+import { ParlayResponse } from "../config/api";
 import { 
   RefreshCw, 
   TrendingUp, 
@@ -14,7 +17,8 @@ import {
   Plus,
   Zap,
   AlertTriangle,
-  Clock
+  Clock,
+  Loader2
 } from "lucide-react";
 
 interface ParlayLeg {
@@ -43,6 +47,10 @@ const NFL = () => {
   const [numLegs, setNumLegs] = useState(3);
   const [riskLevel, setRiskLevel] = useState("medium");
   const [minEV, setMinEV] = useState(5);
+  const [isGenerating, setIsGenerating] = useState(false);
+  const [lastGenerated, setLastGenerated] = useState<ParlayResponse | null>(null);
+  const [systemHealth, setSystemHealth] = useState<any>(null);
+  const [seasonStatus, setSeasonStatus] = useState<any>(null);
 
   // Mock NFL betting opportunities
   const opportunities: BettingOpportunity[] = [
@@ -144,17 +152,87 @@ const NFL = () => {
     setParlayLegs([]);
   };
 
-  const generateParlay = () => {
-    const bestOpportunities = filteredOpportunities.slice(0, numLegs);
-    const newLegs = bestOpportunities.map(opp => ({
-      id: `generated-${opp.id}`,
-      team: opp.matchup,
-      bet: opp.bet,
-      odds: opp.odds,
-      expectedValue: opp.expectedValue
-    }));
+  // Load system health on component mount
+  useEffect(() => {
+    const loadSystemHealth = async () => {
+      try {
+        const health = await apiService.getHealth();
+        setSystemHealth(health);
+      } catch (error) {
+        console.error('Failed to load system health:', error);
+        toast({
+          title: "Connection Error",
+          description: "Unable to connect to the NFL backend system",
+          variant: "destructive",
+        });
+      }
+    };
+
+    loadSystemHealth();
+  }, []);
+
+  const generateParlay = async () => {
+    setIsGenerating(true);
     
-    setParlayLegs(newLegs);
+    try {
+      const response = await apiService.generateNFLParlay({
+        target_legs: numLegs,
+        min_total_odds: 5.0,
+        include_arbitrage: true
+      });
+
+      setLastGenerated(response);
+
+      if (response.success) {
+        // Convert API response to frontend format
+        const newLegs = response.parlay.legs.map((leg, index) => ({
+          id: `generated-${index}`,
+          team: leg.game,
+          bet: `${leg.market}: ${leg.selection}`,
+          odds: leg.odds,
+          expectedValue: response.parlay.expected_value || 0
+        }));
+        
+        setParlayLegs(newLegs);
+        
+        toast({
+          title: "NFL Parlay Generated!",
+          description: `Created ${newLegs.length}-leg parlay with ${response.parlay.confidence}% confidence`,
+        });
+      } else {
+        // Handle season-aware response
+        setParlayLegs([]);
+        setSeasonStatus(response);
+        
+        toast({
+          title: "NFL Season Status",
+          description: response.parlay?.reasoning || "NFL regular season hasn't started yet",
+          variant: "destructive",
+        });
+      }
+    } catch (error) {
+      console.error('Failed to generate NFL parlay:', error);
+      
+      // Fallback to mock data if API fails
+      const bestOpportunities = filteredOpportunities.slice(0, numLegs);
+      const mockLegs = bestOpportunities.map(opp => ({
+        id: `mock-${opp.id}`,
+        team: opp.matchup,
+        bet: opp.bet,
+        odds: opp.odds,
+        expectedValue: opp.expectedValue
+      }));
+      
+      setParlayLegs(mockLegs);
+      
+      toast({
+        title: "Using Demo Data",
+        description: "Connected to demo mode - NFL backend unavailable",
+        variant: "destructive",
+      });
+    } finally {
+      setIsGenerating(false);
+    }
   };
 
   const formatOdds = (odds: number) => {
@@ -255,25 +333,45 @@ const NFL = () => {
               </div>
               
               <div className="flex items-end">
-                <Button onClick={generateParlay} className="w-full success-gradient">
-                  <TrendingUp className="h-4 w-4 mr-2" />
-                  Generate Parlay
+                <Button 
+                  onClick={generateParlay} 
+                  disabled={isGenerating}
+                  className="w-full success-gradient"
+                >
+                  {isGenerating ? (
+                    <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                  ) : (
+                    <TrendingUp className="h-4 w-4 mr-2" />
+                  )}
+                  {isGenerating ? 'Generating...' : 'Generate Parlay'}
                 </Button>
               </div>
             </div>
           </CardContent>
         </Card>
 
-        {/* Injury Report Alert */}
-        <Card className="border-warning/20 bg-warning/5">
-          <CardContent className="pt-6">
-            <div className="flex items-center space-x-2 text-warning">
-              <AlertTriangle className="h-5 w-5" />
-              <span className="font-medium">Injury Report:</span>
-              <span>3 key players questionable. Lines may shift before kickoff.</span>
-            </div>
-          </CardContent>
-        </Card>
+        {/* Season Status Alert */}
+        {seasonStatus && !seasonStatus.success ? (
+          <Card className="border-destructive/20 bg-destructive/5">
+            <CardContent className="pt-6">
+              <div className="flex items-center space-x-2 text-destructive">
+                <Clock className="h-5 w-5" />
+                <span className="font-medium">NFL Season Status:</span>
+                <span>{seasonStatus.parlay?.reasoning || "NFL regular season hasn't started yet"}</span>
+              </div>
+            </CardContent>
+          </Card>
+        ) : systemHealth && (
+          <Card className={`border-${systemHealth.components ? 'success' : 'warning'}/20 bg-${systemHealth.components ? 'success' : 'warning'}/5`}>
+            <CardContent className="pt-6">
+              <div className="flex items-center space-x-2 text-success">
+                <Zap className="h-5 w-5" />
+                <span className="font-medium">System Status:</span>
+                <span>NFL analysis system connected and ready</span>
+              </div>
+            </CardContent>
+          </Card>
+        )}
 
         {/* Betting Opportunities Table */}
         <Card>
