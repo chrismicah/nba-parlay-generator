@@ -32,10 +32,9 @@ except ImportError:
     HAS_APSCHEDULER = False
     logging.warning("APScheduler not available. Install apscheduler for scheduling support.")
 
-# Import agents
+# Import unified agents
 try:
-    from agents.nfl_parlay_strategist_agent import NFLParlayStrategistAgent
-    from tools.enhanced_parlay_strategist_agent import FewShotEnhancedParlayStrategistAgent
+    from tools.unified_parlay_strategist_agent import create_unified_agent, UnifiedParlayStrategistAgent
     from tools.sport_factory import SportFactory
     HAS_AGENTS = True
 except ImportError:
@@ -81,8 +80,8 @@ class MultiSportSchedulerIntegration:
         )
         
         # Initialize agents
-        self.nfl_agent: Optional[NFLParlayStrategistAgent] = None
-        self.nba_agent: Optional[FewShotEnhancedParlayStrategistAgent] = None
+        self.nfl_agent: Optional[UnifiedParlayStrategistAgent] = None
+        self.nba_agent: Optional[UnifiedParlayStrategistAgent] = None
         
         # Initialize scheduler
         if scheduler:
@@ -127,13 +126,13 @@ class MultiSportSchedulerIntegration:
             # Initialize NFL agent if enabled
             if self.config.enable_nfl:
                 logger.info("🏈 Initializing NFL agent...")
-                self.nfl_agent = NFLParlayStrategistAgent()
+                self.nfl_agent = create_unified_agent("NFL")
                 logger.info("✅ NFL agent initialized")
             
             # Initialize NBA agent if enabled  
             if self.config.enable_nba:
                 logger.info("🏀 Initializing NBA agent...")
-                self.nba_agent = FewShotEnhancedParlayStrategistAgent()
+                self.nba_agent = create_unified_agent("NBA")
                 logger.info("✅ NBA agent initialized")
             
         except Exception as e:

@@ -33,7 +33,7 @@ COPY . .
 RUN mkdir -p /app/logs /app/data/chunks /app/models
 
 # Set proper permissions
-RUN chmod +x /app/run_production.py
+RUN chmod +x /app/scripts/production/run_production.py
 
 # Expose port
 EXPOSE 8000
@@ -43,4 +43,4 @@ HEALTHCHECK --interval=30s --timeout=10s --start-period=60s --retries=3 \
     CMD curl -f http://localhost:8000/health || exit 1
 
 # Default command
-CMD ["python", "run_production.py"]
+CMD ["python", "scripts/production/run_production.py"]
